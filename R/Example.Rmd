@@ -15,26 +15,26 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 ```{r, echo=FALSE}
-oddsratioGAM <- function(model, predictionData, trainingData, steps,
+oddsratioGAM <- function(model, data, steps,
                          predictors = NULL, pred, slice = FALSE,
-                         value1, value2) {
+                         values) {
   
   # get names of preds
   if (!is.null(predictors)) {
     names_pred <- predictors
   }
-  else names_pred <- colnames(predictionData)
+  else names_pred <- colnames(data)
   
   if (slice) {
     
     # get range of pred distribution and slice in x tiles
-    range <- max(trainingData[, pred]) - min(trainingData[, pred])
+    range <- max(data[, pred]) - min(data[, pred])
     step <- range / steps
     
     range_v <- c()
     # create vector of steps
     for (i in 0:steps) {
-      range_v <- c(range_v, min(trainingData[, pred]) + step * i)
+      range_v <- c(range_v, min(data[, pred]) + step * i)
     }
     
     result <- data.frame(nrow = 1)
@@ -42,21 +42,21 @@ oddsratioGAM <- function(model, predictionData, trainingData, steps,
     for (x in 1:(steps)) {
       # set all preds to their mean
       for (i in names_pred) {
-        predictionData[[i]] <- mean(predictionData[[i]])
+        data[[i]] <- mean(data[[i]])
       }
       # reduce to 1 row
-      predictionData <- dplyr::slice(predictionData, 1:1)
+      data <- dplyr::slice(data, 1:1)
       # subset DF to preds only
-      predictionData <- predictionData[, names_pred]
+      data <- data[, names_pred]
       
-      # set value1 of pred
-      predictionData[, pred] <- range_v[x]
+      # set values[1] of pred
+      data[, pred] <- range_v[x]
       # calc log odds for value 1
-      pred_gam1 <- as.numeric(predict(model, predictionData, type = "link"))
-      # set value2 of pred
-      predictionData[, pred] <- range_v[x+1]
+      pred_gam1 <- as.numeric(predict(model, data, type = "link"))
+      # set values[2] of pred
+      data[, pred] <- range_v[x+1]
       # calc log odds for value 2
-      pred_gam2 <- as.numeric(predict(model, predictionData, type = "link"))
+      pred_gam2 <- as.numeric(predict(model, data, type = "link"))
       
       odds_ratio <- as.numeric(exp(pred_gam2 - pred_gam1), 2)
       value_info <- list(paste0("OR (", round(range_v[x], 3), " to ", round(range_v[x+1], 3), ")"))
@@ -72,30 +72,31 @@ oddsratioGAM <- function(model, predictionData, trainingData, steps,
   
   # set all preds to their mean
   for (i in names_pred) {
-    predictionData[[i]] <- mean(predictionData[[i]])
+    data[[i]] <- mean(data[[i]])
   }
   
   # reduce to 1 row
-  predictionData <- dplyr::slice(predictionData, 1:1)
+  data <- dplyr::slice(data, 1:1)
   # subset DF to preds only
-  predictionData <- predictionData[, names_pred]
+  data <- data[, names_pred]
   
   
-  # set value1 of pred
-  predictionData[, pred] <- value1
+  # set values[1] of pred
+  data[, pred] <- values[1]
   # calc log odds for value 1
-  pred_gam1 <- as.numeric(predict(model, predictionData, type = "link"))
-  # set value2 of pred
-  predictionData[, pred] <- value2
+  pred_gam1 <- as.numeric(predict(model, data, type = "link"))
+  # set values[2] of pred
+  data[, pred] <- values[2]
   # calc log odds for value 2
-  pred_gam2 <- as.numeric(predict(model, predictionData, type = "link"))
+  pred_gam2 <- as.numeric(predict(model, data, type = "link"))
   
   odds_ratio <- as.numeric(exp(pred_gam2 - pred_gam1), 2)
-  value_info <- list(paste0("OR (", value1, " to ", value2, ")"))
+  value_info <- list(paste0("OR (", values[1], " to ", values[2], ")"))
   
   # return named array
   array(odds_ratio, dimnames = value_info)
 }
+
 ```
 
 
@@ -105,6 +106,7 @@ Source: help() of predict.gam()
 
 ```{r}
 suppressPackageStartupMessages(library(mgcv))
+library(dplyr)
 n <- 200
 sig <- 2
 dat <- gamSim(1, n = n,scale = sig)
@@ -129,7 +131,7 @@ oddsratioGAM(model = fit_gam, data = dat, pred = "x2",
 Slice the training data range in ten pieces and calculate OR between every increment step
 
 ```{r}
-oddsratioGAM(fit_gam, newdata, pred = "x2", steps = 10, 
-             slice = TRUE, trainingData = dat)
+oddsratioGAM(fit_gam, pred = "x2", steps = 10, 
+             slice = TRUE, data = dat)
 ```
 

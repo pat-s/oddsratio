@@ -11,13 +11,13 @@ oddsratioGAM <- function(model, data, steps,
   if (slice) {
     
     # get range of pred distribution and slice in x tiles
-    range <- max(trainingData[, pred]) - min(trainingData[, pred])
+    range <- max(data[, pred]) - min(data[, pred])
     step <- range / steps
     
     range_v <- c()
     # create vector of steps
     for (i in 0:steps) {
-      range_v <- c(range_v, min(trainingData[, pred]) + step * i)
+      range_v <- c(range_v, min(data[, pred]) + step * i)
     }
     
     result <- data.frame(nrow = 1)
