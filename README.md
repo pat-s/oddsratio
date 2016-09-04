@@ -2,6 +2,7 @@
 
 When dealing with binomial GAMs, odds increases related to certain predictor increment steps are not linear (as they are for GLMs for example). 
 Hence, odds increments corresponding to specific increases in each variable have to be calculated for every predictor change combination while holding other predictors constant at the same time.  
+To do so, log odds of a specific predictor combination are calculated using the generic `predict()` function with the `type == link` argument. The log odds estimates are substraced by each other and converted into odds applying `exp()` on it. Since callin `exp()` on a substraction (log odds (1) - log odds (2)) turns the substraction into a division, the result is an odds ratio. 
 
 This function provides this ability. It has two basic applications:  
 1. Calculate odds ratio between two manually given values  
