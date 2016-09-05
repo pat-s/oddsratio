@@ -1,4 +1,4 @@
-calc_oddsratio.gam <- function(data, model, pred, values, 
+calc_oddsratio.gam <- function(data, model, pred, values, factor = NULL,
                           percentage, slice = FALSE, quietly = FALSE) {
   
 
@@ -31,10 +31,14 @@ calc_oddsratio.gam <- function(data, model, pred, values,
     
     # apply OR calc for vector
     for (x in 1:(100/percentage)) {
-      # set all preds to their mean
+      
+      
+      # set all preds to their mean if they are numeric
       for (i in names_pred) {
-        data[[i]] <- mean(data[[i]])
+        if(is.numeric(data[[i]])) 
+           data[[i]] <- mean(data[[i]])
       }
+      
       # reduce to 1 row
       data <- data[1, ]
       # subset DF to preds only
@@ -69,9 +73,11 @@ calc_oddsratio.gam <- function(data, model, pred, values,
     return(result)
   }
   
-  # set all preds to their mean
+  # set all preds to their mean if they are numeric
   for (i in names_pred) {
-    data[[i]] <- mean(data[[i]])
+    if(is.numeric(data[[i]]))
+       data[[i]] <- mean(data[[i]])
+    
   }
   
   # reduce to 1 row
@@ -79,7 +85,14 @@ calc_oddsratio.gam <- function(data, model, pred, values,
   # subset DF to preds only
   data <- data[, names_pred]
   
+  # enable to set levels of factor variables manually with a list
+  # if (!is.null(factor))
+  #   for (i in length(factor)){
+  #     df_name <- names(factor)[i]
+  #     data[[df_name]] <- factor[[i]]
+  #   }
   
+  print(data)
   # set values[1] of pred
   data[, pred] <- values[1]
   # calc log odds for value 1
@@ -96,6 +109,9 @@ calc_oddsratio.gam <- function(data, model, pred, values,
     # print variable information
     cat("Predictor: '", pred, "'\n", sep = "")
   
-  # return named array
-  array(odds_ratio, dimnames = value_info)
+  if (!quietly & !slice) {
+    cat("\nOdds ratio from ", values[1], " to ",
+        values[2], ": ", 
+        as.numeric(exp(pred_gam2 - pred_gam1), 2), sep = "" ) 
+  }
 }
