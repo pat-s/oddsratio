@@ -1,0 +1,46 @@
+---
+title: "oddsRatioCalc"
+author: "Patrick Schratz"
+date: "3 September 2016"
+output: 
+  html_document: 
+    highlight: textmate
+    number_sections: yes
+    theme: readable
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+```
+
+```{r, echo=FALSE}
+
+```
+
+
+# Load example data
+
+Source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
+
+```{r}
+dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
+dat$rank <- factor(dat$rank)
+fit_glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
+```
+
+# Examples
+
+## Calculate OR for specific increment step
+
+```{r}
+calc_oddsratio.glm(fit_glm, dat, list(gre = 380, gpa = 5))
+
+o1 <- 0.002264*380
+o2 <- 0.002264*482
+
+o3 <- exp(o2 - o1)
+
+exp(0.002264*102) * 102
+```
+
