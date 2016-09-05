@@ -1,5 +1,5 @@
 calc_oddsratio.gam <- function(data, model, pred, values, 
-                          steps, slice = FALSE, quietly = FALSE) {
+                          percentage, slice = FALSE, quietly = FALSE) {
   
 
   names_pred <- colnames(data)
@@ -8,28 +8,29 @@ calc_oddsratio.gam <- function(data, model, pred, values,
     
     # get range of pred distribution and slice in x tiles
     range <- max(data[, pred]) - min(data[, pred])
-    step <- range / steps
+    step <- range / (100/percentage)
     
     range_v <- c()
-    # create vector of steps
-    for (i in 0:steps) {
+    
+    # create vector of percentage
+    for (i in 0:(100/percentage)) {
       range_v <- c(range_v, min(data[, pred]) + step * i)
     }
     
-    result <- data.frame(odds_ratio = numeric(length = steps),
-                         from = numeric(length = steps),
-                         to = numeric(length = steps),
-                         perc_from = character(length = steps),
-                         perc_to = character(length = steps),
+    result <- data.frame(odds_ratio = numeric(length = 100/percentage),
+                         from = numeric(length = 100/percentage),
+                         to = numeric(length = 100/percentage),
+                         perc_from = character(length = 100/percentage),
+                         perc_to = character(length = 100/percentage),
                          stringsAsFactors=FALSE)
     
     
     if(!quietly)
       # print variable information
-      cat("Predictor: '", pred, "'\nSteps: ", steps, " (", 100/steps, "%)\n", sep="")
+      cat("Predictor: '", pred, "'\nSteps: ", 100/percentage, " (", percentage, "%)\n", sep="")
     
     # apply OR calc for vector
-    for (x in 1:(steps)) {
+    for (x in 1:(100/percentage)) {
       # set all preds to their mean
       for (i in names_pred) {
         data[[i]] <- mean(data[[i]])
@@ -53,15 +54,15 @@ calc_oddsratio.gam <- function(data, model, pred, values,
       result$odds_ratio[x] <- as.numeric(exp(pred_gam2 - pred_gam1), 2)
       result$from[x] <- round(range_v[x], 3)
       result$to[x] <-  round(range_v[x+1], 3)
-      result$perc_from[x] <- as.character((100/steps*x - 100/steps))
-      result$perc_to[x] <- as.character((100/steps)*x)
+      result$perc_from[x] <- as.character((percentage*x - percentage))
+      result$perc_to[x] <- as.character((percentage)*x)
 
       
       if (!quietly) {
         cat("\nOdds ratio from ", round(range_v[x], 3), "(", 
-            (100/steps*x - 100/steps), "%)", " to ", 
+            (percentage*x - percentage), "%)", " to ", 
             round(range_v[x+1], 3), 
-            "(", (100/steps)*x, "%): ", 
+            "(", (percentage)*x, "%): ", 
             as.numeric(exp(pred_gam2 - pred_gam1), 2), sep = "")
       }
     }
