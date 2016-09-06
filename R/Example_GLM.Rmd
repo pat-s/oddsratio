@@ -1,5 +1,5 @@
 ---
-title: "oddsRatioCalc"
+title: "Examplary usage of `calc_oddsratio.glm()`"
 author: "Patrick Schratz"
 date: "3 September 2016"
 output: 
@@ -15,13 +15,50 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 ```{r, echo=FALSE}
-
+calc_oddsratio.glm <- function(model, data, incr, quietly = FALSE) {
+  
+  if (class(model)[1] == "glm") {
+    
+    # get pred names and coefficients without intercept
+    preds <- names(coefficients(model))[2:length(coefficients(model))]
+    coef <- coefficients(model)[2:length(coefficients(model))]
+  }
+  
+  if (class(model)[1] == "glmmPQL") {
+    # get pred names and coefficients without intercept
+    preds <- names(model$coefficients$fixed)[2:length(model$coefficients$fixed)]
+    coef <- model$coefficients$fixed[2:length(model$coefficients$fixed)]
+  }
+  
+  odds_ratios <- list()
+  for (i in preds) {
+    # check if predictor is numeric or integer
+    if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
+      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]])* as.numeric(incr[[i]])), 3)
+      incr1 <- as.numeric(incr[[i]])
+      or <- odds_ratios[[i]]
+    }
+    # if pred is factor -> perform direct conversion to odds ratio
+    else {
+      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
+      incr1 <- "Non numeric predictor. Refer to basis factor level!"
+      or <- odds_ratios[[i]]
+    }
+    
+    if (!quietly) {
+      cat("Variable:   '", i, "'\nIncrement:  '", 
+          incr1, "'\nOdds ratio: ", or, "\n\n", sep = "")
+    }
+  }
+}
 ```
 
+# Examples {.tabset}
 
-# Load example data
+## GLM
 
-Source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
+Create example data.   
+Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
 
 ```{r}
 dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
@@ -29,18 +66,30 @@ dat$rank <- factor(dat$rank)
 fit_glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
 ```
 
-# Examples
+The function calculates ORs for specific increment steps for all predictors.  
+Increments for numerical variabels need to be given in a list.  
 
-## Calculate OR for specific increment step
+Since predictor `rank` is a factor variable with four levels, we will get three odds ratio outputs refering to the basis factor level (here: rank1).  
+The output is interpreted as follows: "Having `rank2` instead of `rank1` while holding all other values constant results in a decrease in odds of 49.1% (1-0.509)".
 
 ```{r}
 calc_oddsratio.glm(fit_glm, dat, list(gre = 380, gpa = 5))
+```
 
-o1 <- 0.002264*380
-o2 <- 0.002264*482
+## GLMM (MASS::glmmPQL)
 
-o3 <- exp(o2 - o1)
+Create example data.  
+Source: `MASS` package.
 
-exp(0.002264*102) * 102
+```{r}
+library(nlme)
+library(MASS)
+data(bacteria)
+fit_glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~ 1 | ID,
+                family = binomial, data = bacteria, verbose = FALSE)
+```
+
+```{r}
+calc_oddsratio.glm(fit_glmmPQL, bacteria, list(week = 5))
 ```
 
