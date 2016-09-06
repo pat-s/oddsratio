@@ -1,5 +1,5 @@
 ---
-title: "Examplary usage of `calc_oddsratio.glm()`"
+title: "Exemplary usage of `calc.oddsratio.glm()`"
 author: "Patrick Schratz"
 date: "3 September 2016"
 output: 
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 ```{r, echo=FALSE}
-calc_oddsratio.glm <- function(model, data, incr, quietly = FALSE) {
+calc.oddsratio.glm <- function(model, data, incr, quietly = FALSE) {
   
   if (class(model)[1] == "glm") {
     
@@ -73,7 +73,7 @@ Since predictor `rank` is a factor variable with four levels, we will get three 
 The output is interpreted as follows: "Having `rank2` instead of `rank1` while holding all other values constant results in a decrease in odds of 49.1% (1-0.509)".
 
 ```{r}
-calc_oddsratio.glm(fit_glm, dat, list(gre = 380, gpa = 5))
+calc.oddsratio.glm(fit_glm, dat, list(gre = 380, gpa = 5))
 ```
 
 ## GLMM (MASS::glmmPQL)
@@ -85,11 +85,11 @@ Source: `MASS` package.
 library(nlme)
 library(MASS)
 data(bacteria)
-fit_glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~ 1 | ID,
-                family = binomial, data = bacteria, verbose = FALSE)
+fit_glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~1 | ID,
+                             family = binomial, data = bacteria, verbose = FALSE)
 ```
 
 ```{r}
-calc_oddsratio.glm(fit_glmmPQL, bacteria, list(week = 5))
+calc.oddsratio.glm(fit_glmmPQL, bacteria, list(week = 5))
 ```
 
