@@ -1,7 +1,6 @@
-calc.oddsratio.gam <- function(data, model, pred, values, factor = NULL,
-                          percentage, slice = FALSE, quietly = FALSE) {
+calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
+                               slice = FALSE, quietly = FALSE) {
   
-
   names.pred <- colnames(data)
   
   if (slice) {
@@ -22,20 +21,19 @@ calc.oddsratio.gam <- function(data, model, pred, values, factor = NULL,
                          to = numeric(length = 100/percentage),
                          perc_from = character(length = 100/percentage),
                          perc_to = character(length = 100/percentage),
-                         stringsAsFactors=FALSE)
+                         stringsAsFactors = FALSE)
     
-    
-    if(!quietly)
+    if (!quietly)
       # print variable information
-      cat("Predictor: '", pred, "'\nSteps:     ", 100/percentage, " (", percentage, "%)\n", sep="")
+      cat("Predictor: '", pred, "'\nSteps:     ", 100/percentage,
+          " (", percentage, "%)\n", sep = "")
     
     # apply OR calc for vector
     for (x in 1:(100/percentage)) {
       
-      
       # set all preds to their mean if they are numeric
       for (i in names.pred) {
-        if(is.numeric(data[[i]])) 
+        if (is.numeric(data[[i]])) 
            data[[i]] <- mean(data[[i]])
       }
       
@@ -49,23 +47,22 @@ calc.oddsratio.gam <- function(data, model, pred, values, factor = NULL,
       # calc log odds for value 1
       pred.gam1 <- as.numeric(predict(model, data, type = "link"))
       # set values[2] of pred
-      data[, pred] <- range.v[x+1]
+      data[, pred] <- range.v[x + 1]
       # calc log odds for value 2
       pred.gam2 <- as.numeric(predict(model, data, type = "link"))
       odds.ratio <- as.numeric(predict(model, data, type = "link"))
       
-      
+      # combine results in DF
       result$odds.ratio[x] <- as.numeric(exp(pred.gam2 - pred.gam1), 2)
       result$from[x] <- round(range.v[x], 3)
-      result$to[x] <-  round(range.v[x+1], 3)
+      result$to[x] <-  round(range.v[x + 1], 3)
       result$perc_from[x] <- as.character((percentage*x - percentage))
       result$perc_to[x] <- as.character((percentage)*x)
 
-      
       if (!quietly) {
         cat("\nOdds ratio from ", round(range.v[x], 3), "(", 
             (percentage*x - percentage), "%)", " to ", 
-            round(range.v[x+1], 3), 
+            round(range.v[x + 1], 3), 
             "(", (percentage)*x, "%): ", 
             as.numeric(exp(pred.gam2 - pred.gam1), 2), sep = "")
       }
@@ -77,7 +74,6 @@ calc.oddsratio.gam <- function(data, model, pred, values, factor = NULL,
   for (i in names.pred) {
     if (is.numeric(data[[i]]))
        data[[i]] <- mean(data[[i]])
-    
   }
   
   # reduce to 1 row
