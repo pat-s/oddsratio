@@ -1,10 +1,17 @@
 calc_oddsratio.glm <- function(model, data, incr, quietly = FALSE) {
   
-  # get pred names and coefficients without intercept
-  preds <- names(coefficients(fit_glm))[2:length(coefficients(fit_glm))]
-  coef <- coefficients(fit_glm)[2:length(coefficients(fit_glm))]
+  if (class(model)[1] == "glm") {
+    
+    # get pred names and coefficients without intercept
+    preds <- names(coefficients(model))[2:length(coefficients(model))]
+    coef <- coefficients(model)[2:length(coefficients(model))]
+  }
   
-  
+  if (class(model)[1] == "glmmPQL") {
+    # get pred names and coefficients without intercept
+    preds <- names(model$coefficients$fixed)[2:length(model$coefficients$fixed)]
+    coef <- model$coefficients$fixed[2:length(model$coefficients$fixed)]
+  }
   
   odds_ratios <- list()
   for (i in preds) {
@@ -20,11 +27,10 @@ calc_oddsratio.glm <- function(model, data, incr, quietly = FALSE) {
       incr1 <- "Non numeric predictor. Refer to basis factor level!"
       or <- odds_ratios[[i]]
     }
-      
-    if (!quietly) {
-        cat("Variable:   '", i, "'\nIncrement:  '", 
-            incr1, "'\nOdds ratio: ", or, "\n\n", sep = "")
-    }
     
+    if (!quietly) {
+      cat("Variable:   '", i, "'\nIncrement:  '", 
+          incr1, "'\nOdds ratio: ", or, "\n\n", sep = "")
+    }
   }
 }
