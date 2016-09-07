@@ -52,4 +52,5 @@ To see the functions in action, please knit the .Rmd file located in `R/`.
 
 - Check usage with different functions (`gam::gam`, `lme4::glmer`, `mgcv::gamm`) and more?
 - Write vignette for both functions or include both in one?
+- Add calculation of odds ratio confidence intervals
 - Set everything up for R package init
