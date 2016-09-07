@@ -5,7 +5,7 @@ Since both model types behave differently in the way to calculate odds increment
 
 # Install package
 
-To install the latest version of the package, simply execute 'install_github("pat-s/oddsratio")'. 
+To install the latest version of the package, simply execute `devtools::install_github("pat-s/oddsratio")`. 
 
 ## GLM
 
