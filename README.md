@@ -1,7 +1,11 @@
 # Purpose
 
 Convenience functions for odds ratio calculation of Generalized Additive Models (GAM) and Generalized Linear Models (GLM) with a binomial response variable (i.e. logistic regression models).  
-Since both model types behave differently in their way to calculate odds increments for changes of their predictors (GLM = linear, GAM = non-linear), both functions `calc.oddsratio.glm()` and `calc.odds.ratio.gam()` behave differently. Subsequently, both functions are explained seperately. 
+Since both model types behave differently in the way to calculate odds increments for changes of their predictors due to their basic type (GLM = linear, GAM = non-linear), the usage of both functions `calc.oddsratio.glm()` and `calc.odds.ratio.gam()` is slightly different. Subsequently, both functions are explained seperately. 
+
+# Install package
+
+To install the latest version of the package, simply execute 'install_github("pat-s/oddsratio")'. 
 
 ## GLM
 
@@ -14,7 +18,7 @@ For indicator variables, the odds ratio is calculated and reported for all level
 
 - **data**: The training data of the fitted GAM model
 
-- **incr:**: List. Increment values of each predictor
+- **incr:** List. Increment values of each predictor
 
 - **quietly:** Logical. Default = `FALSE`. Whether to output information to the console.
 
@@ -22,9 +26,9 @@ For indicator variables, the odds ratio is calculated and reported for all level
 
 When dealing with binomial GAMs, odds increases related to certain predictor increment steps are not linear (as they are for GLMs for example). 
 Hence, odds increments corresponding to specific increases in each variable have to be calculated for every predictor change combination while holding other predictors constant at the same time.  
-To do so, log odds of a specific predictor combination are calculated using the generic `predict()` function with the `type == link` argument. The log odds estimates are substracted by each other and converted into odds applying `exp()` on it. Since callin `exp()` on a substraction (log odds (1) - log odds (2)) turns the substraction into a division, the result is an odds ratio. 
+To do so, log odds of a specific predictor combination are calculated using the generic `predict()` function with the `type == link` argument. The log odds estimates are substracted by each other and converted into odds applying `exp()` on it. Since calling `exp()` on a substraction (log odds (1) - log odds (2)) turns the substraction into a division, the result is an odds ratio. 
 
-This function provides this ability. It has two basic applications:  
+'calc.oddsratio.gam' provides this ability. It has two basic applications:  
 1. Calculate odds ratio between two manually given values  
 2. Calculate odds ratios of certain increment steps using the full range of the selected predictor (e.g. for every 10% increase in predictor X)
 
@@ -46,11 +50,11 @@ This function provides this ability. It has two basic applications:
 
 # Examples
 
-To see the functions in action, please knit the .Rmd file located in `R/`. 
+To see the functions in action, please see the examples in the respective help pages '?calc.oddsratio.gam' and ?calc.oddsratio.gam'.  
 
 # ToDo
 
 - Check usage with different functions (`gam::gam`, `lme4::glmer`, `mgcv::gamm`) and more?
-- Write vignette for both functions or include both in one?
+- Write vignette (necessary?) for both functions or include both in one?
 - Add calculation of odds ratio confidence intervals
-- Set everything up for R package init
+- Implement plotting function of calculated odds ratio in GLM/GAM function?
