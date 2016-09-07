@@ -2,7 +2,7 @@
 % Please edit documentation in R/odds.ratio.gam.R
 \name{calc.oddsratio.gam}
 \alias{calc.oddsratio.gam}
-\title{Calculate odds ratio of GAM}
+\title{Calculate odds ratio of GAM(M)}
 \usage{
 calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
 slice = FALSE, quietly = FALSE)
@@ -10,7 +10,7 @@ slice = FALSE, quietly = FALSE)
 \arguments{
 \item{data}{The data used for model fitting}
 
-\item{model}{A fitted GAM model}
+\item{model}{A fitted GAM(M)}
 
 \item{pred}{Character of length one. The name of the predictor to calculate the odds ratio for}
 
@@ -31,6 +31,9 @@ See `steps` for setting the increment values.}
 Function to calculate odds ratio for specific increment steps of GAM. 
 Odds ratios can also be calculated for continuous percentage increment steps across the whole predictor distribution using 'slice = TRUE'
 }
+\details{
+Currently supported functions: 'mgcv::gam'
+}
 \examples{
 # load data (Source: package 'mgcv')
 library(mgcv)
@@ -38,16 +41,16 @@ n <- 200
 sig <- 2
 dat <- gamSim(1, n = n,scale = sig)
 dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
-fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat) # fit model
+fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat) # fit model
 
 # Calculate OR for specific increment step of continuous variable
-calc.oddsratio.gam(model = fit_gam, data = dat, pred = "x2", values = c(0.099, 0.198))
+calc.oddsratio.gam(model = fit.gam, data = dat, pred = "x2", values = c(0.099, 0.198))
 
 ## Calculate OR for change of indicator variable
-calc.oddsratio.gam(model = fit_gam, data = dat, pred = "x4", values = c("B", "D"))
+calc.oddsratio.gam(model = fit.gam, data = dat, pred = "x4", values = c("B", "D"))
 
 ## Calculate ORs for percentage increments of predictor distribution (here: 20\%)
-calc.oddsratio.gam(fit_gam, pred = "x2", percentage = 20, slice = TRUE, data = dat, quietly = F)
+calc.oddsratio.gam(fit.gam, pred = "x2", percentage = 20, slice = TRUE, data = dat, quietly = F)
 
 }
 
