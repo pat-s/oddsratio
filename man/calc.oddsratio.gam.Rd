@@ -32,7 +32,8 @@ Function to calculate odds ratio for specific increment steps of GAM.
 Odds ratios can also be calculated for continuous percentage increment steps across the whole predictor distribution using 'slice = TRUE'
 }
 \details{
-Currently supported functions: 'mgcv::gam'
+Currently supported functions: 'mgcv::gam', 'mgcv::gamm', 'gam::gam'. 
+For 'mgcv::gamm', the 'model' input of 'calc.oddsratio.gam' needs to be the 'gam' output (e.g. 'fit.gam$gam').
 }
 \examples{
 # load data (Source: package 'mgcv')
@@ -44,13 +45,13 @@ dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat) # fit model
 
 # Calculate OR for specific increment step of continuous variable
-calc.oddsratio.gam(model = fit.gam, data = dat, pred = "x2", values = c(0.099, 0.198))
+calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", values = c(0.099, 0.198))
 
 ## Calculate OR for change of indicator variable
-calc.oddsratio.gam(model = fit.gam, data = dat, pred = "x4", values = c("B", "D"))
+calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x4", values = c("B", "D"))
 
 ## Calculate ORs for percentage increments of predictor distribution (here: 20\%)
-calc.oddsratio.gam(fit.gam, pred = "x2", percentage = 20, slice = TRUE, data = dat, quietly = F)
+calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", percentage = 20, slice = TRUE)
 
 }
 
