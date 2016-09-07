@@ -50,7 +50,7 @@ To do so, log odds of a specific predictor combination are calculated using the 
 
 # Examples
 
-To see the functions in action, please see the examples in the respective help pages '?calc.oddsratio.gam' and ?calc.oddsratio.gam'.  
+To see the functions in action, please see the examples in the respective help pages `?calc.oddsratio.gam` and `?calc.oddsratio.gam`.  
 
 # ToDo
 
