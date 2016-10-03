@@ -1,8 +1,12 @@
 #' @name calc.oddsratio.gam
 #' @title Calculate odds ratio of GAM(M)
 #' 
-#' @description Function to calculate odds ratio for specific increment steps of GAM. 
-#' Odds ratios can also be calculated for continuous percentage increment steps across the whole predictor distribution using 'slice = TRUE'
+#' @importFrom stats coefficients
+#' 
+#' @description This function to calculates odds ratio(s) for specific increment 
+#'     steps of a GAM. 
+#'     Odds ratios can also be calculated for continuous percentage increment steps 
+#'     across the whole predictor distribution using 'slice = TRUE'.
 #' 
 #' @param data The data used for model fitting
 #' @param model A fitted GAM(M)
@@ -17,8 +21,6 @@
 #' See `steps` for setting the increment values.
 #' @param quietly Logical. Default = FALSE. Whether to output information to the console.
 #' 
-#' @usage calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
-#' slice = FALSE, quietly = FALSE)
 #' 
 #' @details Currently supported functions: 'mgcv::gam', 'mgcv::gamm', 'gam::gam'. 
 #' For 'mgcv::gamm', the 'model' input of 'calc.oddsratio.gam' needs to be the 'gam' output (e.g. 'fit.gam$gam').
@@ -89,12 +91,12 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
       # set values[1] of pred
       data[, pred] <- range.v[x]
       # calc log odds for value 1
-      pred.gam1 <- as.numeric(predict(model, data, type = "link"))
+      pred.gam1 <- as.numeric(stats::predict(model, data, type = "link"))
       # set values[2] of pred
       data[, pred] <- range.v[x + 1]
       # calc log odds for value 2
-      pred.gam2 <- as.numeric(predict(model, data, type = "link"))
-      odds.ratio <- as.numeric(predict(model, data, type = "link"))
+      pred.gam2 <- as.numeric(stats::predict(model, data, type = "link"))
+      odds.ratio <- as.numeric(stats::predict(model, data, type = "link"))
       
       # combine results in DF
       result$odds.ratio[x] <- as.numeric(exp(pred.gam2 - pred.gam1), 2)
@@ -128,11 +130,11 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
   # set values[1] of pred
   data[, pred] <- values[1]
   # calc log odds for value 1
-  pred.gam1 <- as.numeric(predict(model, data, type = "link"))
+  pred.gam1 <- as.numeric(stats::predict(model, data, type = "link"))
   # set values[2] of pred
   data[, pred] <- values[2]
   # calc log odds for value 2
-  pred.gam2 <- as.numeric(predict(model, data, type = "link"))
+  pred.gam2 <- as.numeric(stats::predict(model, data, type = "link"))
   
   odds.ratio <- as.numeric(exp(pred.gam2 - pred.gam1), 2)
   

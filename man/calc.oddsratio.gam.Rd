@@ -4,8 +4,8 @@
 \alias{calc.oddsratio.gam}
 \title{Calculate odds ratio of GAM(M)}
 \usage{
-calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
-slice = FALSE, quietly = FALSE)
+calc.oddsratio.gam(data, model, pred, values, percentage, slice = FALSE,
+  quietly = FALSE)
 }
 \arguments{
 \item{data}{The data used for model fitting}
@@ -28,8 +28,10 @@ See `steps` for setting the increment values.}
 \item{quietly}{Logical. Default = FALSE. Whether to output information to the console.}
 }
 \description{
-Function to calculate odds ratio for specific increment steps of GAM. 
-Odds ratios can also be calculated for continuous percentage increment steps across the whole predictor distribution using 'slice = TRUE'
+This function to calculates odds ratio(s) for specific increment 
+    steps of a GAM. 
+    Odds ratios can also be calculated for continuous percentage increment steps 
+    across the whole predictor distribution using 'slice = TRUE'.
 }
 \details{
 Currently supported functions: 'mgcv::gam', 'mgcv::gamm', 'gam::gam'. 
