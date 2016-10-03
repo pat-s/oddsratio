@@ -3,7 +3,7 @@ Version: 0.1
 Title: Odds ratio calculation for GAM & GLM
 Author: Patrick Schratz
 Maintainer: Patrick Schratz <patrick.schratz@gmail.com>
-Description: Simplify odds ratio calculation for GAM & GLM
+Description: Simplify odds ratio calculation of GAM & GLM.
 Imports: mgcv, MASS, stats
-License: MIT
+License: MIT + file LICENSE
 RoxygenNote: 5.0.1
