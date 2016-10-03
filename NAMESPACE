@@ -2,3 +2,5 @@
 
 export(calc.oddsratio.gam)
 export(calc.oddsratio.glm)
+
+importFrom("stats", "coefficients")
