@@ -1,7 +1,9 @@
 #' @name calc.oddsratio.glm
+#' @alias calc.oddsratio.glm
 #' @title Calculate odds ratio of GLM(M)
 #' 
-#' @description Function to calculate odds ratio for specific increment steps of GLM. 
+#' @description Function to calculate odds ratio for specific 
+#' increment steps of GLM. 
 #' 
 #' @param data The data used for model fitting
 #' @param model A fitted GLM(M)
@@ -18,18 +20,17 @@
 #' fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial") # fit model
 #' 
 #' # Calculate OR for specific increment step of continuous variable
-#' calc.oddsratio.glm(fit.glm, dat, list(gre = 380, gpa = 5))
+#' calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
 #' 
 #' ## Example with MASS:glmmPQL()
 #' # load data
-#' library(nlme)
 #' library(MASS)
 #' data(bacteria)
 #' fit.glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~1 | ID,
 #'                              family = binomial, data = bacteria, verbose = FALSE)
 #' 
 #' # Apply function
-#' calc.oddsratio.glm(fit.glmmPQL, bacteria, list(week = 5))
+#' calc.oddsratio.glm(data = bacteria, model = fit.glmmPQL, incr = list(week = 5))
 #' 
 #' @details Currently supported functions: 'stats::glm', 'mgcv::glmmPQL'
 #' 
@@ -37,7 +38,6 @@
 calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
   
   if (class(model)[1] == "glm") {
-    
     # get pred names and coefficients without intercept
     preds <- names(coefficients(model))[2:length(coefficients(model))]
     coef <- coefficients(model)[2:length(coefficients(model))]
@@ -53,7 +53,7 @@ calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
   for (i in preds) {
     # check if predictor is numeric or integer
     if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
-      odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]])* as.numeric(incr[[i]])), 3)
+      odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]]) * as.numeric(incr[[i]])), 3)
       incr1 <- as.numeric(incr[[i]])
       or <- odds.ratios[[i]]
     }
