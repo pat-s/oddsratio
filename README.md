@@ -68,7 +68,7 @@ calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", percentage = 20, sl
 
 To install the latest version of the package, simply execute
 ```R
-devtools::install_github("pat-s/oddsratio")
+devtools::install_github("pat-s/oddsratio", build_vignettes = TRUE)
 ```
 
 ## Examples
