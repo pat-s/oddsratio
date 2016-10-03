@@ -4,7 +4,7 @@
 \alias{calc.oddsratio.glm}
 \title{Calculate odds ratio of GLM(M)}
 \usage{
-calc.oddsratio.glm <- function(model, data, incr, quietly = FALSE)
+calc.oddsratio.glm(data, model, incr, quietly = FALSE)
 }
 \arguments{
 \item{data}{The data used for model fitting}
@@ -16,7 +16,8 @@ calc.oddsratio.glm <- function(model, data, incr, quietly = FALSE)
 \item{quietly}{Logical. Default = FALSE. Whether to output information to the console.}
 }
 \description{
-Function to calculate odds ratio for specific increment steps of GLM.
+This function calculates odds ratio for specific 
+    increment steps of GLMs.
 }
 \details{
 Currently supported functions: 'stats::glm', 'mgcv::glmmPQL'
@@ -29,18 +30,17 @@ dat$rank <- factor(dat$rank)
 fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial") # fit model
 
 # Calculate OR for specific increment step of continuous variable
-calc.oddsratio.glm(fit.glm, dat, list(gre = 380, gpa = 5))
+calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
 
 ## Example with MASS:glmmPQL()
 # load data
-library(nlme)
 library(MASS)
 data(bacteria)
 fit.glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~1 | ID,
                              family = binomial, data = bacteria, verbose = FALSE)
 
 # Apply function
-calc.oddsratio.glm(fit.glmmPQL, bacteria, list(week = 5))
+calc.oddsratio.glm(data = bacteria, model = fit.glmmPQL, incr = list(week = 5))
 
 }
 
