@@ -1,20 +1,4 @@
----
-title: "Exemplary usage of `calc.oddsratio.gam()`"
-author: "Patrick Schratz"
-date: "3 September 2016"
-output: 
-  html_document: 
-    highlight: textmate
-    number_sections: yes
-    theme: readable
-    toc: yes
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
-```
-
-```{r, echo=FALSE}
+## ---- echo=FALSE---------------------------------------------------------
 calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
                                slice = FALSE, quietly = FALSE) {
   
@@ -121,14 +105,8 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
   }
 }
 
-```
 
-
-# Load example data
-
-Source: help() of predict.gam()
-
-```{r}
+## ------------------------------------------------------------------------
 suppressPackageStartupMessages(library(mgcv))
 n <- 200
 sig <- 2
@@ -136,38 +114,75 @@ dat <- suppressMessages(gamSim(1, n = n,scale = sig))
 dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 
 fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat)
-```
 
-# Examples {.tabset}
-
-## Calculate OR for specific increment step of continuous variable
-
-```{r}
+## ------------------------------------------------------------------------
 calc.oddsratio.gam(model = fit_gam, data = dat, pred = "x2",
                    values = c(0.099, 0.198))
-```
 
-## Calculate OR for change of indicator variable
-
-```{r}
+## ------------------------------------------------------------------------
 calc.oddsratio.gam(model = fit_gam, data = dat, pred = "x4",
                    values = c("A", "B"))
 
 calc.oddsratio.gam(model = fit_gam, data = dat, pred = "x4",
                    values = c("B", "D"))
-```
 
-
-## Calculate ORs for percentage increments of predictor distribution (here: 20%)
-
-Slice the training data range in ten pieces and calculate OR between every increment step. 
-
-The first output is the console output giving quick information about the calculated combinations.  
-
-The second output is the `data.frame` that is written if the function is assigned to a an object. 
-
-```{r}
+## ------------------------------------------------------------------------
 calc.oddsratio.gam(fit_gam, pred = "x2", percentage = 20,
                    slice = TRUE, data = dat, quietly = F)
-```
+
+## ---- echo=FALSE---------------------------------------------------------
+calc.oddsratio.glm <- function(model, data, incr, quietly = FALSE) {
+  
+  if (class(model)[1] == "glm") {
+    
+    # get pred names and coefficients without intercept
+    preds <- names(coefficients(model))[2:length(coefficients(model))]
+    coef <- coefficients(model)[2:length(coefficients(model))]
+  }
+  
+  if (class(model)[1] == "glmmPQL") {
+    # get pred names and coefficients without intercept
+    preds <- names(model$coefficients$fixed)[2:length(model$coefficients$fixed)]
+    coef <- model$coefficients$fixed[2:length(model$coefficients$fixed)]
+  }
+  
+  odds_ratios <- list()
+  for (i in preds) {
+    # check if predictor is numeric or integer
+    if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
+      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]])* as.numeric(incr[[i]])), 3)
+      incr1 <- as.numeric(incr[[i]])
+      or <- odds_ratios[[i]]
+    }
+    # if pred is factor -> perform direct conversion to odds ratio
+    else {
+      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
+      incr1 <- "Non numeric predictor. Refer to basis factor level!"
+      or <- odds_ratios[[i]]
+    }
+    
+    if (!quietly) {
+      cat("Variable:   '", i, "'\nIncrement:  '", 
+          incr1, "'\nOdds ratio: ", or, "\n\n", sep = "")
+    }
+  }
+}
+
+## ------------------------------------------------------------------------
+dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
+dat$rank <- factor(dat$rank)
+fit_glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
+
+## ------------------------------------------------------------------------
+calc.oddsratio.glm(fit_glm, dat, list(gre = 380, gpa = 5))
+
+## ------------------------------------------------------------------------
+library(nlme)
+library(MASS)
+data(bacteria)
+fit_glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~1 | ID,
+                             family = binomial, data = bacteria, verbose = FALSE)
+
+## ------------------------------------------------------------------------
+calc.oddsratio.glm(fit_glmmPQL, bacteria, list(week = 5))
 
