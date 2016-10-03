@@ -1,4 +1,24 @@
+<<<<<<< HEAD
 # oddsratio
+=======
+# Purpose
+
+Convenience functions for odds ratio calculation of Generalized Additive Models (GAM) and Generalized Linear Models (GLM) with a binomial response variable (i.e. logistic regression models).  
+Since both model types behave differently in the way to calculate odds increments for changes of their predictors due to their basic type (GLM = linear, GAM = non-linear), the usage of both functions `calc.oddsratio.glm()` and `calc.odds.ratio.gam()` is slightly different. Subsequently, both functions are explained seperately. 
+
+# Install package
+
+To install the latest version of the package, simply execute `devtools::install_github("pat-s/oddsratio")`. 
+
+## GLM
+
+With GLMs, the estimated coefficients of each predictor provide the linear change in log odds for a specific unit increase. The coefficient is multiplied with the unit change and converted into odds ratio using `exp()`. This unit increase can be specified in the function argument `incr` using a list with the name of the predictor and its corresponding change (e.g. `list(gre = 380)`). Multiple values for all continuous predictors can be given.  
+For indicator variables, the odds ratio is calculated and reported for all levels in relation to the base factor level which was used for model training. 
+
+### Arguments
+
+- **model:** The fitted GAM model
+>>>>>>> master
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio)
 
