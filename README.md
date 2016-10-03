@@ -11,7 +11,7 @@ response variable (i.e. logistic regression models).
 
 ### GLM
 
-Right now, odds ratio calculation of GLMs is done usually by exponentiating the model 
+Right now, odds ratio calculation of GLMs is usually done by exponentiating the model 
 coefficents (using `coef`) of each (continuous) predictor with a respective increment 
 step (here: `incr`). Here, four model coefficients are assumed with their
 respective increment steps. 
