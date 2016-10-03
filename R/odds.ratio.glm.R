@@ -1,16 +1,16 @@
 #' @name calc.oddsratio.glm
-#' @alias calc.oddsratio.glm
 #' @title Calculate odds ratio of GLM(M)
 #' 
-#' @description Function to calculate odds ratio for specific 
-#' increment steps of GLM. 
+#' @importFrom stats coefficients
+#' 
+#' @description This function calculates odds ratio for specific 
+#'     increment steps of GLMs. 
 #' 
 #' @param data The data used for model fitting
 #' @param model A fitted GLM(M)
 #' @param incr List. Increment values of each predictor
 #' @param quietly Logical. Default = FALSE. Whether to output information to the console.
 #' 
-#' @usage calc.oddsratio.glm <- function(model, data, incr, quietly = FALSE)
 #' 
 #' @examples 
 #' ## Example with stats::glm()

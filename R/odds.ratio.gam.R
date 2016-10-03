@@ -1,11 +1,12 @@
 #' @name calc.oddsratio.gam
-#' @alias calc.oddsratio.gam
 #' @title Calculate odds ratio of GAM(M)
 #' 
-#' @description Function to calculate odds ratio for specific increment 
-#' steps of GAM. 
-#' Odds ratios can also be calculated for continuous percentage increment steps 
-#' across the whole predictor distribution using 'slice = TRUE'
+#' @importFrom stats coefficients
+#' 
+#' @description This function to calculates odds ratio(s) for specific increment 
+#'     steps of a GAM. 
+#'     Odds ratios can also be calculated for continuous percentage increment steps 
+#'     across the whole predictor distribution using 'slice = TRUE'.
 #' 
 #' @param data The data used for model fitting
 #' @param model A fitted GAM(M)
@@ -20,8 +21,6 @@
 #' See `steps` for setting the increment values.
 #' @param quietly Logical. Default = FALSE. Whether to output information to the console.
 #' 
-#' @usage calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
-#' slice = FALSE, quietly = FALSE)
 #' 
 #' @details Currently supported functions: 'mgcv::gam', 'mgcv::gamm', 'gam::gam'. 
 #' For 'mgcv::gamm', the 'model' input of 'calc.oddsratio.gam' needs to be the 'gam' output (e.g. 'fit.gam$gam').
