@@ -7,3 +7,7 @@ Description: Simplify odds ratio calculation of GAM & GLM.
 Imports: mgcv, MASS, stats
 License: MIT + file LICENSE
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown,
+    nlme
+VignetteBuilder: knitr
