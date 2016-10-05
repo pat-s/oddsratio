@@ -1,7 +1,7 @@
-# oddsratio
-
+[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio)
 
+# oddsratio
 
 Convenience functions for odds ratio calculation of Generalized Additive (Mixed)
 Models and Generalized Linear (Mixed) Models with a binomial
@@ -64,13 +64,13 @@ odds ratios between those (0% - 20%, 20% - 40%, etc.).
 calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", percentage = 20, slice = TRUE)
 ```
 
-## Install package
+## Installation
 
-To install the latest version of the package, simply execute
+Get the development version from Github:
+
 ```R
-devtools::install_github("pat-s/oddsratio", build_vignettes = TRUE)
+devtools::install_github("pat-s/oddsratio")
 ```
-
 ## Examples
 
 To see the functions in action, please see the examples in the respective help pages `?calc.oddsratio.gam` and `?calc.oddsratio.gam`.  
