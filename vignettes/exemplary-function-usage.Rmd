@@ -4,7 +4,7 @@ author: "Patrick Schratz"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Exemplary usage of functions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   %\VignetteDepends{nlme}
@@ -125,6 +125,7 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
 Source: help() of predict.gam()
 
 ```{r}
+library(oddsratio)
 suppressPackageStartupMessages(library(mgcv))
 n <- 200
 sig <- 2
@@ -218,7 +219,7 @@ Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
 ```{r}
 dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
 dat$rank <- factor(dat$rank)
-fit_glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
+fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
 ```
 
 The function calculates ORs for specific increment steps for all predictors.  
@@ -228,7 +229,7 @@ Since predictor `rank` is a factor variable with four levels, we will get three 
 The output is interpreted as follows: "Having `rank2` instead of `rank1` while holding all other values constant results in a decrease in odds of 49.1% (1-0.509)".
 
 ```{r}
-calc.oddsratio.glm(fit_glm, dat, list(gre = 380, gpa = 5))
+calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
 ```
 
 ## GLMM (MASS::glmmPQL)
