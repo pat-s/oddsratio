@@ -6,24 +6,34 @@
 #' @description This function to calculates odds ratio(s) for specific increment 
 #'     steps of a GAM. 
 #'     Odds ratios can also be calculated for continuous percentage increment steps 
-#'     across the whole predictor distribution using 'slice = TRUE'.
+#'     across the whole predictor distribution using \code{slice = TRUE}.
 #' 
-#' @param data The data used for model fitting
-#' @param model A fitted GAM(M)
-#' @param pred Character of length one. The name of the predictor to calculate the odds ratio for
+#' @param data The data used for model fitting.
+#' @param model A fitted GAM(M).
+#' @param pred Character of length one. The name of the predictor to calculate 
+#' the odds ratio for.
 #' @param values Numeric vector of length two.
 #' Predictor values to estimate odds ratio from. Function is coded to use the first 
-#' number given as the "lower" one, i.e. calculating the odds ratio 'from value1 to value2'. 
-#' Only used if 'slice = FALSE'
-#' @param percentage Numeric of length one. Percentage number to split the predictor distribution into. 
-#' A value of 10 would split the predictor distribution by 10\% intervals. Only needed if 'slice = TRUE'.
-#' @param slice Logical. Default = FALSE. Whether to calculate odds ratio for fixed increment steps over the whole predictor distribution. 
+#' number given as the "lower" one, i.e. calculating the odds ratio 
+#' 'from value1 to value2'. 
+#' Only used if \code{slice = FALSE}
+#' @param percentage Numeric of length one. Percentage number to split the 
+#' predictor distribution into. 
+#' A value of 10 would split the predictor distribution by 10\% intervals. 
+#' Only needed if \code{slice = TRUE}.
+#' @param slice Logical. \code{Default = FALSE}. Whether to calculate 
+#' odds ratio for fixed increment steps over the whole predictor distribution. 
 #' See `steps` for setting the increment values.
-#' @param quietly Logical. Default = FALSE. Whether to output information to the console.
+#' @param quietly Logical. \code{Default = FALSE}. Whether to output 
+#' information to the console.
 #' 
 #' 
-#' @details Currently supported functions: 'mgcv::gam', 'mgcv::gamm', 'gam::gam'. 
-#' For 'mgcv::gamm', the 'model' input of 'calc.oddsratio.gam' needs to be the 'gam' output (e.g. 'fit.gam$gam').
+#' @details Currently supported functions: \code{\link[mgcv]{gam}}(mgcv), 
+#' \code{\link[mgcv]{gamm}}, \code{\link[gam]{gam}}(gam). 
+#' For \code{\link[mgcv]{gamm}}, the \code{model} input of \code{\link[oddsratio]{calc.oddsratio.gam}} 
+#' needs to be the \code{gam} output (e.g. \code{fit.gam$gam}).
+#' 
+#' @seealso \code{\link[oddsratio]{calc.oddsratio.glm}}
 #' 
 #' @examples 
 #' # load data (Source: package 'mgcv')
@@ -32,16 +42,20 @@
 #' sig <- 2
 #' dat <- gamSim(1, n = n,scale = sig)
 #' dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
-#' fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat) # fit model
+#' fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
+#'                      offset(x3) + x4, data = dat) # fit model
 #' 
 #' # Calculate OR for specific increment step of continuous variable
-#' calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", values = c(0.099, 0.198))
+#' calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+#'                    values = c(0.099, 0.198))
 #' 
 #' ## Calculate OR for change of indicator variable
-#' calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x4", values = c("B", "D"))
+#' calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x4", 
+#'                    values = c("B", "D"))
 #' 
 #' ## Calculate ORs for percentage increments of predictor distribution (here: 20%)
-#' calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", percentage = 20, slice = TRUE)
+#' calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+#'                    percentage = 20, slice = TRUE)
 #' 
 #' @export
 calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
