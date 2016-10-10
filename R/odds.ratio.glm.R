@@ -64,7 +64,7 @@ calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
     # if pred is factor -> perform direct conversion to odds ratio
     else {
       odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
-      incr1 <- "Non-numeric predictor. Refer to base factor level!"
+      incr1 <- "Indicator variable. Refer to base factor level!"
       or <- odds.ratios[[i]]
     }
     
