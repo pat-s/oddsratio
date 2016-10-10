@@ -21,8 +21,8 @@ This function calculates odds ratio for specific
     increment steps of GLMs.
 }
 \details{
-Currently supported functions: \code{\link[stats]{stats::glm}}, 
-\code{\link[MASS]{MASS::glmmPQL}}
+Currently supported functions: \code{\link[stats]{glm}}, 
+\code{\link[MASS]{glmmPQL}}
 }
 \examples{
 ## Example with stats::glm()
@@ -46,6 +46,6 @@ calc.oddsratio.glm(data = bacteria, model = fit.glmmPQL, incr = list(week = 5))
 
 }
 \seealso{
-\code{\link[oddsratio]{odds.ratio.gam}}
+\code{\link[oddsratio]{calc.oddsratio.gam}}
 }
 

@@ -40,9 +40,9 @@ This function to calculates odds ratio(s) for specific increment
     across the whole predictor distribution using \code{slice = TRUE}.
 }
 \details{
-Currently supported functions: \code{\link[mgcv]{mgcv::gam}}, 
-\code{\link[mgcv]{mgcv::gamm}}, \code{\link[gam]{gam::gam}}. 
-For \code{\link[mgcv]{mgcv::gamm}}, the \code{model} input of \code{\link[oddsratio]{calc.oddsratio.gam}} 
+Currently supported functions: \code{\link[mgcv]{gam}}(mgcv), 
+\code{\link[mgcv]{gamm}}, \code{\link[gam]{gam}}(gam). 
+For \code{\link[mgcv]{gamm}}, the \code{model} input of \code{\link[oddsratio]{calc.oddsratio.gam}} 
 needs to be the \code{gam} output (e.g. \code{fit.gam$gam}).
 }
 \examples{
@@ -69,6 +69,6 @@ calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2",
 
 }
 \seealso{
-\code{\link[oddsratio]{odds.ratio.glm}}
+\code{\link[oddsratio]{calc.oddsratio.glm}}
 }
 
