@@ -28,12 +28,12 @@
 #' information to the console.
 #' 
 #' 
-#' @details Currently supported functions: \code{\link[mgcv]{mgcv::gam}}, 
-#' \code{\link[mgcv]{mgcv::gamm}}, \code{\link[gam]{gam::gam}}. 
-#' For \code{\link[mgcv]{mgcv::gamm}}, the \code{model} input of \code{\link[oddsratio]{calc.oddsratio.gam}} 
+#' @details Currently supported functions: \code{\link[mgcv]{gam}}(mgcv), 
+#' \code{\link[mgcv]{gamm}}, \code{\link[gam]{gam}}(gam). 
+#' For \code{\link[mgcv]{gamm}}, the \code{model} input of \code{\link[oddsratio]{calc.oddsratio.gam}} 
 #' needs to be the \code{gam} output (e.g. \code{fit.gam$gam}).
 #' 
-#' @seealso \code{\link[oddsratio]{odds.ratio.glm}}
+#' @seealso \code{\link[oddsratio]{calc.oddsratio.glm}}
 #' 
 #' @examples 
 #' # load data (Source: package 'mgcv')

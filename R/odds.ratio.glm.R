@@ -33,10 +33,10 @@
 #' # Apply function
 #' calc.oddsratio.glm(data = bacteria, model = fit.glmmPQL, incr = list(week = 5))
 #' 
-#' @details Currently supported functions: \code{\link[stats]{stats::glm}}, 
-#' \code{\link[MASS]{MASS::glmmPQL}}
+#' @details Currently supported functions: \code{\link[stats]{glm}}, 
+#' \code{\link[MASS]{glmmPQL}}
 #'
-#' @seealso \code{\link[oddsratio]{odds.ratio.gam}}
+#' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' 
 #' @export
 calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
