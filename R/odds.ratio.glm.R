@@ -6,10 +6,11 @@
 #' @description This function calculates odds ratio for specific 
 #'     increment steps of GLMs. 
 #' 
-#' @param data The data used for model fitting
-#' @param model A fitted GLM(M)
-#' @param incr List. Increment values of each predictor
-#' @param quietly Logical. Default = FALSE. Whether to output information to the console.
+#' @param data The data used for model fitting.
+#' @param model A fitted GLM(M).
+#' @param incr List. Increment values of each predictor.
+#' @param quietly Logical. Default = FALSE. Whether to output information to 
+#' the console.
 #' 
 #' 
 #' @examples 
@@ -32,7 +33,10 @@
 #' # Apply function
 #' calc.oddsratio.glm(data = bacteria, model = fit.glmmPQL, incr = list(week = 5))
 #' 
-#' @details Currently supported functions: 'stats::glm', 'mgcv::glmmPQL'
+#' @details Currently supported functions: \code{\link[stats]{stats::glm}}, 
+#' \code{\link[MASS]{MASS::glmmPQL}}
+#'
+#' @seealso \code{\link[oddsratio]{odds.ratio.gam}}
 #' 
 #' @export
 calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
@@ -60,7 +64,7 @@ calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
     # if pred is factor -> perform direct conversion to odds ratio
     else {
       odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
-      incr1 <- "Non numeric predictor. Refer to basis factor level!"
+      incr1 <- "Non-numeric predictor. Refer to base factor level!"
       or <- odds.ratios[[i]]
     }
     
