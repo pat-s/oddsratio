@@ -3,6 +3,5 @@
 ^.travis\..yml$
 README.Rmd
 README.md
-NEWS.md
 .travis.yml
 ^cran-comments\.md$
