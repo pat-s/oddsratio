@@ -7,20 +7,22 @@
 calc.oddsratio.glm(data, model, incr, quietly = FALSE)
 }
 \arguments{
-\item{data}{The data used for model fitting}
+\item{data}{The data used for model fitting.}
 
-\item{model}{A fitted GLM(M)}
+\item{model}{A fitted GLM(M).}
 
-\item{incr}{List. Increment values of each predictor}
+\item{incr}{List. Increment values of each predictor.}
 
-\item{quietly}{Logical. Default = FALSE. Whether to output information to the console.}
+\item{quietly}{Logical. Default = FALSE. Whether to output information to 
+the console.}
 }
 \description{
 This function calculates odds ratio for specific 
     increment steps of GLMs.
 }
 \details{
-Currently supported functions: 'stats::glm', 'mgcv::glmmPQL'
+Currently supported functions: \code{\link[stats]{stats::glm}}, 
+\code{\link[MASS]{MASS::glmmPQL}}
 }
 \examples{
 ## Example with stats::glm()
@@ -42,5 +44,8 @@ fit.glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~1 | ID,
 # Apply function
 calc.oddsratio.glm(data = bacteria, model = fit.glmmPQL, incr = list(week = 5))
 
+}
+\seealso{
+\code{\link[oddsratio]{odds.ratio.gam}}
 }
 
