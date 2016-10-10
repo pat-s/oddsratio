@@ -4,7 +4,7 @@
 oddsratio
 =========
 
-Convenience functions for odds ratio calculation of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models). Data source: <http://www.ats.ucla.edu/stat/r/dae/logit.htm>
+Convenience functions for odds ratio calculation of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models).
 
 Examples
 --------
@@ -13,6 +13,7 @@ Examples
 
 Odds ratio calculation of predictors `gre` & `gpa` of a fitted model `fit.glm` with increment steps of 380 and 5, respectively.
 For factor variables (here: `rank` with 4 levels), automatically all odds ratios corresponding to the base level (here: `rank1`) are returned.
+Data source: <http://www.ats.ucla.edu/stat/r/dae/logit.htm>
 
 ``` r
 calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
@@ -90,7 +91,6 @@ To see full examples, please see the examples in the respective help pages `?cal
 To Do
 -----
 
--   Write vignette (necessary?) for both functions or include both in one?
 -   Add calculation of odds ratio confidence intervals
 -   Implement plotting function of calculated odds ratio in GLM/GAM function?
--   Add references for odds ratio calculation
+-   Add references for odds ratio calculation?
