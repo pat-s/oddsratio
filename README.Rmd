@@ -40,15 +40,15 @@ Increment:  '5'
 Odds ratio: 55.712
 
 Variable:   'rank2'
-Increment:  'Non numeric predictor. Refer to basis factor level!'
+Increment:  'Non numeric predictor. Refer to base factor level!'
 Odds ratio: 0.509
 
 Variable:   'rank3'
-Increment:  'Non numeric predictor. Refer to basis factor level!'
+Increment:  'Non numeric predictor. Refer to base factor level!'
 Odds ratio: 0.262
 
 Variable:   'rank4'
-Increment:  'Non numeric predictor. Refer to basis factor level!'
+Increment:  'Non numeric predictor. Refer to base factor level!'
 Odds ratio: 0.212
 ```
 
