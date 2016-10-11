@@ -1,11 +1,11 @@
 #' @name calc.oddsratio.gam
-#' @title Calculate odds ratio of GAM(M)
+#' @title Calculate Odds Ratio of Generalized Additive (Mixed) Models
 #' 
 #' @importFrom stats coefficients
 #' 
 #' @description This function to calculates odds ratio(s) for specific increment 
-#'     steps of a GAM. 
-#'     Odds ratios can also be calculated for continuous percentage increment steps 
+#'     steps of a GAM(M)s. 
+#' @description Odds ratios can also be calculated for continuous percentage increment steps 
 #'     across the whole predictor distribution using \code{slice = TRUE}.
 #' 
 #' @param data The data used for model fitting.
@@ -13,37 +13,45 @@
 #' @param pred Character of length one. The name of the predictor to calculate 
 #' the odds ratio for.
 #' @param values Numeric vector of length two.
-#' Predictor values to estimate odds ratio from. Function is coded to use the first 
-#' number given as the "lower" one, i.e. calculating the odds ratio 
-#' 'from value1 to value2'. 
-#' Only used if \code{slice = FALSE}
+#' Predictor values to estimate odds ratio from. Function is written to use the 
+#' first provided value as the "lower" one, i.e. calculating the odds ratio 
+#' 'from value1 to value2'. Only used if \code{slice = FALSE}.
 #' @param percentage Numeric of length one. Percentage number to split the 
 #' predictor distribution into. 
 #' A value of 10 would split the predictor distribution by 10\% intervals. 
 #' Only needed if \code{slice = TRUE}.
 #' @param slice Logical. \code{Default = FALSE}. Whether to calculate 
-#' odds ratio for fixed increment steps over the whole predictor distribution. 
-#' See `steps` for setting the increment values.
-#' @param quietly Logical. \code{Default = FALSE}. Whether to output 
-#' information to the console.
+#' odds ratios for fixed increment steps over the whole predictor distribution. 
+#' See \code{percentage} for setting the increment values.
 #' 
 #' 
 #' @details Currently supported functions: \code{\link[mgcv]{gam}}(mgcv), 
 #' \code{\link[mgcv]{gamm}}, \code{\link[gam]{gam}}(gam). 
-#' For \code{\link[mgcv]{gamm}}, the \code{model} input of \code{\link[oddsratio]{calc.oddsratio.gam}} 
-#' needs to be the \code{gam} output (e.g. \code{fit.gam$gam}).
+#' @details For \code{\link[mgcv]{gamm}}, the \code{model} input of 
+#' \code{\link[oddsratio]{calc.oddsratio.gam}} needs to be the \code{gam} 
+#' output (e.g. \code{fit.gam$gam}).
+#' 
+#' 
+#' @return A data frame with (up to) six columns. \code{perc1} and \code{perc1}
+#' are only returned if \code{slice = TRUE}:
+#' \item{predictor}{Predictor name}
+#' \item{value1}{First value of odds ratio calculation}
+#' \item{value2}{Second value of odds ratio calculation}
+#' \item{perc1}{Percentage value of \code{value1}}
+#' \item{perc2}{Percentage value of \code{value2}}
+#' \item{oddsratio}{Calculated odds ratio(s)}
 #' 
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.glm}}
 #' 
 #' @examples 
-#' # load data (Source: package 'mgcv')
+#' # load data (Source: ?mgcv::gam)
 #' library(mgcv)
 #' n <- 200
 #' sig <- 2
-#' dat <- gamSim(1, n = n,scale = sig)
+#' dat <- gamSim(1, n = n,scale = sig, verbose = FALSE)
 #' dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
-#' fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
-#'                      offset(x3) + x4, data = dat) # fit model
+#' fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
+#'                offset(x3) + x4, data = dat) # fit model
 #' 
 #' # Calculate OR for specific increment step of continuous variable
 #' calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
@@ -59,7 +67,7 @@
 #' 
 #' @export
 calc.oddsratio.gam <- function(data, model, pred, values, percentage, 
-                               slice = FALSE, quietly = FALSE) {
+                               slice = FALSE) {
   
   names.pred <- colnames(data)
   
@@ -76,17 +84,13 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
       range.v <- c(range.v, min(data[, pred]) + step * i)
     }
     
-    result <- data.frame(odds.ratio = numeric(length = 100/percentage),
-                         from = numeric(length = 100/percentage),
-                         to = numeric(length = 100/percentage),
-                         perc_from = character(length = 100/percentage),
-                         perc_to = character(length = 100/percentage),
+    result <- data.frame(predictor = length(100/percentage),
+                         value1 = numeric(length = 100/percentage),
+                         value2 = numeric(length = 100/percentage),
+                         perc1 = character(length = 100/percentage),
+                         perc2 = character(length = 100/percentage),
+                         oddsratio = numeric(length = 100/percentage),
                          stringsAsFactors = FALSE)
-    
-    if (!quietly)
-      # print variable information
-      cat("Predictor: '", pred, "'\nSteps:     ", 100/percentage,
-          " (", percentage, "%)\n", sep = "")
     
     # apply OR calc for vector
     for (x in 1:(100/percentage)) {
@@ -112,22 +116,14 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
       pred.gam2 <- as.numeric(stats::predict(model, data, type = "link"))
       odds.ratio <- as.numeric(stats::predict(model, data, type = "link"))
       
-      # combine results in DF
-      result$odds.ratio[x] <- as.numeric(exp(pred.gam2 - pred.gam1), 2)
-      result$from[x] <- round(range.v[x], 3)
-      result$to[x] <-  round(range.v[x + 1], 3)
-      result$perc_from[x] <- as.character((percentage*x - percentage))
-      result$perc_to[x] <- as.character((percentage)*x)
-
-      if (!quietly) {
-        cat("\nOdds ratio from ", round(range.v[x], 3), "(", 
-            (percentage*x - percentage), "%)", " to ", 
-            round(range.v[x + 1], 3), 
-            "(", (percentage)*x, "%): ", 
-            as.numeric(exp(pred.gam2 - pred.gam1), 2), sep = "")
-      }
+      result$predictor = pred
+      result$oddsratio[x] <- as.numeric(exp(pred.gam2 - pred.gam1), 2)
+      result$value1[x] <- round(range.v[x], 3)
+      result$value2[x] <- round(range.v[x + 1], 3)
+      result$perc1[x] <- percentage*x - percentage
+      result$perc2[x] <- percentage*x
     }
-    return(invisible(result))
+    return(result)
   }
   
   # set all preds to their mean if they are numeric
@@ -152,13 +148,10 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
   
   odds.ratio <- as.numeric(exp(pred.gam2 - pred.gam1), 2)
   
-  if (!quietly & !slice)
-    # print variable information
-    cat("Predictor: '", pred, "'\n", sep = "")
-  
-  if (!quietly & !slice) {
-    cat("\nOdds ratio from '", values[1], "' to '",
-        values[2], "': ", 
-        as.numeric(exp(pred.gam2 - pred.gam1), 2), sep = "" ) 
-  }
-}
+  result <- data.frame(predictor = pred,
+                       value1 = values[1],
+                       value2 = values[2],
+                       oddsratio = odds.ratio,
+                       stringsAsFactors = FALSE)
+  return(result)
+} 
