@@ -26,30 +26,13 @@ For factor variables (here: `rank` with 4 levels), automatically all odds ratios
 corresponding to the base level (here: `rank1`) are returned.  
 Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
 
-```R
+```{r}
+library(oddsratio)
+dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
+dat$rank <- factor(dat$rank)
+fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
+
 calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
-```
-
-```R
-Variable:   'gre'
-Increment:  '380'
-Odds ratio: 2.364
-
-Variable:   'gpa'
-Increment:  '5'
-Odds ratio: 55.712
-
-Variable:   'rank2'
-Increment:  'Indicator variable. Refer to base factor level!'
-Odds ratio: 0.509
-
-Variable:   'rank3'
-Increment:  'Indicator variable. Refer to base factor level!'
-Odds ratio: 0.262
-
-Variable:   'rank4'
-Increment:  'Indicator variable. Refer to base factor level!'
-Odds ratio: 0.212
 ```
 
 ### GAM
@@ -63,38 +46,28 @@ holding all other predictors at a fixed value while changing the value of the
 specific predictor. 
 Data source: `?mgcv::predict.gam()`
 
-Here, the usage of `calc.oddsratio.gam()` is shown by calculating odds ratio of 
-pred `x2` for a value change from 0.099 to 0.198.
+Here, the usage of `calc.oddsratio.gam()` is shown by calculating odds ratios of 
+pred `x2` for a 20% steps across the whole value range of the predictor.
 
-```R
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", values = c(0.099, 0.198))
+```{r}
+suppressPackageStartupMessages(library(mgcv))
+set.seed(1234)
+n <- 200
+sig <- 2
+dat <- gamSim(1, n = n,scale = sig, verbose = FALSE)
+dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
+fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat)
+
+calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+                   percentage = 20, slice = TRUE)
 ```
 
-```R
-Predictor: 'x2'
+If you want to compute a single odds ratio for specific values, simply set 
+param `slice = FALSE`:
 
-Odds ratio from '0.099' to '0.198': 109.2059
-```
-
-If you want to compute multiple odds ratios, the argument `slice = TRUE` 
-provides the opportunity to split the value range in percentage steps (`percentage`)
-for which odds ratios are calculated. For example, applying a value of *20* 
-will split the value range of the chosen predictor in five parts and computes 
-odds ratios between those (0% - 20%, 20% - 40%, etc.). 
-
-```R
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", percentage = 20, slice = TRUE)
-```
-
-```R
-Predictor: 'x2'
-Steps:     5 (20%)
-
-Odds ratio from 0.002(0%) to 0.201(20%): 5259.149
-Odds ratio from 0.201(20%) to 0.399(40%): 0.008115773
-Odds ratio from 0.399(40%) to 0.598(60%): 1.841249
-Odds ratio from 0.598(60%) to 0.797(80%): 0.1072271
-Odds ratio from 0.797(80%) to 0.996(100%): 0.0680226
+```{r}
+calc.oddsratio.gam(data = dat, model = fit.gam, 
+                   pred = "x2", values = c(0.099, 0.198))
 ```
 
 
