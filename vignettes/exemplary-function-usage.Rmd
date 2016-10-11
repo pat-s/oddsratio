@@ -38,8 +38,8 @@ from 0.099 to 0.198 while holding all other predictors constant.
 
 
 ```{r}
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2",
-                   values = c(0.099, 0.198))
+calc.oddsratio.gam(data = dat, model = fit.gam, 
+                   pred = "x2", values = c(0.099, 0.198))
 ```
 
 Usually, this calculation is done by setting all predictors to their mean value, 
@@ -51,8 +51,8 @@ These actions results in two log odds values, respectively, which are transforme
 If the predictor is a indicator variable, i.e. consists of fixed levels, you can use the function in the same way by just putting in the respective levels you are interested in:
 
 ```{r}
-calc.oddsratio.gam(model = fit.gam, data = dat, pred = "x4",
-                   values = c("A", "B"))
+calc.oddsratio.gam(data = dat, model = fit.gam, 
+                   pred = "x4", values = c("A", "B"))
 ```
 
 Here, the change in odds of `y` happening if predictor `x4` is changing from level `A` to `B` is rather small. In detail, an increase in odds of 37.8% is reported. 
@@ -64,17 +64,8 @@ Here we slice predictor `x2` into 5 parts by taking the predictor values of ever
 
 
 ```{r}
-calc.oddsratio.gam(fit.gam, pred = "x2", percentage = 20,
-                   slice = TRUE, data = dat, quietly = FALSE)
-```
-
-If we assign this function call to a variable, we get a nicely formatted data.frame output. 
-To suppress the console output, we can set `quietly = TRUE`.
-
-```{r}
-df <- calc.oddsratio.gam(fit.gam, pred = "x2", percentage = 20,
-                   slice = TRUE, data = dat, quietly = TRUE)
-df
+calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+                   percentage = 20, slice = TRUE)
 ```
 
 We can see that there is a high odds ratio reported when increasing predictor `x2` from 0.008 to 0.206 while all further predictor increases decrease the odds of response `y` happening substantially. 
