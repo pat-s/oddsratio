@@ -1,17 +1,19 @@
 #' @name calc.oddsratio.glm
-#' @title Calculate odds ratio of GLM(M)
+#' @title Calculate Odds Ratio of Generalized Linear (Mixed) Models
 #' 
 #' @importFrom stats coefficients
 #' 
-#' @description This function calculates odds ratio for specific 
+#' @description This function calculates odds ratio(s) for specific 
 #'     increment steps of GLMs. 
 #' 
 #' @param data The data used for model fitting.
 #' @param model A fitted GLM(M).
 #' @param incr List. Increment values of each predictor.
-#' @param quietly Logical. Default = FALSE. Whether to output information to 
-#' the console.
 #' 
+#' @return A data frame with three columns:
+#' \item{predictor}{Predictor name(s)}
+#' \item{oddsratio}{Calculated odds ratio(s)}
+#' \item{increment}{Increment of the predictor(s)}
 #' 
 #' @examples 
 #' ## Example with stats::glm()
@@ -35,11 +37,15 @@
 #' 
 #' @details Currently supported functions: \code{\link[stats]{glm}}, 
 #' \code{\link[MASS]{glmmPQL}}
+#' @details The default behaviour of \code{calc.oddsratio.glm} prints the 
+#' calculated odds ratio(s) to the console. If you assign it to a variable, 
+#' a data frame is returned (see \code{Value}). To avoid redundant console output,
+#' set \code{quietly = TRUE} in this case. 
 #'
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' 
 #' @export
-calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
+calc.oddsratio.glm <- function(data, model, incr) {
   
   if (class(model)[1] == "glm") {
     # get pred names and coefficients without intercept
@@ -53,24 +59,28 @@ calc.oddsratio.glm <- function(data, model, incr, quietly = FALSE) {
     coef <- model$coefficients$fixed[2:length(model$coefficients$fixed)]
   }
   
+  increments <- list()
   odds.ratios <- list()
   for (i in preds) {
     # check if predictor is numeric or integer
     if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
       odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]]) * as.numeric(incr[[i]])), 3)
-      incr1 <- as.numeric(incr[[i]])
+      increments[[i]] <- as.numeric(incr[[i]])
       or <- odds.ratios[[i]]
     }
     # if pred is factor -> perform direct conversion to odds ratio
     else {
       odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
-      incr1 <- "Indicator variable. Refer to base factor level!"
+      increments[[i]] <- "Indicator variable"
       or <- odds.ratios[[i]]
     }
-    
-    if (!quietly) {
-      cat("Variable:   '", i, "'\nIncrement:  '", 
-          incr1, "'\nOdds ratio: ", or, "\n\n", sep = "")
-    }
   }
+  
+  # create data frame to return
+  result <- data.frame(predictor = as.character(names(odds.ratios)),
+                       oddsratio = unlist(odds.ratios, use.names = FALSE),
+                       increment = as.character(unlist(increments, 
+                                                       use.names = FALSE)),
+                       stringsAsFactors = FALSE)
+  return(result)
 }

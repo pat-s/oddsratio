@@ -2,9 +2,9 @@
 % Please edit documentation in R/odds.ratio.glm.R
 \name{calc.oddsratio.glm}
 \alias{calc.oddsratio.glm}
-\title{Calculate odds ratio of GLM(M)}
+\title{Calculate Odds Ratio of Generalized Linear (Mixed) Models}
 \usage{
-calc.oddsratio.glm(data, model, incr, quietly = FALSE)
+calc.oddsratio.glm(data, model, incr)
 }
 \arguments{
 \item{data}{The data used for model fitting.}
@@ -12,17 +12,25 @@ calc.oddsratio.glm(data, model, incr, quietly = FALSE)
 \item{model}{A fitted GLM(M).}
 
 \item{incr}{List. Increment values of each predictor.}
-
-\item{quietly}{Logical. Default = FALSE. Whether to output information to 
-the console.}
+}
+\value{
+A data frame with three columns:
+\item{predictor}{Predictor name(s)}
+\item{oddsratio}{Calculated odds ratio(s)}
+\item{increment}{Increment of the predictor(s)}
 }
 \description{
-This function calculates odds ratio for specific 
+This function calculates odds ratio(s) for specific 
     increment steps of GLMs.
 }
 \details{
 Currently supported functions: \code{\link[stats]{glm}}, 
 \code{\link[MASS]{glmmPQL}}
+
+The default behaviour of \code{calc.oddsratio.glm} prints the 
+calculated odds ratio(s) to the console. If you assign it to a variable, 
+a data frame is returned (see \code{Value}). To avoid redundant console output,
+set \code{quietly = TRUE} in this case.
 }
 \examples{
 ## Example with stats::glm()
