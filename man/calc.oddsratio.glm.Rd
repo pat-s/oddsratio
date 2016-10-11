@@ -26,11 +26,6 @@ This function calculates odds ratio(s) for specific
 \details{
 Currently supported functions: \code{\link[stats]{glm}}, 
 \code{\link[MASS]{glmmPQL}}
-
-The default behaviour of \code{calc.oddsratio.glm} prints the 
-calculated odds ratio(s) to the console. If you assign it to a variable, 
-a data frame is returned (see \code{Value}). To avoid redundant console output,
-set \code{quietly = TRUE} in this case.
 }
 \examples{
 ## Example with stats::glm()
