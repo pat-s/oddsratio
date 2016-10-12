@@ -70,6 +70,12 @@ calc.oddsratio.gam(data = dat, model = fit.gam,
 Installation
 ------------
 
+Install from CRAN:
+
+``` r
+install.packages("oddsratio")
+```
+
 Get the development version from Github:
 
 ``` r

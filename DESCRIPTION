@@ -1,15 +1,15 @@
 Package: oddsratio
-Version: 0.2
+Version: 0.2.9000
 Title: Odds Ratio Calculation for GAM & GLM
 Author: Patrick Schratz
 Maintainer: Patrick Schratz <patrick.schratz@gmail.com>
 Description: Simplified odds ratio calculation of GAM(M)s & GLM(M)s. 
     Provides structured output (data frame) of all predictors and their corresponding odds ratios 
     for further analyses. It helps to avoid false references of predictors and increments by
-    specifying these parameters in a list instead of using `exp(coef(model))` 
+    specifying these parameters in a list instead of using 'exp(coef(model))' 
     (standard approach of odds ratio calculation for GLMs) which just returns a plain numeric output. 
     For GAM(M)s, odds ratio calculation is highly simplified with this package since it takes care of
-    the multiple `predict()` calls of the chosen predictor while holding other predictors constant.
+    the multiple 'predict()' calls of the chosen predictor while holding other predictors constant.
     Also, this package allows odds ratio calculation of percentage steps across the whole
     predictor distribution range for GAM(M)s.
 URL: https://github.com/pat-s/oddsratio
