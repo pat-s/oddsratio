@@ -1,3 +1,7 @@
+# oddsratio 0.3 
+
+* Add confident interval calculation (`calc.oddsratio.glm`)
+
 # oddsratio 0.2 (Oct 12 2016)
 
 * Remove param `quietly`
