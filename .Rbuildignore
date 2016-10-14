@@ -3,5 +3,7 @@
 ^.travis\..yml$
 README.Rmd
 README.md
+README.knit.md
+README.utf8.md
 .travis.yml
 ^cran-comments\.md$

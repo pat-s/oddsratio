@@ -4,7 +4,7 @@
 \alias{calc.oddsratio.glm}
 \title{Calculate Odds Ratio of Generalized Linear (Mixed) Models}
 \usage{
-calc.oddsratio.glm(data, model, incr)
+calc.oddsratio.glm(data, model, incr, CI = 0.95)
 }
 \arguments{
 \item{data}{The data used for model fitting.}
@@ -12,11 +12,16 @@ calc.oddsratio.glm(data, model, incr)
 \item{model}{A fitted GLM(M).}
 
 \item{incr}{List. Increment values of each predictor.}
+
+\item{CI}{numeric. Which confident interval to calculate. 
+Must be between 0 and 1. Default to 0.95}
 }
 \value{
-A data frame with three columns:
+A data frame with five columns:
 \item{predictor}{Predictor name(s)}
 \item{oddsratio}{Calculated odds ratio(s)}
+\item{CI.low}{Lower confident interval of odds ratio}
+\item{CI.high}{Higher confident interval of odds ratio}
 \item{increment}{Increment of the predictor(s)}
 }
 \description{
@@ -24,6 +29,10 @@ This function calculates odds ratio(s) for specific
     increment steps of GLMs.
 }
 \details{
+\code{CI.low} and {CI.high} are only calculted for GLM models because 
+\code{\link[MASS]{glmmPQL}} does not return confident intervals due to its penalizing
+behaviour.
+
 Currently supported functions: \code{\link[stats]{glm}}, 
 \code{\link[MASS]{glmmPQL}}
 }
@@ -36,6 +45,10 @@ fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial") # fit 
 
 # Calculate OR for specific increment step of continuous variable
 calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
+
+# Calculate OR and change the confidence interval level
+calc.oddsratio.glm(data = dat, model = fit.glm, 
+                   incr = list(gre = 380, gpa = 5), CI = .70)
 
 ## Example with MASS:glmmPQL()
 # load data

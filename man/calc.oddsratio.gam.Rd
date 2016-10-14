@@ -4,7 +4,8 @@
 \alias{calc.oddsratio.gam}
 \title{Calculate Odds Ratio of Generalized Additive (Mixed) Models}
 \usage{
-calc.oddsratio.gam(data, model, pred, values, percentage, slice = FALSE)
+calc.oddsratio.gam(data, model, pred, values, percentage, slice = FALSE,
+  CI = NULL)
 }
 \arguments{
 \item{data}{The data used for model fitting.}
@@ -27,9 +28,13 @@ Only needed if \code{slice = TRUE}.}
 \item{slice}{Logical. \code{Default = FALSE}. Whether to calculate 
 odds ratios for fixed increment steps over the whole predictor distribution. 
 See \code{percentage} for setting the increment values.}
+
+\item{CI}{numeric. Currently fixed to 95\% confidence interval (2.5\% - 97.5\%) as it is 
+calculated manually. The reasons is that \code{\link[stats]{confint}} does not work 
+with \code{gam} outputs.}
 }
 \value{
-A data frame with (up to) six columns. \code{perc1} and \code{perc1}
+A data frame with (up to) eight columns. \code{perc1} and \code{perc2}
 are only returned if \code{slice = TRUE}:
 \item{predictor}{Predictor name}
 \item{value1}{First value of odds ratio calculation}
@@ -37,6 +42,8 @@ are only returned if \code{slice = TRUE}:
 \item{perc1}{Percentage value of \code{value1}}
 \item{perc2}{Percentage value of \code{value2}}
 \item{oddsratio}{Calculated odds ratio(s)}
+\item{CI.low}{Lower \code{(2.5\%)} confident interval of odds ratio}
+\item{CI.high}{Higher \code{(97.5\%)} confident interval of odds ratio}
 }
 \description{
 This function to calculates odds ratio(s) for specific increment 
