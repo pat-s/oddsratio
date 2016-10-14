@@ -2,5 +2,7 @@
 
 export(calc.oddsratio.gam)
 export(calc.oddsratio.glm)
+import(MASS)
+import(mgcv)
 importFrom(stats,coefficients)
 importFrom(stats,confint)
