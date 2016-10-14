@@ -3,6 +3,8 @@
 #' 
 #' @importFrom stats coefficients
 #' @importFrom stats confint
+#' @import mgcv
+#' @import MASS
 #' 
 #' @description This function calculates odds ratio(s) for specific 
 #'     increment steps of GLMs. 
