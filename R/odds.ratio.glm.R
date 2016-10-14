@@ -34,6 +34,10 @@
 #' # Calculate OR for specific increment step of continuous variable
 #' calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
 #' 
+#' # Calculate OR and change the confidence interval level
+#' calc.oddsratio.glm(data = dat, model = fit.glm, 
+#'                    incr = list(gre = 380, gpa = 5), CI = .70)
+#' 
 #' ## Example with MASS:glmmPQL()
 #' # load data
 #' library(MASS)
@@ -62,9 +66,8 @@ calc.oddsratio.glm <- function(data, model, incr, CI = 0.95) {
     # get pred names and coefficients without intercept
     preds <- names(model$coefficients$fixed)[2:length(model$coefficients$fixed)]
     coef <- model$coefficients$fixed[2:length(model$coefficients$fixed)]
-    
-    # CI not possible for glmmPQL models
-    CI <- NULL
+    cat("Warning: No confident interval calculation possible 
+        for 'glmmPQL' models\n\n")
   }
   
   increments <- list()
@@ -81,19 +84,31 @@ calc.oddsratio.glm <- function(data, model, incr, CI = 0.95) {
     # check if predictor is numeric or integer
     if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
       odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]]) * as.numeric(incr[[i]])), 3)
-      CI.low[[i]] <- round(exp(CI.list[i, 1] * as.numeric(incr[[i]])), 3)
-      CI.high[[i]] <- round(exp(CI.list[i, 2] * as.numeric(incr[[i]])), 3)
+      if (!class(model)[1] == "glmmPQL") {
+        CI.low[[i]] <- round(exp(CI.list[i, 1] * as.numeric(incr[[i]])), 3)
+        CI.high[[i]] <- round(exp(CI.list[i, 2] * as.numeric(incr[[i]])), 3)
+      }
       increments[[i]] <- as.numeric(incr[[i]])
       or <- odds.ratios[[i]]
     }
     # if pred is factor -> perform direct conversion to odds ratio
     else {
       odds.ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
-      CI.low[[i]] <- round(exp(CI.list[i, 1]), 3)
-      CI.high[[i]] <- round(exp(CI.list[i, 2]), 3)
+      
+      if (!class(model)[1] == "glmmPQL") {
+        CI.low[[i]] <- round(exp(CI.list[i, 1]), 3)
+        CI.high[[i]] <- round(exp(CI.list[i, 2]), 3)
+      }
+      
       increments[[i]] <- "Indicator variable"
       or <- odds.ratios[[i]]
     }
+  }
+  
+  # set CIs NA if model is of type glmmPQL
+  if (class(model)[1] == "glmmPQL") {
+    CI.low <- c(rep(NA, length(preds)))
+    CI.high <- c(rep(NA, length(preds)))
   }
   
   # create data frame to return
