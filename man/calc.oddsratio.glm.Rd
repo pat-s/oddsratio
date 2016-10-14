@@ -46,6 +46,10 @@ fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial") # fit 
 # Calculate OR for specific increment step of continuous variable
 calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
 
+# Calculate OR and change the confidence interval level
+calc.oddsratio.glm(data = dat, model = fit.glm, 
+                   incr = list(gre = 380, gpa = 5), CI = .70)
+
 ## Example with MASS:glmmPQL()
 # load data
 library(MASS)
