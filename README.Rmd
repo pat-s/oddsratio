@@ -93,6 +93,5 @@ vignette.
 
 ## To Do
 
-- Add calculation of odds ratio confidence intervals
-- Implement plotting function of calculated odds ratio in GLM/GAM function?
+- Implement some kind of plotting of calculated odds ratios within the smooth functions?
 - Add references for odds ratio calculation?
