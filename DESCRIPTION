@@ -1,5 +1,5 @@
 Package: oddsratio
-Version: 0.2.9000
+Version: 0.3.0
 Title: Odds Ratio Calculation for GAM & GLM
 Author: Patrick Schratz
 Maintainer: Patrick Schratz <patrick.schratz@gmail.com>
