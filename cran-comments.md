@@ -15,3 +15,8 @@ There are no reverse dependencies.
 
 "There are currently no downstream dependencies for this package”
 
+# Other notes
+
+Update after 5 days because of the integration of confident interval calculation
+which was missing in v0.2.0
+
