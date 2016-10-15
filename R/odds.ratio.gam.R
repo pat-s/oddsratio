@@ -23,9 +23,8 @@
 #' @param slice Logical. \code{Default = FALSE}. Whether to calculate 
 #' odds ratios for fixed increment steps over the whole predictor distribution. 
 #' See \code{percentage} for setting the increment values.
-#' @param CI numeric. Currently fixed to 95\% confidence interval (2.5\% - 97.5\%) as it is 
-#' calculated manually. The reasons is that \code{\link[stats]{confint}} does not work 
-#' with \code{gam} outputs. 
+#' @param CI numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
+#' It should not be changed in a function call!
 #' 
 #' @details Currently supported functions: \code{\link[mgcv]{gam}}(mgcv), 
 #' \code{\link[mgcv]{gamm}}, \code{\link[gam]{gam}}(gam). 
