@@ -12,8 +12,7 @@ Examples
 ### GLM
 
 Odds ratio calculation of predictors `gre` & `gpa` of a fitted model `fit.glm` with increment steps of 380 and 5, respectively.
-For factor variables (here: `rank` with 4 levels), automatically all odds ratios corresponding to the base level (here: `rank1`) are returned.
-Data source: <http://www.ats.ucla.edu/stat/r/dae/logit.htm>
+For factor variables (here: `rank` with 4 levels), automatically all odds ratios corresponding to the base level (here: `rank1`) are returned including their respective confident intervals. The default level is 95%. However, other levels can be specified with the param `CI`. Data source: <http://www.ats.ucla.edu/stat/r/dae/logit.htm>
 
 ``` r
 library(oddsratio)
@@ -21,7 +20,8 @@ dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
 dat$rank <- factor(dat$rank)
 fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
 
-calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
+calc.oddsratio.glm(data = dat, model = fit.glm, 
+                   incr = list(gre = 380, gpa = 5, CI = 0.95))
 ```
 
     ##   predictor oddsratio CI.low (2.5 %) CI.high (97.5 %)          increment
@@ -33,7 +33,7 @@ calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
 
 ### GAM
 
-For GAMs, the calculation of odds ratio is different. Due to its non-linear definition, odds ratios do only apply to specific value changes and are not constant throughout the whole value range of the predictor as for GLMs. Hence, odds ratios of GAMs can only be computed for one predictor at a time by holding all other predictors at a fixed value while changing the value of the specific predictor. Data source: `?mgcv::predict.gam()`
+For GAMs, the calculation of odds ratio is different. Due to its non-linear definition, odds ratios do only apply to specific value changes and are not constant throughout the whole value range of the predictor as for GLMs. Hence, odds ratios of GAMs can only be computed for one predictor at a time by holding all other predictors at a fixed value while changing the value of the specific predictor. Confident intervals are currently fixed to the 95% level for GAMs. Data source: `?mgcv::predict.gam()`
 
 Here, the usage of `calc.oddsratio.gam()` is shown by calculating odds ratios of pred `x2` for a 20% steps across the whole value range of the predictor.
 
