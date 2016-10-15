@@ -3,7 +3,7 @@
 #' 
 #' @importFrom stats coefficients
 #' 
-#' @description This function to calculates odds ratio(s) for specific increment 
+#' @description This function calculates odds ratio(s) for specific increment 
 #'     steps of a GAM(M)s. 
 #' @description Odds ratios can also be calculated for continuous percentage increment steps 
 #'     across the whole predictor distribution using \code{slice = TRUE}.
