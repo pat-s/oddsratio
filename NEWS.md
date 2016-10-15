@@ -1,4 +1,4 @@
-# oddsratio 0.3.0 (Oct 14 2016)
+# oddsratio 0.3.0 (Oct 15 2016)
 
 * Add confident interval calculation (`calc.oddsratio.glm`, `calc.oddsratio.gam`)
 * For GLM models CI level can be specified manually
