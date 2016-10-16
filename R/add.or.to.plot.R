@@ -1,31 +1,54 @@
+#' @name add.or.to.plot
+#' @title Insert odds ratios of GAM(M)s into smoothing function
 #' 
-#'
-#'
-#'
-#'
-#'
+#' @description This function inserts calculated odds ratios of GAM(M)s into a plot of a
+#' GAM(M) smoothing function.
+#' 
+#' @import ggplot2 
+#' @importFrom cowplot background_grid
+#' 
+#' @param plot.object A `ggplot` object from \code{\link[oddsratio]{plot_smooth.gam}}
+#' @param or.object A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}
+#' @param col.line String. Color of the vertical line showing the predictor values
+#' @param col.text String. Color of the inserted odds ratio information
+#' @param values Logical. Whether to print predictor value information nearby 
+#' the inserted vertical lines. Default to \code{TRUE}.
+#' @param height.or Numeric. Specifies y-location of inserted odds ratio information.
+#' Relative to plotted y-axis range. A positive/negative value will place the 
+#' odds ratio information higher/lower.  
+#' @param height.val Numeric. Specifies y-location of inserted predictor information.
+#' Relative to plotted y-axis range. A positive/negative value will place the 
+#' predictor information higher/lower.  
+#' @param x.shift Numeric. Placement of predictor information relative to its vertical line.
+#' Relative to x-axis range. Default to \code{0.02}. 
+#' Play around to find the perfect position for you.
+#' 
+#' @details The logic behind this function is to add calculated odds ratio of 
+#' fitted GAM models (\code{\link[oddsratio]{calc.oddsratio.gam}}) into a plot 
+#' showing the smooth function (\code{\link[oddsratio]{plot_smooth.gam}}) of the chosen 
+#' predictor for which the odds ratio was calculated for. Multiple insertions can 
+#' be made by iteratively calling the function (see examples).
+#' 
+#' @return Returns a \code{ggplot} plotting object
+#' 
+#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
+#' 
+#' @author Patrick Schratz
+#' 
 #' @examples 
-#' #' # load data (Source: ?mgcv::gam)
+#' # load data (Source: ?mgcv::gam)
 #' library(mgcv)
 #' n <- 200
 #' sig <- 2
-#' dat <- gamSim(1, n = n,scale = sig, verbose = FALSE)
+#' dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
 #' dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 #' fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
 #'                offset(x3) + x4, data = dat) # fit model
-#' @name add.or.to.plot
-#' @title Inserts calculated odds ratios into plot
-#' 
-#' @description This function inserts odds ratio information into a plot created
-#' by \code{\link[oddsratio]{plot.smooth.gam}}
-#' 
-#' @importFrom ggplot2 ggplot
-#' @importFrom ggplot2 geom_vline
-#' @importFrom ggplot2 annotate
-#' 
-#' 
-#' # create input objects (plot + odds ratios)               
-#' plot.object <- plot.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+#'                
+#' # create input objects (plot + odds ratios)   
+#' library(oddsratio)            
+#' plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 #' or.object1 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
 #'                                values = c(0.099, 0.198))
 #'                                
@@ -39,7 +62,8 @@
 #'                                   
 #' # add second or into plot                                  
 #' add.or.to.plot(plot.object, or.object2, height.or = 3, col.line = "green4",
-#'                col.text = "green4")                                   
+#'                col.text = "green4")          
+#' @export                       
 
 add.or.to.plot <- function(plot.object, or.object, col.line = "red",
                            col.text = "red", values = TRUE,
