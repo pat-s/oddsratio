@@ -2,7 +2,7 @@
 % Please edit documentation in R/odds.ratio.gam.R
 \name{calc.oddsratio.gam}
 \alias{calc.oddsratio.gam}
-\title{Calculate Odds Ratio of Generalized Additive (Mixed) Models}
+\title{Calculate odds ratios of Generalized Additive (Mixed) Models}
 \usage{
 calc.oddsratio.gam(data, model, pred, values, percentage, slice = FALSE,
   CI = NULL)
@@ -29,9 +29,8 @@ Only needed if \code{slice = TRUE}.}
 odds ratios for fixed increment steps over the whole predictor distribution. 
 See \code{percentage} for setting the increment values.}
 
-\item{CI}{numeric. Currently fixed to 95\% confidence interval (2.5\% - 97.5\%) as it is 
-calculated manually. The reasons is that \code{\link[stats]{confint}} does not work 
-with \code{gam} outputs.}
+\item{CI}{numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
+It should not be changed in a function call!}
 }
 \value{
 A data frame with (up to) eight columns. \code{perc1} and \code{perc2}
@@ -46,7 +45,7 @@ are only returned if \code{slice = TRUE}:
 \item{CI.high}{Higher \code{(97.5\%)} confident interval of odds ratio}
 }
 \description{
-This function to calculates odds ratio(s) for specific increment 
+This function calculates odds ratio(s) for specific increment 
     steps of a GAM(M)s.
 
 Odds ratios can also be calculated for continuous percentage increment steps 
@@ -65,7 +64,7 @@ output (e.g. \code{fit.gam$gam}).
 library(mgcv)
 n <- 200
 sig <- 2
-dat <- gamSim(1, n = n,scale = sig, verbose = FALSE)
+dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
 dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
                offset(x3) + x4, data = dat) # fit model

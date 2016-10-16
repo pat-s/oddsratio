@@ -2,7 +2,7 @@
 % Please edit documentation in R/odds.ratio.glm.R
 \name{calc.oddsratio.glm}
 \alias{calc.oddsratio.glm}
-\title{Calculate Odds Ratio of Generalized Linear (Mixed) Models}
+\title{Calculate odds ratios of Generalized Linear (Mixed) Models}
 \usage{
 calc.oddsratio.glm(data, model, incr, CI = 0.95)
 }
