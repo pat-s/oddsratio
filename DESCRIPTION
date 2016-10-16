@@ -14,6 +14,7 @@ Description: Simplified odds ratio calculation of GAM(M)s & GLM(M)s.
     predictor distribution range for GAM(M)s. In both cases, confident intervals are returned additionally.
 URL: https://github.com/pat-s/oddsratio
 BugReports: https://github.com/pat-s/oddsratio/issues
+Depends: R (>= 3.0.0)
 Imports: mgcv, 
          MASS, 
          stats,
