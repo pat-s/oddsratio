@@ -18,10 +18,16 @@ Depends: R (>= 3.0.0)
 Imports: mgcv, 
          MASS, 
          stats,
-         ggplot2
+         ggplot2,
+         cowplot
 License: MIT + file LICENSE
 RoxygenNote: 5.0.1
 Suggests: knitr,
           rmarkdown,
           nlme
+Collate:'helper.funs.R'
+        'plot.smooth.gam.R'
+        'odds.ratio.gam.R'
+        'odds.ratio.glm.R'
+        'add.or.to.plot.R'
 VignetteBuilder: knitr
