@@ -1,5 +1,5 @@
 #' @name calc.oddsratio.glm
-#' @title Calculate Odds Ratio of Generalized Linear (Mixed) Models
+#' @title Calculate odds ratios of Generalized Linear (Mixed) Models
 #' 
 #' @importFrom stats coefficients
 #' @importFrom stats confint
