@@ -1,5 +1,5 @@
 #' @name calc.oddsratio.gam
-#' @title Calculate Odds Ratio of Generalized Additive (Mixed) Models
+#' @title Calculate odds ratios of Generalized Additive (Mixed) Models
 #' 
 #' @importFrom stats coefficients
 #' 
@@ -50,7 +50,7 @@
 #' library(mgcv)
 #' n <- 200
 #' sig <- 2
-#' dat <- gamSim(1, n = n,scale = sig, verbose = FALSE)
+#' dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
 #' dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 #' fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
 #'                offset(x3) + x4, data = dat) # fit model
