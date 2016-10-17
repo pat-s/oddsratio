@@ -33,8 +33,9 @@
 #' 
 #' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
+#' @seealso \code{\link[oddsratio]{add.oddsratio.into.plot}}
 #' 
-#' @author Patrick Schratz
+#' @author Patrick Schratz <patrick.schratz@gmail.com>
 #' @export
 
 

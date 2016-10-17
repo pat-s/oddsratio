@@ -44,6 +44,10 @@
 #' \item{CI.high}{Higher \code{(97.5\%)} confident interval of odds ratio}
 #' 
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.glm}}
+#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{add.oddsratio.into.plot}}
+#' 
+#' @author Patrick Schratz <patrick.schratz@gmail.com>
 #' 
 #' @examples 
 #' # load data (Source: ?mgcv::gam)
