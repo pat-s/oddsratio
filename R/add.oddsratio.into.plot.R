@@ -1,4 +1,4 @@
-#' @name add.or.to.plot
+#' @name add.oddsratio.into.plot
 #' @title Insert odds ratios of GAM(M)s into smoothing function
 #' 
 #' @description This function inserts calculated odds ratios of GAM(M)s into a plot of a
@@ -29,12 +29,16 @@
 #' predictor for which the odds ratio was calculated for. Multiple insertions can 
 #' be made by iteratively calling the function (see examples).
 #' 
+#' @details Right now the function does only accept results of 
+#' \code{\link[oddsratio]{calc.oddsratio.gam}} with \code{slice = FALSE}. 
+#' If you want to insert multiple odds ratio you have to do it iteratively. 
+#' 
 #' @return Returns a \code{ggplot} plotting object
 #' 
 #' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' 
-#' @author Patrick Schratz
+#' @author Patrick Schratz <patrick.schratz@gmail.com>
 #' 
 #' @examples 
 #' # load data (Source: ?mgcv::gam)
@@ -53,7 +57,7 @@
 #'                                values = c(0.099, 0.198))
 #'                                
 #' # insert first odds ratios to plot
-#' plot.object <- add.or.to.plot(plot.object, or.object1, height.or = 5,
+#' plot.object <- add.oddsratio.into.plot(plot.object, or.object1, height.or = 5,
 #'                               x.shift = 0.03)
 #'
 #' # calculate second odds ratio
@@ -61,11 +65,11 @@
 #'                                   values = c(0.4, 0.6))
 #'                                   
 #' # add second or into plot                                  
-#' add.or.to.plot(plot.object, or.object2, height.or = 3, col.line = "green4",
+#' add.oddsratio.into.plot(plot.object, or.object2, height.or = 3, col.line = "green4",
 #'                col.text = "green4")          
 #' @export                       
 
-add.or.to.plot <- function(plot.object, or.object, col.line = "red",
+add.oddsratio.into.plot <- function(plot.object, or.object, col.line = "red",
                            col.text = "red", values = TRUE,
                            height.or = 0, height.val = 0,
                            x.shift = NULL) {
