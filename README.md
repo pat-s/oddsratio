@@ -1,7 +1,7 @@
 
 #### General
 
-[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/master/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--10--16-yellowgreen.svg)](/commits/master)
+[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/master/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--10--17-yellowgreen.svg)](/commits/master)
 
 #### CRAN
 
@@ -9,12 +9,12 @@
 
 #### Github
 
-[![GitHub release](https://img.shields.io/github/release/pat-s/oddsratio.svg)](https://github.com/pat-s/oddsratio) [![Github Releases](https://img.shields.io/github/downloads/pat-s/oddsratio/latest/total.svg)](https://github.com/pat-s/oddsratio) [![packageversion](https://img.shields.io/badge/Package%20version-0.2.0.9000-orange.svg?style=flat-square)](commits/master)
+[![Github Releases](https://img.shields.io/github/downloads/pat-s/oddsratio/latest/total.svg)](https://github.com/pat-s/oddsratio) [![packageversion](https://img.shields.io/badge/Package%20version-0.2.0.9000-orange.svg?style=flat-square)](commits/master)
 
 oddsratio
 =========
 
-Convenience functions for odds ratio calculation of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models).
+Functions for calculation and plotting of odds ratios of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models).
 
 Examples
 --------
@@ -83,6 +83,41 @@ calc.oddsratio.gam(data = dat, model = fit.gam,
     ##   predictor value1 value2 oddsratio CI.low (2.5%) CI.high (97.5%)
     ## 1        x2  0.099  0.198  23.32353      23.30424        23.34283
 
+From version 0.3.0 on (Github version 0.2.0.9000) you can now do the following things:
+
+-   Plot smoothing functions of GAM(M)s
+
+``` r
+plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+-   Insert the calculated odds ratios into the smoothing function
+
+``` r
+plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
+                   pred = "x2", values = c(0.099, 0.198))
+
+plot <- add.or.to.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
+plot
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
+
+If you want to insert multiple odds ratios, just go on!
+
+``` r
+or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
+                   pred = "x2", values = c(0.4, 0.6))
+
+add.or.to.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
+               col.line = "green4", col.text = "green4")
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
 Installation
 ------------
 
@@ -102,9 +137,3 @@ Examples
 --------
 
 To see full examples, please see the examples in the respective help pages `?calc.oddsratio.gam` and `?calc.oddsratio.gam` or take a look at the package vignette.
-
-To Do
------
-
--   Implement some kind of plotting of calculated odds ratios within the smooth functions?
--   Add references for odds ratio calculation?
