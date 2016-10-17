@@ -15,7 +15,7 @@ Description: Simplified odds ratio calculation of GAM(M)s & GLM(M)s.
     Calculated odds ratio of GAM(M)s can be inserted into the smooth function plot. 
 URL: https://github.com/pat-s/oddsratio
 BugReports: https://github.com/pat-s/oddsratio/issues
-Depends: R (>= 3.3.0)
+Depends: R (>= 3.0.0)
 Imports: mgcv, 
          MASS, 
          stats,
