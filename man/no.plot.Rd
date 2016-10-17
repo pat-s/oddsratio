@@ -31,7 +31,7 @@ tmp <- plot(fit.gam, pages = 1) # plot output
 tmp <- no.plot(fit.gam) # no plot output 
 }
 \author{
-Patrick Schratz
+Patrick Schratz <patrick.schratz@gmail.com>
 }
 \seealso{
 \code{\link[oddsratio]{plot_smooth.gam}}

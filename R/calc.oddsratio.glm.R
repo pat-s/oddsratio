@@ -26,6 +26,8 @@
 #' \code{\link[MASS]{glmmPQL}} does not return confident intervals due to its penalizing
 #' behaviour. 
 #' 
+#' @author Patrick Schratz <patrick.schratz@gmail.com>
+#' 
 #' @examples 
 #' ## Example with stats::glm()
 #' # load data (Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm)

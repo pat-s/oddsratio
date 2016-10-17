@@ -1,6 +1,6 @@
 Package: oddsratio
 Version: 0.2.0.9000
-Title: Odds Ratio Calculation for GAM & GLM
+Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
 Author: Patrick Schratz
 Maintainer: Patrick Schratz <patrick.schratz@gmail.com>
 Description: Simplified odds ratio calculation of GAM(M)s & GLM(M)s. 
@@ -12,6 +12,7 @@ Description: Simplified odds ratio calculation of GAM(M)s & GLM(M)s.
     the multiple 'predict()' calls of the chosen predictor while holding other predictors constant.
     Also, this package allows odds ratio calculation of percentage steps across the whole
     predictor distribution range for GAM(M)s. In both cases, confident intervals are returned additionally.
+    Calculated odds ratio of GAM(M)s can be inserted into the smooth function plot. 
 URL: https://github.com/pat-s/oddsratio
 BugReports: https://github.com/pat-s/oddsratio/issues
 Depends: R (>= 3.0.0)
@@ -26,8 +27,8 @@ Suggests: knitr,
           rmarkdown,
           nlme
 Collate:'helper.funs.R'
-        'plot.smooth.gam.R'
-        'odds.ratio.gam.R'
-        'odds.ratio.glm.R'
-        'add.or.to.plot.R'
+        'plot_smooth.gam.R'
+        'calc.oddsratio.gam.R'
+        'calc.oddsratio.glm.R'
+        'add.oddsratio.into.plot.R'
 VignetteBuilder: knitr

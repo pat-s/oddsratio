@@ -16,7 +16,7 @@
 #' 
 #' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
 #' 
-#' @author Patrick Schratz
+#' @author Patrick Schratz <patrick.schratz@gmail.com>
 #' 
 #' @examples 
 #' # load data (Source: ?mgcv::gam)
