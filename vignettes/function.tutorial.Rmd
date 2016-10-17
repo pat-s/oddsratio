@@ -14,12 +14,15 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  # fig.path = "figures/README-",
   fig.align = "center",
   fig.height = 4,
   fig.width = 6,
   collapse = TRUE,
   comment = "#>"
 )
+library(ggplot2)
+library(cowplot)
 ```
 
 ## Load example data

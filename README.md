@@ -100,7 +100,7 @@ plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                    pred = "x2", values = c(0.099, 0.198))
 
-plot <- add.or.to.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
+plot <- add.oddsratio.into.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
 plot
 ```
 
@@ -112,7 +112,7 @@ If you want to insert multiple odds ratios, just go on!
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                    pred = "x2", values = c(0.4, 0.6))
 
-add.or.to.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
+add.oddsratio.into.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
                col.line = "green4", col.text = "green4")
 ```
 
