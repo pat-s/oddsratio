@@ -1,8 +1,13 @@
 # oddsratio 0.3.0 (Oct 15 2016)
 
-* Add confident interval calculation (`calc.oddsratio.glm`, `calc.oddsratio.gam`)
-* For GLM models CI level can be specified manually
-* Print CI warning if model is of type `glmmPQL`
+#### New functions
+* `plot_smooth.gam()`: Lets you plot smoothing functions of GAM(M)s using `ggplot2`.
+* `add.oddsratio.into.plot()`: Add odds ratios into plot of GAM(M) smoothing function.
+
+#### Function updates
+* `calc.oddsratio.glm`, `calc.oddsratio.gam`: Add odds ratio confident interval calculation 
+* For GLM models CI level can be specified manually.
+* Print 'CI' warning if model is of type `glmmPQL`
 
 # oddsratio 0.2.0 (Oct 12 2016)
 
