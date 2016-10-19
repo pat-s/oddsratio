@@ -13,13 +13,13 @@ plot_smooth.gam(model, pred, col.line = "blue", col.line.ci = "black",
 
 \item{pred}{The predictor of the fitted model to plot the smooth function of.}
 
-\item{col.line}{Character. Sets color for smoothing function. Default to \code{"blue"}}
+\item{col.line}{Character. Sets color for smoothing function. Default to \code{"blue"}.}
 
 \item{col.line.ci}{Character. Sets color for confident interval line of smoothing function. Default to \code{"black"}}
 
 \item{line.type.ci}{Character. Sets linetype of confident interval line of smoothing function. Default to \code{"dashed"}.}
 
-\item{fill.ci}{Character. Fill color of area between smoothing function and its confident interval lines}
+\item{fill.ci}{Character. Fill color of area between smoothing function and its confident interval lines.}
 
 \item{title}{Character. Plot title.}
 

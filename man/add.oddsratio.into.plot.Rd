@@ -13,9 +13,9 @@ add.oddsratio.into.plot(plot.object, or.object, col.line = "red",
 
 \item{or.object}{A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}}
 
-\item{col.line}{String. Color of the vertical line showing the predictor values}
+\item{col.line}{Character. Color of the vertical line showing the predictor values}
 
-\item{col.text}{String. Color of the inserted odds ratio information}
+\item{col.text}{Character. Color of the inserted odds ratio information}
 
 \item{values}{Logical. Whether to print predictor value information nearby 
 the inserted vertical lines. Default to \code{TRUE}.}
