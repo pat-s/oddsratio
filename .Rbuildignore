@@ -5,6 +5,5 @@ README.Rmd
 README.md
 README.knit.md
 README.utf8.md
-README_files/
 .travis.yml
 ^cran-comments\.md$
