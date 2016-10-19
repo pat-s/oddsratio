@@ -9,8 +9,8 @@
 #' 
 #' @param plot.object A `ggplot` object from \code{\link[oddsratio]{plot_smooth.gam}}
 #' @param or.object A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}
-#' @param col.line String. Color of the vertical line showing the predictor values
-#' @param col.text String. Color of the inserted odds ratio information
+#' @param col.line Character. Color of the vertical line showing the predictor values
+#' @param col.text Character. Color of the inserted odds ratio information
 #' @param values Logical. Whether to print predictor value information nearby 
 #' the inserted vertical lines. Default to \code{TRUE}.
 #' @param height.or Numeric. Specifies y-location of inserted odds ratio information.

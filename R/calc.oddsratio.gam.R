@@ -10,20 +10,20 @@
 #' 
 #' @param data The data used for model fitting.
 #' @param model A fitted GAM(M).
-#' @param pred Character of length one. The name of the predictor to calculate 
-#' the odds ratio for.
+#' @param pred Character. Predictor name for which to calculate 
+#' the odds ratio.
 #' @param values Numeric vector of length two.
 #' Predictor values to estimate odds ratio from. Function is written to use the 
 #' first provided value as the "lower" one, i.e. calculating the odds ratio 
 #' 'from value1 to value2'. Only used if \code{slice = FALSE}.
-#' @param percentage Numeric of length one. Percentage number to split the 
+#' @param percentage Numeric. Percentage number to split the 
 #' predictor distribution into. 
 #' A value of 10 would split the predictor distribution by 10\% intervals. 
 #' Only needed if \code{slice = TRUE}.
 #' @param slice Logical. \code{Default = FALSE}. Whether to calculate 
 #' odds ratios for fixed increment steps over the whole predictor distribution. 
 #' See \code{percentage} for setting the increment values.
-#' @param CI numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
+#' @param CI Numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
 #' It should not be changed in a function call!
 #' 
 #' @details Currently supported functions: \code{\link[mgcv]{gam}}(mgcv), 

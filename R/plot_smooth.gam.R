@@ -11,10 +11,10 @@
 
 #' @param model A fitted model of class \code{gam}.
 #' @param pred The predictor of the fitted model to plot the smooth function of. 
-#' @param col.line Character. Sets color for smoothing function. Default to \code{"blue"}
+#' @param col.line Character. Sets color for smoothing function. Default to \code{"blue"}.
 #' @param col.line.ci Character. Sets color for confident interval line of smoothing function. Default to \code{"black"}
 #' @param line.type.ci Character. Sets linetype of confident interval line of smoothing function. Default to \code{"dashed"}. 
-#' @param fill.ci Character. Fill color of area between smoothing function and its confident interval lines
+#' @param fill.ci Character. Fill color of area between smoothing function and its confident interval lines.
 #' @param title Character. Plot title.
 #' @param xlab Character. X-axis title.
 #' @param ylab Character. Y-axis title.
