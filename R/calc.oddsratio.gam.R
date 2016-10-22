@@ -133,11 +133,11 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
       pred.gam2.CI.high <- pred.gam2[1] + (2 * pred.gam2[2])
       
       result$predictor = pred
-      result$oddsratio[x] <- as.numeric(exp(pred.gam2[1] - pred.gam1[1]), 2)
+      result$oddsratio[x] <- round(as.numeric(exp(pred.gam2[1] - pred.gam1[1])), 2)
       result$value1[x] <- round(range.v[x], 3)
       result$value2[x] <- round(range.v[x + 1], 3)
-      result$CI.high[x] <- as.numeric(exp(pred.gam2.CI.low - pred.gam1.CI.low), 2)   # no mistake
-      result$CI.low[x] <- as.numeric(exp(pred.gam2.CI.high - pred.gam1.CI.high), 2)  # no mistake
+      result$CI.high[x] <- round(as.numeric(exp(pred.gam2.CI.low - pred.gam1.CI.low)), 2)   # no mistake
+      result$CI.low[x] <- round(as.numeric(exp(pred.gam2.CI.high - pred.gam1.CI.high)), 2)  # no mistake
       result$perc1[x] <- percentage*x - percentage
       result$perc2[x] <- percentage*x
     }
