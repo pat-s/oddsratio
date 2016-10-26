@@ -88,10 +88,10 @@ We can see that there is a high odds ratio reported when increasing predictor `x
 
 Right now, the only (quick) possibility to plot the smoothing functions of a GAM(M)
 was to use the base `plot()` function. The fiddly work to do the same using the `ggplot2`
-plotting system is done by `plot_smooth.gam()`:
+plotting system is done by `pl.smooth.gam()`:
 
 ```{r}
-plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 ```
 
 You can further customize the look using other colors or linetypes. 
@@ -105,7 +105,7 @@ returned from `calc.oddsratio.gam()` containing information about the predictor 
 the respective values we want to insert.
 
 ```{r}
-plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                    pred = "x2", values = c(0.099, 0.198))
 
