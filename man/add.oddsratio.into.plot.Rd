@@ -4,21 +4,28 @@
 \alias{add.oddsratio.into.plot}
 \title{Insert odds ratios of GAM(M)s into smoothing function}
 \usage{
-add.oddsratio.into.plot(plot.object, or.object, col.line = "red",
-  col.text = "red", values = TRUE, height.or = 0, height.val = 0,
-  x.shift = NULL)
+add.oddsratio.into.plot(plot.object, or.object, line.col = "red",
+  line.size = 1.2, line.type = "solid", line.alpha = 1, text.alpha = 1,
+  text.size = 4, arrow.length = NULL, arrow.height = NULL,
+  text.col = "red", values = TRUE, or.height = 0, values.height = 0,
+  x.shift = NULL, arrow = TRUE, arrow.xloc.r = NULL,
+  arrow.xloc.l = NULL)
 }
 \arguments{
 \item{plot.object}{A `ggplot` object from \code{\link[oddsratio]{plot_smooth.gam}}}
 
 \item{or.object}{A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}}
 
+\item{values}{Logical. Whether to print predictor value information nearby 
+the inserted vertical lines. Default to \code{TRUE}.}
+
+\item{x.shift}{Numeric. Placement of predictor information relative to its vertical line.
+Relative to x-axis range. Default to \code{0.02}. 
+Play around to find the perfect position for you.}
+
 \item{col.line}{Character. Color of the vertical line showing the predictor values}
 
 \item{col.text}{Character. Color of the inserted odds ratio information}
-
-\item{values}{Logical. Whether to print predictor value information nearby 
-the inserted vertical lines. Default to \code{TRUE}.}
 
 \item{height.or}{Numeric. Specifies y-location of inserted odds ratio information.
 Relative to plotted y-axis range. A positive/negative value will place the 
@@ -27,10 +34,6 @@ odds ratio information higher/lower.}
 \item{height.val}{Numeric. Specifies y-location of inserted predictor information.
 Relative to plotted y-axis range. A positive/negative value will place the 
 predictor information higher/lower.}
-
-\item{x.shift}{Numeric. Placement of predictor information relative to its vertical line.
-Relative to x-axis range. Default to \code{0.02}. 
-Play around to find the perfect position for you.}
 }
 \value{
 Returns a \code{ggplot} plotting object
@@ -52,7 +55,8 @@ If you want to insert multiple odds ratio you have to do it iteratively.
 }
 \examples{
 # load data (Source: ?mgcv::gam)
-library(mgcv)
+library(mgcv); library(cowplot)
+set.seed(1234)
 n <- 200
 sig <- 2
 dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
@@ -62,21 +66,26 @@ fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
                
 # create input objects (plot + odds ratios)   
 library(oddsratio)            
-plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object1 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
                                values = c(0.099, 0.198))
                                
 # insert first odds ratios to plot
-plot.object <- add.oddsratio.into.plot(plot.object, or.object1, height.or = 5,
-                              x.shift = 0.03)
+plot.object <- add.oddsratio.into.plot(plot.object, or.object1, or.height = 3,
+                                       x.shift = 0.04, line.size = 0.5, 
+                                       line.type = "dotdash", text.size = 6,
+                                       values.height = 0.5)
 
 # calculate second odds ratio
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
-                                  values = c(0.4, 0.6))
+                                 values = c(0.4, 0.6))
                                   
-# add second or into plot                                  
-add.oddsratio.into.plot(plot.object, or.object2, height.or = 3, col.line = "green4",
-               col.text = "green4")          
+# add or.object2 into plot                                  
+add.oddsratio.into.plot(plot.object, or.object2, or.height = 0, 
+                        line.col = "green4", text.col = "green4", 
+                        line.alpha = 0.5, line.type = "dashed",
+                        arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+                        arrow.length = 0.01)          
 }
 \author{
 Patrick Schratz <patrick.schratz@gmail.com>

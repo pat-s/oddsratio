@@ -88,7 +88,7 @@ Patrick Schratz <patrick.schratz@gmail.com>
 \seealso{
 \code{\link[oddsratio]{calc.oddsratio.glm}}
 
-\code{\link[oddsratio]{plot_smooth.gam}}
+\code{\link[oddsratio]{pl.smooth.gam}}
 
 \code{\link[oddsratio]{add.oddsratio.into.plot}}
 }
