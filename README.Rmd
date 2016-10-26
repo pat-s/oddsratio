@@ -104,28 +104,34 @@ From version 0.3.0 on (Github version 0.2.0.9000) you can now do the following t
 * Plot smoothing functions of GAM(M)s
 
 ```{r}
-plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 ```
 
 * Insert the calculated odds ratios into the smoothing function
 
 ```{r}
-plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                    pred = "x2", values = c(0.099, 0.198))
 
-plot <- add.oddsratio.into.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
+plot <- add.oddsratio.into.plot(plot.object, or.object, or.height = 3,
+                                x.shift = 0.04, line.size = 0.5, 
+                                line.type = "dotdash", values.height = 0.5)
 plot
 ```
 
 If you want to insert multiple odds ratios, just go on!
 
 ```{r}
-or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
-                   pred = "x2", values = c(0.4, 0.6))
 
-add.oddsratio.into.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
-               col.line = "green4", col.text = "green4")
+or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+                                 values = c(0.4, 0.6))
+                                  
+add.oddsratio.into.plot(plot, or.object2, or.height = 0, 
+                        line.col = "green4", text.col = "green4", 
+                        line.alpha = 0.5, line.type = "dashed",
+                        arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+                        arrow.length = 0.01)
 ```
 
 

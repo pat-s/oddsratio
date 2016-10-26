@@ -1,7 +1,7 @@
 
 #### General
 
-[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/master/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--10--19-yellowgreen.svg)](/commits/master)
+[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/master/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--10--27-yellowgreen.svg)](/commits/master)
 
 #### CRAN
 
@@ -9,7 +9,7 @@
 
 #### Github
 
-[![Github Releases](https://img.shields.io/github/downloads/pat-s/oddsratio/latest/total.svg)](https://github.com/pat-s/oddsratio) [![packageversion](https://img.shields.io/badge/Package%20version-0.2.0.9000-orange.svg?style=flat-square)](commits/master)
+[![Github Releases](https://img.shields.io/github/downloads/pat-s/oddsratio/latest/total.svg)](https://github.com/pat-s/oddsratio) [![packageversion](https://img.shields.io/badge/Package%20version-0.3.0-orange.svg?style=flat-square)](commits/master)
 
 oddsratio
 =========
@@ -60,18 +60,18 @@ calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2",
                    percentage = 20, slice = TRUE)
 ```
 
-    ##   predictor value1 value2 perc1 perc2    oddsratio CI.low (2.5%)
-    ## 1        x2  0.001  0.200     0    20 2.510768e+03  1.091683e+03
-    ## 2        x2  0.200  0.400    20    40 2.870699e-02  2.621879e-02
-    ## 3        x2  0.400  0.599    40    60 5.761210e-01  5.556941e-01
-    ## 4        x2  0.599  0.799    60    80 6.032289e-02  5.789875e-02
-    ## 5        x2  0.799  0.998    80   100 4.063187e-01  7.469151e-01
+    ##   predictor value1 value2 perc1 perc2 oddsratio CI.low (2.5%)
+    ## 1        x2  0.001  0.200     0    20   2510.77       1091.68
+    ## 2        x2  0.200  0.400    20    40      0.03          0.03
+    ## 3        x2  0.400  0.599    40    60      0.58          0.56
+    ## 4        x2  0.599  0.799    60    80      0.06          0.06
+    ## 5        x2  0.799  0.998    80   100      0.41          0.75
     ##   CI.high (97.5%)
-    ## 1    5.774533e+03
-    ## 2    3.143133e-02
-    ## 3    5.972988e-01
-    ## 4    6.284853e-02
-    ## 5    2.210357e-01
+    ## 1         5774.53
+    ## 2            0.03
+    ## 3            0.60
+    ## 4            0.06
+    ## 5            0.22
 
 If you want to compute a single odds ratio for specific values, simply set param `slice = FALSE`:
 
@@ -88,7 +88,7 @@ From version 0.3.0 on (Github version 0.2.0.9000) you can now do the following t
 -   Plot smoothing functions of GAM(M)s
 
 ``` r
-plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
@@ -96,11 +96,13 @@ plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 -   Insert the calculated odds ratios into the smoothing function
 
 ``` r
-plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                    pred = "x2", values = c(0.099, 0.198))
 
-plot <- add.oddsratio.into.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
+plot <- add.oddsratio.into.plot(plot.object, or.object, or.height = 3,
+                                x.shift = 0.04, line.size = 0.5, 
+                                line.type = "dotdash", values.height = 0.5)
 plot
 ```
 
@@ -109,11 +111,14 @@ plot
 If you want to insert multiple odds ratios, just go on!
 
 ``` r
-or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
-                   pred = "x2", values = c(0.4, 0.6))
-
-add.oddsratio.into.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
-               col.line = "green4", col.text = "green4")
+or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+                                 values = c(0.4, 0.6))
+                                  
+add.oddsratio.into.plot(plot, or.object2, or.height = 0, 
+                        line.col = "green4", text.col = "green4", 
+                        line.alpha = 0.5, line.type = "dashed",
+                        arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+                        arrow.length = 0.01)
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
