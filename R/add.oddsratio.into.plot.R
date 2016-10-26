@@ -76,14 +76,14 @@
 #' @export                       
 
 add.oddsratio.into.plot <- function(plot.object, or.object, line.col = "red",
-                                    line.size = 1.5, line.type = "solid", 
+                                    line.size = 1.2, line.type = "solid", 
                                     line.alpha = 1, text.alpha = 1, 
                                     text.size = 4, arrow.length = NULL, 
                                     arrow.height = NULL,
                                     text.col = "red", values = TRUE,
                                     or.height = 0, values.height = 0,
                                     x.shift = NULL, arrow = TRUE,
-                                    arrow.xloc.r = 0, arrow.xloc.l = 0) 
+                                    arrow.xloc.r = NULL, arrow.xloc.l = NULL) 
   {
   
   plot.object <- plot.object + 
@@ -105,13 +105,25 @@ add.oddsratio.into.plot <- function(plot.object, or.object, line.col = "red",
     
     if(is.null(arrow.length)) {
       # calc arrow length from x axis range
-      arrow.length <- (max(plot.object$data$x) - min(plot.object$data$x)) * 0.02
+      arrow.length <- (max(plot.object$data$x) - min(plot.object$data$x)) * 0.01
     }
     
     if(is.null(arrow.height)) {
       # calc arrow height from y axis range
       arrow.height <- (max(plot.object$data$y) - min(plot.object$data$y)) * 0.05
     }
+    
+    if(is.null(arrow.xloc.l)) {
+      # calc arrow shift from x axis range
+      arrow.xloc.l <- -(max(plot.object$data$y) - min(plot.object$data$y)) * 0.002
+    }
+    
+    if(is.null(arrow.xloc.r)) {
+      # calc arrow shift from x axis range
+      arrow.xloc.r <- (max(plot.object$data$y) - min(plot.object$data$y)) * 0.002
+    }
+    
+    
     plot.object <- plot.object + 
 
       annotate("text", x = or.object$value1 - x.shift,
