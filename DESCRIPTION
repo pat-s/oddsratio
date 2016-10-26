@@ -25,9 +25,10 @@ License: MIT + file LICENSE
 RoxygenNote: 5.0.1
 Suggests: knitr,
           rmarkdown,
-          nlme
+          nlme, 
+          grid
 Collate:'helper.funs.R'
-        'plot_smooth.gam.R'
+        'pl.smooth.gam.R'
         'calc.oddsratio.gam.R'
         'calc.oddsratio.glm.R'
         'add.oddsratio.into.plot.R'
