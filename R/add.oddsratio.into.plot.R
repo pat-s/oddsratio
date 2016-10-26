@@ -7,7 +7,7 @@
 #' @import ggplot2 
 #' @importFrom cowplot background_grid
 #' 
-#' @param plot.object A `ggplot` object from \code{\link[oddsratio]{plot_smooth.gam}}
+#' @param plot.object A `ggplot` object from \code{\link[oddsratio]{pl.smooth.gam}}
 #' @param or.object A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' @param col.line Character. Color of the vertical line showing the predictor values
 #' @param col.text Character. Color of the inserted odds ratio information
@@ -25,7 +25,7 @@
 #' 
 #' @details The logic behind this function is to add calculated odds ratio of 
 #' fitted GAM models (\code{\link[oddsratio]{calc.oddsratio.gam}}) into a plot 
-#' showing the smooth function (\code{\link[oddsratio]{plot_smooth.gam}}) of the chosen 
+#' showing the smooth function (\code{\link[oddsratio]{pl.smooth.gam}}) of the chosen 
 #' predictor for which the odds ratio was calculated for. Multiple insertions can 
 #' be made by iteratively calling the function (see examples).
 #' 
@@ -35,7 +35,7 @@
 #' 
 #' @return Returns a \code{ggplot} plotting object
 #' 
-#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{pl.smooth.gam}}
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' 
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
@@ -52,7 +52,7 @@
 #'                
 #' # create input objects (plot + odds ratios)   
 #' library(oddsratio)            
-#' plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+#' plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 #' or.object1 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
 #'                                values = c(0.099, 0.198))
 #'                                

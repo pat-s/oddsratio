@@ -1,4 +1,4 @@
-#' @name plot_smooth.gam
+#' @name pl.smooth.gam
 #' @title Plot smoothing functions of GAM(M) models
 #' 
 #' @description This function plots the smoothing function of selected GAM(M) models
@@ -29,9 +29,9 @@
 #' fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat)
 #' 
 #' library(oddsratio)
-#' plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+#' pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 #' 
-#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{pl.smooth.gam}}
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' @seealso \code{\link[oddsratio]{add.oddsratio.into.plot}}
 #' 
@@ -39,7 +39,7 @@
 #' @export
 
 
-plot_smooth.gam <- function(model, pred, col.line = "blue",  col.line.ci = "black",
+pl.smooth.gam <- function(model, pred, col.line = "blue",  col.line.ci = "black",
                             line.type.ci = "dashed", fill.ci = "grey",
                             title = NULL, xlab = NULL, ylab = NULL) {
   
