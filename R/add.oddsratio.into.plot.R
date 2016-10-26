@@ -7,7 +7,7 @@
 #' @import ggplot2 
 #' @importFrom cowplot background_grid
 #' 
-#' @param plot.object A `ggplot` object from \code{\link[oddsratio]{pl.smooth.gam}}
+#' @param plot.object A `ggplot` object from \code{\link[oddsratio]{plot_smooth.gam}}
 #' @param or.object A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' @param col.line Character. Color of the vertical line showing the predictor values
 #' @param col.text Character. Color of the inserted odds ratio information
@@ -25,7 +25,7 @@
 #' 
 #' @details The logic behind this function is to add calculated odds ratio of 
 #' fitted GAM models (\code{\link[oddsratio]{calc.oddsratio.gam}}) into a plot 
-#' showing the smooth function (\code{\link[oddsratio]{pl.smooth.gam}}) of the chosen 
+#' showing the smooth function (\code{\link[oddsratio]{plot_smooth.gam}}) of the chosen 
 #' predictor for which the odds ratio was calculated for. Multiple insertions can 
 #' be made by iteratively calling the function (see examples).
 #' 
@@ -35,14 +35,15 @@
 #' 
 #' @return Returns a \code{ggplot} plotting object
 #' 
-#' @seealso \code{\link[oddsratio]{pl.smooth.gam}}
+#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' 
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
 #' 
 #' @examples 
 #' # load data (Source: ?mgcv::gam)
-#' library(mgcv)
+#' library(mgcv); library(cowplot)
+#' set.seed(1234)
 #' n <- 200
 #' sig <- 2
 #' dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
@@ -57,30 +58,38 @@
 #'                                values = c(0.099, 0.198))
 #'                                
 #' # insert first odds ratios to plot
-#' plot.object <- add.oddsratio.into.plot(plot.object, or.object1, height.or = 5,
-#'                               x.shift = 0.03)
+#' plot.object <- add.oddsratio.into.plot(plot.object, or.object1, or.height = 3,
+#'                                        x.shift = 0.04, line.size = 0.5, 
+#'                                        line.type = "dotdash", text.size = 6,
+#'                                        values.height = 0.5)
 #'
 #' # calculate second odds ratio
 #' or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
-#'                                   values = c(0.4, 0.6))
+#'                                  values = c(0.4, 0.6))
 #'                                   
 #' # add second or into plot                                  
-#' add.oddsratio.into.plot(plot.object, or.object2, height.or = 3, col.line = "green4",
-#'                col.text = "green4")          
+#' add.oddsratio.into.plot(plot.object, or.object2, or.height = 0, 
+#'                         line.col = "green4", text.col = "green4", 
+#'                         line.alpha = 0.5, line.type = "dashed")          
 #' @export                       
 
-add.oddsratio.into.plot <- function(plot.object, or.object, col.line = "red",
-                           col.text = "red", values = TRUE,
-                           height.or = 0, height.val = 0,
-                           x.shift = NULL) {
+add.oddsratio.into.plot <- function(plot.object, or.object, line.col = "red",
+                                    line.size = 1.5, line.type = "solid", 
+                                    line.alpha = 1, text.alpha = 1, 
+                                    text.size = 4, 
+                                    text.col = "red", values = TRUE,
+                                    or.height = 0, values.height = 0,
+                                    x.shift = NULL) {
   
   plot.object <- plot.object + 
-    geom_vline(xintercept = or.object$value1, color = col.line) + 
-    geom_vline(xintercept = or.object$value2, color = col.line) + 
+    geom_vline(xintercept = or.object$value1, color = line.col, 
+               size = line.size, linetype = line.type, alpha = line.alpha) + 
+    geom_vline(xintercept = or.object$value2, color = line.col, 
+               size = line.size, linetype = line.type, alpha = line.alpha) + 
     annotate("text", x = mean(c(or.object$value2, or.object$value1)),
-             y = min(plot.object$data$se.lwr) + height.or, 
+             y = min(plot.object$data$se.lwr) + or.height, 
              label = paste0("OR: \n", round(or.object$oddsratio, 2)),
-             color = col.text)
+             color = text.col, size = text.size)
   
   if (values) {
     if (is.null(x.shift)) {
@@ -89,14 +98,18 @@ add.oddsratio.into.plot <- function(plot.object, or.object, col.line = "red",
       x.shift <- (max(plot.object$data$x) - min(plot.object$data$x)) * x.shift
     }
     plot.object <- plot.object + 
+      geom_segment( aes( x = or.object$value1 - x.shift, 
+                         xend = or.object$value1 - x.shift + 0.1, 
+                         color = text.col), size = 19, alpha = 0.9, 
+                    arrow = arrow(length = unit(40, "points"),type = "closed", angle = 40)  )+
       annotate("text", x = or.object$value1 - x.shift,
-               y = min(plot.object$data$se.lwr) + height.val, 
+               y = min(plot.object$data$se.lwr) + values.height, 
                label = paste0("-->\n", or.object$value1),
-               color = col.text) +
+               color = text.col, alpha = text.alpha, size = text.size) +
       annotate("text", x = or.object$value2 + x.shift,
-               y = min(plot.object$data$se.lwr) + height.val, 
+               y = min(plot.object$data$se.lwr) + values.height, 
                label = paste0("<--\n", or.object$value2),
-               color = col.text)
+               color = text.col, alpha = text.alpha, size = text.size)
     
   }
   return(plot.object)
