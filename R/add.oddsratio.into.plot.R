@@ -67,19 +67,24 @@
 #' or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
 #'                                  values = c(0.4, 0.6))
 #'                                   
-#' # add second or into plot                                  
+#' # add or.object2 into plot                                  
 #' add.oddsratio.into.plot(plot.object, or.object2, or.height = 0, 
 #'                         line.col = "green4", text.col = "green4", 
-#'                         line.alpha = 0.5, line.type = "dashed")          
+#'                         line.alpha = 0.5, line.type = "dashed",
+#'                         arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+#'                         arrow.length = 0.01)          
 #' @export                       
 
 add.oddsratio.into.plot <- function(plot.object, or.object, line.col = "red",
                                     line.size = 1.5, line.type = "solid", 
                                     line.alpha = 1, text.alpha = 1, 
-                                    text.size = 4, 
+                                    text.size = 4, arrow.length = NULL, 
+                                    arrow.height = NULL,
                                     text.col = "red", values = TRUE,
                                     or.height = 0, values.height = 0,
-                                    x.shift = NULL) {
+                                    x.shift = NULL, arrow = TRUE,
+                                    arrow.xloc.r = 0, arrow.xloc.l = 0) 
+  {
   
   plot.object <- plot.object + 
     geom_vline(xintercept = or.object$value1, color = line.col, 
@@ -97,19 +102,45 @@ add.oddsratio.into.plot <- function(plot.object, or.object, line.col = "red",
       x.shift <- 0.02
       x.shift <- (max(plot.object$data$x) - min(plot.object$data$x)) * x.shift
     }
+    
+    if(is.null(arrow.length)) {
+      # calc arrow length from x axis range
+      arrow.length <- (max(plot.object$data$x) - min(plot.object$data$x)) * 0.02
+    }
+    
+    if(is.null(arrow.height)) {
+      # calc arrow height from y axis range
+      arrow.height <- (max(plot.object$data$y) - min(plot.object$data$y)) * 0.05
+    }
     plot.object <- plot.object + 
-      geom_segment( aes( x = or.object$value1 - x.shift, 
-                         xend = or.object$value1 - x.shift + 0.1, 
-                         color = text.col), size = 19, alpha = 0.9, 
-                    arrow = arrow(length = unit(40, "points"),type = "closed", angle = 40)  )+
+
       annotate("text", x = or.object$value1 - x.shift,
                y = min(plot.object$data$se.lwr) + values.height, 
-               label = paste0("-->\n", or.object$value1),
+               label = or.object$value1,
                color = text.col, alpha = text.alpha, size = text.size) +
       annotate("text", x = or.object$value2 + x.shift,
                y = min(plot.object$data$se.lwr) + values.height, 
-               label = paste0("<--\n", or.object$value2),
+               label = or.object$value2,
                color = text.col, alpha = text.alpha, size = text.size)
+    
+    if (arrow) {
+      plot.object <- plot.object + 
+        
+        # left arrow
+        geom_segment(x = or.object$value1 - x.shift + arrow.xloc.l,
+                     xend = or.object$value1 - x.shift + arrow.length,
+                     y = min(plot.object$data$se.lwr) + values.height + arrow.height,
+                     yend = min(plot.object$data$se.lwr) + values.height + arrow.height,
+                     color = text.col,
+                     arrow = arrow(length = unit(0.2, "cm"))) + 
+        # right arrow
+        geom_segment(x = or.object$value2 + x.shift + arrow.xloc.r,
+                     xend = or.object$value2 + x.shift - arrow.length,
+                     y = min(plot.object$data$se.lwr) + values.height + arrow.height,
+                     yend = min(plot.object$data$se.lwr) + values.height + arrow.height,
+                     color = text.col, 
+                     arrow = arrow(length = unit(0.2, "cm"))) 
+    }
     
   }
   return(plot.object)
