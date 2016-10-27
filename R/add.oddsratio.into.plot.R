@@ -98,18 +98,26 @@ add.oddsratio.into.plot <- function(
              label = paste0("OR: \n", round(or.object$oddsratio, 2)),
              color = text.col, size = text.size)
   
+  
+  
   if (rect) {
     if (is.null(rect.col)) {
       rect.col = text.col
     }
+    # backup data
+    plot.object1 <- plot.object
+    
     # set drawing order to place rect behind smoothing fun
-    plot.object$layers <- c(geom_rect(data = plot.object$data[1,], # avoids multiple rect drawings
-                                      ymin = ggplot_build(plot.object)$layout$panel_ranges[[1]]$y.range[1], 
-                                      ymax = ggplot_build(plot.object)$layout$panel_ranges[[1]]$y.range[2],
+    plot.object$layers <- c(geom_rect(data = plot.object1$data[1,], # avoids multiple rect drawings
+                                      ymin = ggplot_build(plot.object1)$layout$panel_ranges[[1]]$y.range[1], 
+                                      ymax = ggplot_build(plot.object1)$layout$panel_ranges[[1]]$y.range[2],
                                       xmin = or.object$value1,
                                       xmax = or.object$value2, 
                                       alpha = rect.alpha, fill = rect.col), 
                             plot.object$layers)
+    
+    # rebuild data 
+    #plot.object$data <- plot.object1$data
   }
 
   if (values) {
