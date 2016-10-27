@@ -1,0 +1,181 @@
+---
+title: "Function tutorial"
+author: "Patrick Schratz"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: TRUE
+vignette: >
+  %\VignetteIndexEntry{function.tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{nlme}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  # fig.path = "figures/README-",
+  fig.align = "center",
+  fig.height = 4,
+  fig.width = 6,
+  collapse = TRUE,
+  comment = "#>"
+)
+library(ggplot2)
+library(cowplot)
+```
+
+## Load example data
+
+Data source: `?mgcv::predict.gam`
+
+```{r, results='hide'}
+library(oddsratio)
+suppressPackageStartupMessages(library(mgcv))
+set.seed(1234)
+n <- 200
+sig <- 2
+dat <- suppressMessages(gamSim(1, n = n, scale = sig))
+dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
+
+fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat)
+```
+
+## GAM example
+
+### Calculate OR for specific increment step of continuous variable
+
+To calculate specific increment steps of `fit.gam`, we take predictor `x2` (randomly chosen)
+and specify for which values we want to calculate the odds ratio.  
+We can see that the odds of response `y` happening are 22 times higher when predictor `x2` increases
+from 0.099 to 0.198 while holding all other predictors constant. 
+
+
+```{r}
+calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+                   values = c(0.099, 0.198))
+```
+
+Usually, this calculation is done by setting all predictors to their mean value, 
+predict the response, change the desired predictor to a new value and predict the response again. 
+These actions results in two log odds values, respectively, which are transformed into odds by exponentiating them. Finally, the odds ratio can be calculated from these two odds values. 
+
+### Calculate OR for level change of indicator variable
+
+If the predictor is a indicator variable, i.e. consists of fixed levels, you can use the function in the same way by just putting in the respective levels you are interested in:
+
+```{r}
+calc.oddsratio.gam(data = dat, model = fit.gam, 
+                   pred = "x4", values = c("A", "B"))
+```
+
+Here, the change in odds of `y` happening if predictor `x4` is changing from level `A` to `B` is rather small. In detail, an increase in odds of 37.8% is reported. 
+
+### Calculate ORs for percentage increments of predictor distribution 
+
+To get an impression of odds ratio behaviour throughout the complete range of the smoothing function of the fitted GAM model, you can calculate odds ratios based on percentage breaks of the predictors distribution.  
+Here we slice predictor `x2` into 5 parts by taking the predictor values of every 20% increment step. 
+
+
+```{r}
+calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+                   percentage = 20, slice = TRUE)
+```
+
+We can see that there is a high odds ratio reported when increasing predictor `x2` from 0.008 to 0.206 while all further predictor increases decrease the odds of response `y` happening substantially. 
+
+### Plot GAM(M) smoothing functions
+
+Right now, the only (quick) possibility to plot the smoothing functions of a GAM(M)
+was to use the base `plot()` function. The fiddly work to do the same using the `ggplot2`
+plotting system is done by `pl.smooth.gam()`:
+
+```{r}
+pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+```
+
+You can further customize the look using other colors or linetypes. 
+
+### Add odds ratio information into smoothing function plot
+
+So now, we have the odds ratios and we have a plot of the smoothing function. 
+Why not combine both? We can do so using `add.oddsratio.into.plot()`. Its main arguments 
+are (i) a `ggplot` plotting object containing the smooth function and a data frame
+returned from `calc.oddsratio.gam()` containing information about the predictor and
+the respective values we want to insert.
+
+```{r}
+plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
+                                pred = "x2", values = c(0.099, 0.198))
+
+plot <- add.oddsratio.into.plot(plot.object, or.object, or.yloc = 3,
+                                values.xloc = 0.05, arrow.length = 0.02, 
+                                arrow.col = "red")
+plot
+```
+
+The odds ratio information is always centered between the two vertical lines. Hence it only
+looks nice if the gap between the two chosen values (here 0.099 and 0.198) is large enough. 
+If the smoothing line crosses your inserted text, you can just correct it adjusting `or.yloc`. This param sets the y-location of the inserted odds ratio information. 
+
+Depending on the digits of your chosen values (here 3), you might also need to adjust the 
+x-axis location of the two values so that they do not interfer with the vertical line.
+
+Let's do all this by inserting another odds ratio into this plot! This time we simply
+take the already produced plot as an input to `add.oddsratio.into.plot()` and use a new odds ratio
+object:
+
+```{r}
+or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
+                                 pred = "x2", values = c(0.4, 0.6))
+
+add.oddsratio.into.plot(plot, or.object2, or.yloc = 2.1, values.yloc = 2,
+                        line.col = "green4", text.col = "black",
+                        rect.col = "green4", rect.alpha = 0.2,
+                        line.alpha = 1, line.type = "dashed",
+                        arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+                        arrow.length = 0.02, rect = TRUE) 
+```
+
+Using `rect = TRUE`, you can additionally highlight certain odds ratio intervals. 
+Aesthetics like opacity or color are fully customizable.
+
+## GLM example
+
+Create example data.   
+Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
+
+```{r}
+dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
+dat$rank <- factor(dat$rank)
+fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
+```
+
+### Calculate odds ratio for continuous predictors
+
+For GLMs, the odds ratio calculation is simpler because odds ratio changes correspond to fixed predictor increases throughout the complete value range of each predictor.  
+
+Hence, function `calc.oddsratio.glm` takes the increment steps of each predictor directly as an input in its parameter `incr`. 
+
+To avoid false predictor/value assignments, the combinations need to be given in a list. 
+
+Odds ratios of indicator variables are computed automatically and do always refer to the base factor level.
+
+Indicator predictor `rank` has four levels. Subsequently, we will get three odds ratio outputs referring to the base factor level (here: rank1).  
+
+The output is interpreted as follows: "Having `rank2` instead of `rank1` while holding all other values constant results in a decrease in odds of 49.1% (1-0.509)".
+
+```{r}
+calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
+```
+
+You can also set other confident intervals for GLM(M) models. The resulting data
+frame will automatically adjust its column names to the specified level.
+
+```{r}
+calc.oddsratio.glm(data = dat, model = fit.glm, 
+                   incr = list(gre = 380, gpa = 5), CI = 0.70)
+```
+
+
