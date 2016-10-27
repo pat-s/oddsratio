@@ -6,7 +6,8 @@
 \usage{
 pl.smooth.gam(model, pred, col.line = "blue", ci.line.col = "black",
   ci.line.type = "dashed", ci.fill = "grey", ci.alpha = 0.4,
-  title = NULL, xlab = NULL, ylab = NULL)
+  ci.line.size = 0.8, sm.fun.size = 1.1, title = NULL, xlab = NULL,
+  ylab = NULL, limits.y = NULL, breaks.y = NULL)
 }
 \arguments{
 \item{model}{A fitted model of class \code{gam}.}
@@ -23,11 +24,18 @@ pl.smooth.gam(model, pred, col.line = "blue", ci.line.col = "black",
 
 \item{ci.alpha}{Numeric [0,1]. Opacity value of confidence interval shading.}
 
+\item{ci.line.size, sm.fun.size}{Line sizes.}
+
 \item{title}{Character. Plot title.}
 
 \item{xlab}{Character. X-axis title.}
 
 \item{ylab}{Character. Y-axis title.}
+
+\item{limits.y}{Numeric of length two. Sets y-axis limits.}
+
+\item{breaks.y}{Numeric of length three. Sets y-axis breaks. See \code{\link[base]{seq}}. 
+Values need to be given in a 'seq()' call, e.g. seq(-6,6,2).}
 }
 \description{
 This function plots the smoothing function of selected GAM(M) models

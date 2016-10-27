@@ -130,7 +130,7 @@ object:
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                                  pred = "x2", values = c(0.4, 0.6))
 
-add.oddsratio.into.plot(plot, or.object2, or.yloc = 0.1, 
+add.oddsratio.into.plot(plot, or.object2, or.yloc = 2.1, values.yloc = 2,
                         line.col = "green4", text.col = "black",
                         rect.col = "green4", rect.alpha = 0.2,
                         line.alpha = 1, line.type = "dashed",
