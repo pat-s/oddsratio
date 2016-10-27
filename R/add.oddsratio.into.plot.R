@@ -7,14 +7,15 @@
 #' @import ggplot2 
 #' @importFrom cowplot background_grid
 #' 
-#' @param plot.object A `ggplot` object from \code{\link[oddsratio]{plot_smooth.gam}}
+#' @param plot.object A `ggplot` object from \code{\link[oddsratio]{pl.smooth.gam}}
 #' @param or.object A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' @param values Logical. Whether to print predictor value information nearby 
 #' the inserted vertical lines. Default to \code{TRUE}.
 #' @param rect Logical. Whether to print a shaded rectangle between the vertical lines.
 #' @param arrow Logical. Wheter to print arrows above the inserted values. Default to \code{TRUE}.
 #' @param line.col,line.alpha,line.type,line.size Aesthetics of vertical lines. 
-#' @param text.col,text.alpha,text.size Aesthetics of inserted values .
+#' @param text.col,text.alpha,text.size Aesthetics of inserted values.
+#' @param rect.col,rect.alpha Aesthetics of shaded rectangle.
 #' @param or.yloc,values.yloc Numeric. Specifies y-location of inserted odds ratio / values.
 #' Relative to plotted y-axis range. A positive/negative value will place the 
 #' the text higher/lower.  
@@ -25,7 +26,7 @@
 #' 
 #' @details The idea behind this function is to add calculated odds ratio of 
 #' fitted GAM models (\code{\link[oddsratio]{calc.oddsratio.gam}}) into a plot 
-#' showing the smooth function (\code{\link[oddsratio]{plot_smooth.gam}}) of the chosen 
+#' showing the smooth function (\code{\link[oddsratio]{pl.smooth.gam}}) of the chosen 
 #' predictor for which the odds ratio was calculated for. Multiple insertions can 
 #' be made by iteratively calling the function (see examples).
 #' 
@@ -35,7 +36,7 @@
 #' 
 #' @return Returns a \code{ggplot} plotting object
 #' 
-#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{pl.smooth.gam}}
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.gam}}
 #' 
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
@@ -68,12 +69,12 @@
 #'                                  values = c(0.4, 0.6))
 #'                                   
 #' # add or.object2 into plot                                  
-#' add.oddsratio.into.plot(plot.object, or.object2, or.yloc = 0.1, 
+#' add.oddsratio.into.plot(plot.object, or.object2, or.yloc = 2.1, values.yloc = 2,
 #'                         line.col = "green4", text.col = "black",
 #'                         rect.col = "green4", rect.alpha = 0.2,
 #'                         line.alpha = 1, line.type = "dashed",
 #'                         arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
-#'                         arrow.length = 0.01, rect = T)          
+#'                         arrow.length = 0.01, rect = TRUE)          
 #' @export                       
 
 add.oddsratio.into.plot <- function(
