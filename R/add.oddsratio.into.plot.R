@@ -105,15 +105,23 @@ add.oddsratio.into.plot <- function(
       rect.col = text.col
     }
     # backup data
-    #plot.object1 <- plot.object
+    #plot.object1 <- plot.object$data[1,]
+   # plot.object1 <- plot.object1$data[1,]
     
-    # set drawing order to place rect behind smoothing fun
+    # plot.object$layers <- c(annotate("rect", ymin = ggplot_build(plot.object)$panel$ranges[[1]]$y.range[1], 
+    #                                          ymax = ggplot_build(plot.object)$panel$ranges[[1]]$y.range[2],
+    #                                          xmin = or.object$value1,
+    #                                          xmax = or.object$value2, 
+    #                                          alpha = rect.alpha, fill = rect.col),
+    #                         plot.object$layers)
+
+    #set drawing order to place rect behind smoothing fun
     plot.object$layers <- c(geom_rect(data = plot.object$data[1,], # avoids multiple rect drawings
-                                      ymin = ggplot_build(plot.object)$layout$panel_ranges[[1]]$y.range[1], 
-                                      ymax = ggplot_build(plot.object)$layout$panel_ranges[[1]]$y.range[2],
+                                      ymin = ggplot_build(plot.object)$panel$ranges[[1]]$y.range[1],
+                                      ymax = ggplot_build(plot.object)$panel$ranges[[1]]$y.range[2],
                                       xmin = or.object$value1,
-                                      xmax = or.object$value2, 
-                                      alpha = rect.alpha, fill = rect.col), 
+                                      xmax = or.object$value2,
+                                      alpha = rect.alpha, fill = rect.col),
                             plot.object$layers)
   }
 
