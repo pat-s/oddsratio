@@ -107,15 +107,17 @@ the respective values we want to insert.
 ```{r}
 plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
-                   pred = "x2", values = c(0.099, 0.198))
+                                pred = "x2", values = c(0.099, 0.198))
 
-plot <- add.oddsratio.into.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
+plot <- add.oddsratio.into.plot(plot.object, or.object, or.yloc = 3,
+                                values.xloc = 0.05, arrow.length = 0.02, 
+                                arrow.col = "red")
 plot
 ```
 
 The odds ratio information is always centered between the two vertical lines. Hence it only
 looks nice if the gap between the two chosen values (here 0.099 and 0.198) is large enough. 
-If the smoothing line crosses your inserted text, you can just correct it adjusting `height.or`. This param sets the y-location of the inserted odds ratio information. 
+If the smoothing line crosses your inserted text, you can just correct it adjusting `or.yloc`. This param sets the y-location of the inserted odds ratio information. 
 
 Depending on the digits of your chosen values (here 3), you might also need to adjust the 
 x-axis location of the two values so that they do not interfer with the vertical line.
@@ -126,15 +128,18 @@ object:
 
 ```{r}
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
-                   pred = "x2", values = c(0.4, 0.6))
+                                 pred = "x2", values = c(0.4, 0.6))
 
-add.oddsratio.into.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
-               col.line = "green4", col.text = "green4")
+add.oddsratio.into.plot(plot, or.object2, or.yloc = 0.1, 
+                        line.col = "green4", text.col = "black",
+                        rect.col = "green4", rect.alpha = 0.2,
+                        line.alpha = 1, line.type = "dashed",
+                        arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+                        arrow.length = 0.02, rect = TRUE) 
 ```
 
-Note that I adjusted `x.shift` because we have only one digit this time. Also,
-`height.or` was set to a lower value than in the first example to avoid an interference
-with the smoothing function.
+Using `rect = TRUE`, you can additionally highlight certain odds ratio intervals. 
+Aesthetics like opacity or color are fully customizable.
 
 ## GLM example
 
