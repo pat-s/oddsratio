@@ -6,9 +6,10 @@
 \usage{
 add.oddsratio.into.plot(plot.object, or.object, line.col = "red",
   line.size = 1.2, line.type = "solid", line.alpha = 1, text.alpha = 1,
-  text.size = 4, arrow.length = NULL, arrow.height = NULL,
-  text.col = "red", values = TRUE, or.height = 0, values.height = 0,
-  x.shift = NULL, arrow = TRUE, arrow.xloc.r = NULL,
+  text.size = 4, text.col = "black", rect.alpha = 0.5, rect.col = NULL,
+  rect = FALSE, arrow = TRUE, values = TRUE, values.yloc = 0,
+  values.xloc = NULL, or.yloc = 0, arrow.length = NULL,
+  arrow.yloc = NULL, arrow.col = NULL, arrow.xloc.r = NULL,
   arrow.xloc.l = NULL)
 }
 \arguments{
@@ -16,24 +17,26 @@ add.oddsratio.into.plot(plot.object, or.object, line.col = "red",
 
 \item{or.object}{A returned data.frame from \code{\link[oddsratio]{calc.oddsratio.gam}}}
 
+\item{line.col, line.alpha, line.type, line.size}{Aesthetics of vertical lines.}
+
+\item{text.col, text.alpha, text.size}{Aesthetics of inserted values .}
+
+\item{rect}{Logical. Whether to print a shaded rectangle between the vertical lines.}
+
+\item{arrow}{Logical. Wheter to print arrows above the inserted values. Default to \code{TRUE}.}
+
 \item{values}{Logical. Whether to print predictor value information nearby 
 the inserted vertical lines. Default to \code{TRUE}.}
 
-\item{x.shift}{Numeric. Placement of predictor information relative to its vertical line.
-Relative to x-axis range. Default to \code{0.02}. 
-Play around to find the perfect position for you.}
+\item{values.xloc}{Numeric. X-axis location/shift of values relative to their vertical line.
+Default to 2\% of x-axis range.}
 
-\item{col.line}{Character. Color of the vertical line showing the predictor values}
-
-\item{col.text}{Character. Color of the inserted odds ratio information}
-
-\item{height.or}{Numeric. Specifies y-location of inserted odds ratio information.
+\item{or.yloc, values.yloc}{Numeric. Specifies y-location of inserted odds ratio / values.
 Relative to plotted y-axis range. A positive/negative value will place the 
-odds ratio information higher/lower.}
+the text higher/lower.}
 
-\item{height.val}{Numeric. Specifies y-location of inserted predictor information.
-Relative to plotted y-axis range. A positive/negative value will place the 
-predictor information higher/lower.}
+\item{arrow.xloc.r, arrow.xloc.l, arrow.yloc, arrow.length, arrow.col}{Numeric. Axis placement options of inserted arrows.
+Relative to respective axis ranges.}
 }
 \value{
 Returns a \code{ggplot} plotting object
@@ -43,7 +46,7 @@ This function inserts calculated odds ratios of GAM(M)s into a plot of a
 GAM(M) smoothing function.
 }
 \details{
-The logic behind this function is to add calculated odds ratio of 
+The idea behind this function is to add calculated odds ratio of 
 fitted GAM models (\code{\link[oddsratio]{calc.oddsratio.gam}}) into a plot 
 showing the smooth function (\code{\link[oddsratio]{plot_smooth.gam}}) of the chosen 
 predictor for which the odds ratio was calculated for. Multiple insertions can 
@@ -68,24 +71,25 @@ fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
 library(oddsratio)            
 plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object1 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
-                               values = c(0.099, 0.198))
+                                 values = c(0.099, 0.198))
                                
 # insert first odds ratios to plot
-plot.object <- add.oddsratio.into.plot(plot.object, or.object1, or.height = 3,
-                                       x.shift = 0.04, line.size = 0.5, 
+plot.object <- add.oddsratio.into.plot(plot.object, or.object1, or.yloc = 3,
+                                       values.xloc = 0.04, line.size = 0.5, 
                                        line.type = "dotdash", text.size = 6,
-                                       values.height = 0.5)
+                                       values.yloc = 0.5, arrow.col = "red")
 
 # calculate second odds ratio
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
                                  values = c(0.4, 0.6))
                                   
 # add or.object2 into plot                                  
-add.oddsratio.into.plot(plot.object, or.object2, or.height = 0, 
-                        line.col = "green4", text.col = "green4", 
-                        line.alpha = 0.5, line.type = "dashed",
+add.oddsratio.into.plot(plot.object, or.object2, or.yloc = 0.1, 
+                        line.col = "green4", text.col = "black",
+                        rect.col = "green4", rect.alpha = 0.2,
+                        line.alpha = 1, line.type = "dashed",
                         arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
-                        arrow.length = 0.01)          
+                        arrow.length = 0.01, rect = T)          
 }
 \author{
 Patrick Schratz <patrick.schratz@gmail.com>

@@ -4,9 +4,9 @@
 \alias{pl.smooth.gam}
 \title{Plot smoothing functions of GAM(M) models}
 \usage{
-pl.smooth.gam(model, pred, col.line = "blue", col.line.ci = "black",
-  line.type.ci = "dashed", fill.ci = "grey", title = NULL, xlab = NULL,
-  ylab = NULL)
+pl.smooth.gam(model, pred, col.line = "blue", ci.line.col = "black",
+  ci.line.type = "dashed", ci.fill = "grey", ci.alpha = 0.4,
+  title = NULL, xlab = NULL, ylab = NULL)
 }
 \arguments{
 \item{model}{A fitted model of class \code{gam}.}
@@ -15,11 +15,13 @@ pl.smooth.gam(model, pred, col.line = "blue", col.line.ci = "black",
 
 \item{col.line}{Character. Sets color for smoothing function. Default to \code{"blue"}.}
 
-\item{col.line.ci}{Character. Sets color for confident interval line of smoothing function. Default to \code{"black"}}
+\item{ci.line.col}{Character. Sets color for confident interval line of smoothing function. Default to \code{"black"}}
 
-\item{line.type.ci}{Character. Sets linetype of confident interval line of smoothing function. Default to \code{"dashed"}.}
+\item{ci.line.type}{Character. Sets linetype of confident interval line of smoothing function. Default to \code{"dashed"}.}
 
-\item{fill.ci}{Character. Fill color of area between smoothing function and its confident interval lines.}
+\item{ci.fill}{Character. Fill color of area between smoothing function and its confident interval lines.}
+
+\item{ci.alpha}{Numeric [0,1]. Opacity value of confidence interval shading.}
 
 \item{title}{Character. Plot title.}
 
