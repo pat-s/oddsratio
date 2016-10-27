@@ -1,4 +1,4 @@
-# oddsratio 0.3.0 (Oct 15 2016)
+# oddsratio 0.3.0 (Oct 27 2016)
 
 #### New functions
 * `plot_smooth.gam()`: Lets you plot smoothing functions of GAM(M)s using `ggplot2`.
