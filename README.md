@@ -100,9 +100,10 @@ plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                    pred = "x2", values = c(0.099, 0.198))
 
-plot <- add.oddsratio.into.plot(plot.object, or.object, or.height = 3,
-                                x.shift = 0.04, line.size = 0.5, 
-                                line.type = "dotdash", values.height = 0.5)
+plot <- add.oddsratio.into.plot(plot.object, or.object, or.yloc = 3,
+                                values.xloc = 0.04, line.size = 0.5, 
+                                line.type = "dotdash", values.yloc = 0.5,
+                                arrow.col = "red")
 plot
 ```
 
@@ -114,11 +115,12 @@ If you want to insert multiple odds ratios, just go on!
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
                                  values = c(0.4, 0.6))
                                   
-add.oddsratio.into.plot(plot, or.object2, or.height = 0, 
-                        line.col = "green4", text.col = "green4", 
-                        line.alpha = 0.5, line.type = "dashed",
+add.oddsratio.into.plot(plot, or.object2, or.yloc = 0.1, 
+                        line.col = "green4", text.col = "black",
+                        rect.col = "green4", rect.alpha = 0.2,
+                        line.alpha = 1, line.type = "dashed",
                         arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
-                        arrow.length = 0.01)
+                        arrow.length = 0.01, rect = T)   
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
