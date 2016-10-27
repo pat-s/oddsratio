@@ -115,9 +115,6 @@ add.oddsratio.into.plot <- function(
                                       xmax = or.object$value2, 
                                       alpha = rect.alpha, fill = rect.col), 
                             plot.object$layers)
-    
-    # rebuild data 
-    #plot.object$data <- plot.object1$data
   }
 
   if (values) {
