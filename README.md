@@ -9,12 +9,27 @@
 
 #### Github
 
-[![Github Releases](https://img.shields.io/github/downloads/pat-s/oddsratio/latest/total.svg)](https://github.com/pat-s/oddsratio) [![packageversion](https://img.shields.io/badge/Package%20version-0.3.0-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.3.0-orange.svg?style=flat-square)](commits/master)
 
 oddsratio
 =========
 
 Functions for calculation and plotting of odds ratios of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models).
+
+Installation
+------------
+
+Install from CRAN:
+
+``` r
+install.packages("oddsratio")
+```
+
+Get the development version from Github:
+
+``` r
+devtools::install_github("pat-s/oddsratio", build_vignettes = TRUE)
+```
 
 Examples
 --------
@@ -115,7 +130,7 @@ If you want to insert multiple odds ratios, just go on!
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
                                  values = c(0.4, 0.6))
                                   
-add.oddsratio.into.plot(plot, or.object2, or.yloc = 0.1, 
+add.oddsratio.into.plot(plot, or.object2, or.yloc = 2.1, values.yloc = 2,
                         line.col = "green4", text.col = "black",
                         rect.col = "green4", rect.alpha = 0.2,
                         line.alpha = 1, line.type = "dashed",
@@ -124,23 +139,3 @@ add.oddsratio.into.plot(plot, or.object2, or.yloc = 0.1,
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
-
-Installation
-------------
-
-Install from CRAN:
-
-``` r
-install.packages("oddsratio")
-```
-
-Get the development version from Github:
-
-``` r
-devtools::install_github("pat-s/oddsratio", build_vignettes = TRUE)
-```
-
-Examples
---------
-
-To see full examples, please see the examples in the respective help pages `?calc.oddsratio.gam` and `?calc.oddsratio.gam` or take a look at the package vignette.
