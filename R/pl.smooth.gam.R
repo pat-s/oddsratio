@@ -16,9 +16,13 @@
 #' @param ci.line.type Character. Sets linetype of confident interval line of smoothing function. Default to \code{"dashed"}. 
 #' @param ci.fill Character. Fill color of area between smoothing function and its confident interval lines.
 #' @param ci.alpha Numeric [0,1]. Opacity value of confidence interval shading.
+#' @param ci.line.size,sm.fun.size Line sizes.
 #' @param title Character. Plot title.
 #' @param xlab Character. X-axis title.
 #' @param ylab Character. Y-axis title.
+#' @param limits.y Numeric of length two. Sets y-axis limits.
+#' @param breaks.y Numeric of length three. Sets y-axis breaks. See \code{\link[base]{seq}}. 
+#' Values need to be given in a 'seq()' call, e.g. seq(-6,6,2). 
 #' 
 #' @examples 
 #' suppressPackageStartupMessages(library(mgcv))
@@ -43,8 +47,9 @@
 pl.smooth.gam <- function(
   model, pred, 
   col.line = "blue",  ci.line.col = "black", ci.line.type = "dashed", 
-  ci.fill = "grey", ci.alpha = 0.4,
-  title = NULL, xlab = NULL, ylab = NULL) 
+  ci.fill = "grey", ci.alpha = 0.4, ci.line.size = 0.8, sm.fun.size = 1.1,
+  title = NULL, xlab = NULL, ylab = NULL,
+  limits.y = NULL, breaks.y = NULL) 
 {
   
   df <- gam.to.df(model, pred)
@@ -58,17 +63,30 @@ pl.smooth.gam <- function(
   }
   
   plot.gam <- ggplot(df, aes_(~x, ~y)) + 
-    geom_line(colour = col.line, size = 1.1) + 
+    geom_line(colour = col.line, size = sm.fun.size) + 
     geom_line(aes_(~x, ~se.upr), linetype = ci.line.type, 
-              colour = ci.line.col, size = 0.8) +
+              colour = ci.line.col, size = ci.line.size) +
     geom_line(aes_(~x, ~se.lwr), linetype = ci.line.type, 
-              colour = ci.line.col, size = 0.8) +
+              colour = ci.line.col, size = ci.line.size) +
     geom_ribbon(aes_(x = ~x, ymin = ~se.lwr, ymax = ~se.upr),
                 fill = ci.fill, alpha = ci.alpha) +
-    scale_y_continuous(breaks = c(seq(-6, 6, 2)), limits = c(-6, 6)) + 
     ylab(ylab) + 
     xlab(xlab) +
     background_grid(major = "xy", minor = "none") 
+  
+  if (!is.null(limits.y) & !is.null(breaks.y)) {
+    plot.gam <- plot.gam + 
+      scale_y_continuous(breaks = c(breaks.y), limits = c(limits.y))
+  }
+  else if (!is.null(limits.y) & is.null(breaks.y)) {
+    plot.gam <- plot.gam + 
+      scale_y_continuous(limits = limits.y)
+  }
+  else if (is.null(limits.y) & !is.null(breaks.y)) {
+    plot.gam <- plot.gam + 
+      scale_y_continuous(breaks = c(breaks.y))
+  }
+  
   
   # optional ggplot arguments
   if (!is.null(title)) {
