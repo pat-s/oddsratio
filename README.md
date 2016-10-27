@@ -5,7 +5,7 @@
 
 #### CRAN
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio) [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio) [![Rdoc](http://www.rdocumentation.org/badges/version/oddsratio)](http://www.rdocumentation.org/packages/oddsratio)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio) [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio) ![](http://cranlogs.r-pkg.org/badges/grand-total/oddsratio) [![Rdoc](http://www.rdocumentation.org/badges/version/oddsratio)](http://www.rdocumentation.org/packages/oddsratio)
 
 #### Github
 
