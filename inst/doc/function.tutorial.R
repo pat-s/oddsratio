@@ -34,22 +34,28 @@ calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2",
                    percentage = 20, slice = TRUE)
 
 ## ------------------------------------------------------------------------
-plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 
 ## ------------------------------------------------------------------------
-plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
-                   pred = "x2", values = c(0.099, 0.198))
+                                pred = "x2", values = c(0.099, 0.198))
 
-plot <- add.oddsratio.into.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
+plot <- add.oddsratio.into.plot(plot.object, or.object, or.yloc = 3,
+                                values.xloc = 0.05, arrow.length = 0.02, 
+                                arrow.col = "red")
 plot
 
 ## ------------------------------------------------------------------------
 or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
-                   pred = "x2", values = c(0.4, 0.6))
+                                 pred = "x2", values = c(0.4, 0.6))
 
-add.oddsratio.into.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
-               col.line = "green4", col.text = "green4")
+add.oddsratio.into.plot(plot, or.object2, or.yloc = 2.1, values.yloc = 2,
+                        line.col = "green4", text.col = "black",
+                        rect.col = "green4", rect.alpha = 0.2,
+                        line.alpha = 1, line.type = "dashed",
+                        arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+                        arrow.length = 0.02, rect = TRUE) 
 
 ## ------------------------------------------------------------------------
 dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")

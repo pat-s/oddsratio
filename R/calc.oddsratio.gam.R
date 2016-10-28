@@ -10,20 +10,20 @@
 #' 
 #' @param data The data used for model fitting.
 #' @param model A fitted GAM(M).
-#' @param pred Character of length one. The name of the predictor to calculate 
-#' the odds ratio for.
+#' @param pred Character. Predictor name for which to calculate 
+#' the odds ratio.
 #' @param values Numeric vector of length two.
 #' Predictor values to estimate odds ratio from. Function is written to use the 
 #' first provided value as the "lower" one, i.e. calculating the odds ratio 
 #' 'from value1 to value2'. Only used if \code{slice = FALSE}.
-#' @param percentage Numeric of length one. Percentage number to split the 
+#' @param percentage Numeric. Percentage number to split the 
 #' predictor distribution into. 
 #' A value of 10 would split the predictor distribution by 10\% intervals. 
 #' Only needed if \code{slice = TRUE}.
 #' @param slice Logical. \code{Default = FALSE}. Whether to calculate 
 #' odds ratios for fixed increment steps over the whole predictor distribution. 
 #' See \code{percentage} for setting the increment values.
-#' @param CI numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
+#' @param CI Numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
 #' It should not be changed in a function call!
 #' 
 #' @details Currently supported functions: \code{\link[mgcv]{gam}}(mgcv), 
@@ -44,7 +44,7 @@
 #' \item{CI.high}{Higher \code{(97.5\%)} confident interval of odds ratio}
 #' 
 #' @seealso \code{\link[oddsratio]{calc.oddsratio.glm}}
-#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{pl.smooth.gam}}
 #' @seealso \code{\link[oddsratio]{add.oddsratio.into.plot}}
 #' 
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
@@ -133,11 +133,11 @@ calc.oddsratio.gam <- function(data, model, pred, values, percentage,
       pred.gam2.CI.high <- pred.gam2[1] + (2 * pred.gam2[2])
       
       result$predictor = pred
-      result$oddsratio[x] <- as.numeric(exp(pred.gam2[1] - pred.gam1[1]), 2)
+      result$oddsratio[x] <- round(as.numeric(exp(pred.gam2[1] - pred.gam1[1])), 2)
       result$value1[x] <- round(range.v[x], 3)
       result$value2[x] <- round(range.v[x + 1], 3)
-      result$CI.high[x] <- as.numeric(exp(pred.gam2.CI.low - pred.gam1.CI.low), 2)   # no mistake
-      result$CI.low[x] <- as.numeric(exp(pred.gam2.CI.high - pred.gam1.CI.high), 2)  # no mistake
+      result$CI.high[x] <- round(as.numeric(exp(pred.gam2.CI.low - pred.gam1.CI.low)), 2)   # no mistake
+      result$CI.low[x] <- round(as.numeric(exp(pred.gam2.CI.high - pred.gam1.CI.high)), 2)  # no mistake
       result$perc1[x] <- percentage*x - percentage
       result$perc2[x] <- percentage*x
     }

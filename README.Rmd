@@ -28,10 +28,10 @@ rvers <- stringr::str_match(grep("R \\(", description, value = TRUE), "[0-9]{1,4
 #### CRAN
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio)
 [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio)
+![](http://cranlogs.r-pkg.org/badges/grand-total/oddsratio)
 [![Rdoc](http://www.rdocumentation.org/badges/version/oddsratio)](http://www.rdocumentation.org/packages/oddsratio)
 
 #### Github
-[![Github Releases](https://img.shields.io/github/downloads/pat-s/oddsratio/latest/total.svg)](https://github.com/pat-s/oddsratio)
 [![packageversion](https://img.shields.io/badge/Package%20version-`r version`-orange.svg?style=flat-square)](commits/master)
 
 
@@ -41,6 +41,19 @@ Functions for calculation and plotting of odds ratios of Generalized Additive (M
 Models and Generalized Linear (Mixed) Models with a binomial
 response variable (i.e. logistic regression models).  
 
+## Installation
+
+Install from CRAN:
+
+```R
+install.packages("oddsratio")
+```
+
+Get the development version from Github:
+
+```R
+devtools::install_github("pat-s/oddsratio", build_vignettes = TRUE)
+```
 ## Examples
 
 ### GLM
@@ -104,46 +117,35 @@ From version 0.3.0 on (Github version 0.2.0.9000) you can now do the following t
 * Plot smoothing functions of GAM(M)s
 
 ```{r}
-plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 ```
 
 * Insert the calculated odds ratios into the smoothing function
 
 ```{r}
-plot.object <- plot_smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
+plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
 or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
                    pred = "x2", values = c(0.099, 0.198))
 
-plot <- add.oddsratio.into.plot(plot.object, or.object, height.or = 5, x.shift = 0.04)
+plot <- add.oddsratio.into.plot(plot.object, or.object, or.yloc = 3,
+                                values.xloc = 0.04, line.size = 0.5, 
+                                line.type = "dotdash", values.yloc = 0.5,
+                                arrow.col = "red")
 plot
 ```
 
 If you want to insert multiple odds ratios, just go on!
 
 ```{r}
-or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
-                   pred = "x2", values = c(0.4, 0.6))
 
-add.oddsratio.into.plot(plot, or.object2, height.or = 2.5, x.shift = 0.024, 
-               col.line = "green4", col.text = "green4")
+or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+                                 values = c(0.4, 0.6))
+                                  
+add.oddsratio.into.plot(plot, or.object2, or.yloc = 2.1, values.yloc = 2,
+                        line.col = "green4", text.col = "black",
+                        rect.col = "green4", rect.alpha = 0.2,
+                        line.alpha = 1, line.type = "dashed",
+                        arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
+                        arrow.length = 0.01, rect = T)   
 ```
 
-
-## Installation
-
-Install from CRAN:
-
-```R
-install.packages("oddsratio")
-```
-
-Get the development version from Github:
-
-```R
-devtools::install_github("pat-s/oddsratio", build_vignettes = TRUE)
-```
-## Examples
-
-To see full examples, please see the examples in the respective help pages 
-`?calc.oddsratio.gam` and `?calc.oddsratio.gam` or take a look at the package
-vignette.

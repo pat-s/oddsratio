@@ -12,9 +12,9 @@
 #' 
 #' @details To prevent unwanted plot printing of 'plot()' in a function call 
 #' in which the only desire is to work with the returned information of 'plot()'.
-#' Used in \code{\link[oddsratio]{plot_smooth.gam}}. 
+#' Used in \code{\link[oddsratio]{pl.smooth.gam}}. 
 #' 
-#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{pl.smooth.gam}}
 #' 
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
 #' 
@@ -52,9 +52,9 @@ no.plot <- function(model) {
 #' @details To be able to plot the smoothing function of a GAM using ggplot2, some preprocessing
 #' is needed coming from the raw fitted GAM model output.
 #' 
-#' Used in \code{\link[oddsratio]{plot_smooth.gam}}. 
+#' Used in \code{\link[oddsratio]{pl.smooth.gam}}. 
 #' 
-#' @seealso \code{\link[oddsratio]{plot_smooth.gam}}
+#' @seealso \code{\link[oddsratio]{pl.smooth.gam}}
 #' 
 #' @author Patrick Schratz
 #' 

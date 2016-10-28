@@ -12,15 +12,15 @@ calc.oddsratio.gam(data, model, pred, values, percentage, slice = FALSE,
 
 \item{model}{A fitted GAM(M).}
 
-\item{pred}{Character of length one. The name of the predictor to calculate 
-the odds ratio for.}
+\item{pred}{Character. Predictor name for which to calculate 
+the odds ratio.}
 
 \item{values}{Numeric vector of length two.
 Predictor values to estimate odds ratio from. Function is written to use the 
 first provided value as the "lower" one, i.e. calculating the odds ratio 
 'from value1 to value2'. Only used if \code{slice = FALSE}.}
 
-\item{percentage}{Numeric of length one. Percentage number to split the 
+\item{percentage}{Numeric. Percentage number to split the 
 predictor distribution into. 
 A value of 10 would split the predictor distribution by 10\% intervals. 
 Only needed if \code{slice = TRUE}.}
@@ -29,7 +29,7 @@ Only needed if \code{slice = TRUE}.}
 odds ratios for fixed increment steps over the whole predictor distribution. 
 See \code{percentage} for setting the increment values.}
 
-\item{CI}{numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
+\item{CI}{Numeric. Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
 It should not be changed in a function call!}
 }
 \value{
@@ -88,7 +88,7 @@ Patrick Schratz <patrick.schratz@gmail.com>
 \seealso{
 \code{\link[oddsratio]{calc.oddsratio.glm}}
 
-\code{\link[oddsratio]{plot_smooth.gam}}
+\code{\link[oddsratio]{pl.smooth.gam}}
 
 \code{\link[oddsratio]{add.oddsratio.into.plot}}
 }

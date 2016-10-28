@@ -1,5 +1,5 @@
 Package: oddsratio
-Version: 0.2.0.9000
+Version: 0.3.0
 Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
 Author: Patrick Schratz
 Maintainer: Patrick Schratz <patrick.schratz@gmail.com>
@@ -25,9 +25,12 @@ License: MIT + file LICENSE
 RoxygenNote: 5.0.1
 Suggests: knitr,
           rmarkdown,
-          nlme
+          nlme, 
+          grid,
+          gtable,
+          scales
 Collate:'helper.funs.R'
-        'plot_smooth.gam.R'
+        'pl.smooth.gam.R'
         'calc.oddsratio.gam.R'
         'calc.oddsratio.glm.R'
         'add.oddsratio.into.plot.R'

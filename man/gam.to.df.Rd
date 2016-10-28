@@ -9,8 +9,8 @@ gam.to.df(model, pred)
 \arguments{
 \item{model}{A fitted GAM(M).}
 
-\item{pred}{Character of length one. The name of the predictor to calculate 
-the odds ratio for.}
+\item{pred}{Character. Predictor name for which to calculate 
+the odds ratio.}
 }
 \description{
 This function converts a fitted GAM model into a tidy data frame
@@ -19,7 +19,7 @@ This function converts a fitted GAM model into a tidy data frame
 To be able to plot the smoothing function of a GAM using ggplot2, some preprocessing
 is needed coming from the raw fitted GAM model output.
 
-Used in \code{\link[oddsratio]{plot_smooth.gam}}.
+Used in \code{\link[oddsratio]{pl.smooth.gam}}.
 }
 \examples{
 # load data (Source: ?mgcv::gam)
@@ -37,7 +37,7 @@ tmp <- gam.to.df(fit.gam, "x2")
 Patrick Schratz
 }
 \seealso{
-\code{\link[oddsratio]{plot_smooth.gam}}
+\code{\link[oddsratio]{pl.smooth.gam}}
 }
 \keyword{internal}
 

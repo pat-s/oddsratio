@@ -15,7 +15,7 @@ This function suppresses plotting output of 'plot()' function
 \details{
 To prevent unwanted plot printing of 'plot()' in a function call 
 in which the only desire is to work with the returned information of 'plot()'.
-Used in \code{\link[oddsratio]{plot_smooth.gam}}.
+Used in \code{\link[oddsratio]{pl.smooth.gam}}.
 }
 \examples{
 # load data (Source: ?mgcv::gam)
@@ -34,7 +34,7 @@ tmp <- no.plot(fit.gam) # no plot output
 Patrick Schratz <patrick.schratz@gmail.com>
 }
 \seealso{
-\code{\link[oddsratio]{plot_smooth.gam}}
+\code{\link[oddsratio]{pl.smooth.gam}}
 }
 \keyword{internal}
 
