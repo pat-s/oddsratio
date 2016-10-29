@@ -9,7 +9,7 @@
 
 #### Github
 
-[![packageversion](https://img.shields.io/badge/Package%20version-0.3.0-orange.svg?style=flat-square)](commits/master)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.3.0.9000-orange.svg?style=flat-square)](commits/master)
 
 oddsratio
 =========
