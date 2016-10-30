@@ -36,5 +36,5 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'install.packages(devtools); devtools::install_github(jimhester/covr); covr::codecov()'
+  - Rscript -e 'install.packages("devtools"); devtools::install_github("jimhester/covr"); covr::codecov()'
   - bash <(curl -s https://codecov.io/bash)
