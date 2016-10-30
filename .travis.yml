@@ -2,7 +2,7 @@
 
   
 language: r	 
-sudo: false
+sudo: required
 cache: packages	
 
 # r_check_args: "--no-examples"
