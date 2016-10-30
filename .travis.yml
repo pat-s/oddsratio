@@ -38,5 +38,5 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'install.packages(covr); library(covr); codecov()'
   - bash <(curl -s https://codecov.io/bash)
