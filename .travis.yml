@@ -1,16 +1,14 @@
 ## See https://github.com/metacran/r-builder for details.
 
-r_packages:
-  - covr
   
 language: r	 
-sudo: required
+sudo: false
 cache: packages	
 
 # r_check_args: "--no-examples"
 r_build_args: "-no-build-vignettes"
-#r_github_packages:
-#  - jimhester/covr
+r_github_packages:
+  - jimhester/covr
 #  - pat-s/oddsratio
 
 env:
@@ -38,5 +36,5 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'install.packages("covr"); library(covr); codecov()'
+  - Rscript -e 'covr::codecov()'
   - bash <(curl -s https://codecov.io/bash)
