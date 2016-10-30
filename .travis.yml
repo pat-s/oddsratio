@@ -1,16 +1,17 @@
 ## See https://github.com/metacran/r-builder for details.
 
-language: R		 
+r_packages:
+  - covr
+  
+language: r	 
 sudo: required
 cache: packages	
 
-r_check_args: "--no-examples"
+# r_check_args: "--no-examples"
 r_build_args: "-no-build-vignettes"
-r_packages:
-  - covr
-r_github_packages:
-  - jimhester/covr
-  - pat-s/oddsratio
+#r_github_packages:
+#  - jimhester/covr
+#  - pat-s/oddsratio
 
 env:
   global:
