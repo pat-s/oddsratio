@@ -52,6 +52,7 @@
 #' @examples 
 #' # load data (Source: ?mgcv::gam)
 #' library(mgcv)
+#' set.seed(1234)
 #' n <- 200
 #' sig <- 2
 #' dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)

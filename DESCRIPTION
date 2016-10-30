@@ -28,8 +28,9 @@ Suggests: knitr,
           nlme, 
           grid,
           gtable,
-          scales
-Collate:'helper.funs.R'
+          scales,
+          testthat
+Collate: 'helper.funs.R'
         'pl.smooth.gam.R'
         'calc.oddsratio.gam.R'
         'calc.oddsratio.glm.R'
