@@ -25,13 +25,9 @@
 #' Values need to be given in a 'seq()' call, e.g. seq(-6,6,2). 
 #' 
 #' @examples 
-#' suppressPackageStartupMessages(library(mgcv))
-#' set.seed(1234)
-#' n <- 200
-#' sig <- 2
-#' dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
-#' dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
-#' fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat)
+#' # load data (Source: ?mgcv::gam) and fit model
+#' library(mgcv)
+#' fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = data.gam)
 #' 
 #' library(oddsratio)
 #' pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
