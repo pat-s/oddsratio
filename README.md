@@ -1,7 +1,7 @@
 
 #### General
 
-[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/pat-s/oddsratio?branch=master&svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/master/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--10--31-yellowgreen.svg)](/commits/master)
+[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/pat-s/oddsratio?branch=master&svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/master/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--11--09-yellowgreen.svg)](/commits/master)
 
 #### CRAN
 
