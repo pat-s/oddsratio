@@ -60,25 +60,21 @@ For \code{\link[mgcv]{gamm}}, the \code{model} input of
 output (e.g. \code{fit.gam$gam}).
 }
 \examples{
-# load data (Source: ?mgcv::gam)
+# load data (Source: ?mgcv::gam) and fit model
 library(mgcv)
-n <- 200
-sig <- 2
-dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
-dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
-               offset(x3) + x4, data = dat) # fit model
+               offset(x3) + x4, data = data.gam) # fit model
 
 # Calculate OR for specific increment step of continuous variable
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+calc.oddsratio.gam(data = data.gam, model = fit.gam, pred = "x2", 
                    values = c(0.099, 0.198))
 
 ## Calculate OR for change of indicator variable
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x4", 
+calc.oddsratio.gam(data = data.gam, model = fit.gam, pred = "x4", 
                    values = c("B", "D"))
 
 ## Calculate ORs for percentage increments of predictor distribution (here: 20\%)
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+calc.oddsratio.gam(data = data.gam, model = fit.gam, pred = "x2", 
                    percentage = 20, slice = TRUE)
 
 }

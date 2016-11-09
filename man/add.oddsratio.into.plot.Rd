@@ -59,20 +59,15 @@ Right now the function does only accept results of
 If you want to insert multiple odds ratio you have to do it iteratively.
 }
 \examples{
-# load data (Source: ?mgcv::gam)
-library(mgcv); library(cowplot)
-set.seed(1234)
-n <- 200
-sig <- 2
-dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
-dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
+# load data (Source: ?mgcv::gam) and fit model
+library(mgcv)
 fit.gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
-               offset(x3) + x4, data = dat) # fit model
+               offset(x3) + x4, data = data.gam) # fit model
                
 # create input objects (plot + odds ratios)   
 library(oddsratio)            
 plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
-or.object1 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+or.object1 <- calc.oddsratio.gam(data = data.gam, model = fit.gam, pred = "x2", 
                                  values = c(0.099, 0.198))
                                
 # insert first odds ratios to plot
@@ -82,7 +77,7 @@ plot.object <- add.oddsratio.into.plot(plot.object, or.object1, or.yloc = 3,
                                        values.yloc = 0.5, arrow.col = "red")
 
 # calculate second odds ratio
-or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+or.object2 <- calc.oddsratio.gam(data = data.gam, model = fit.gam, pred = "x2", 
                                  values = c(0.4, 0.6))
                                   
 # add or.object2 into plot                                  
