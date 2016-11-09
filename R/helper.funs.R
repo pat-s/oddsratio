@@ -30,6 +30,7 @@
 #'                
 #' tmp <- plot(fit.gam, pages = 1) # plot output 
 #' tmp <- no.plot(fit.gam) # no plot output 
+#' @export
 
 no.plot <- function(model) {
   png("temp.xyz")
@@ -68,6 +69,7 @@ no.plot <- function(model) {
 #'                offset(x3) + x4, data = dat) # fit model
 #' 
 #' tmp <- gam.to.df(fit.gam, "x2") 
+#' @export
 
 gam.to.df <- function(model, pred) {
   
