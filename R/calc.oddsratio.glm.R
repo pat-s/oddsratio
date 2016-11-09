@@ -30,16 +30,14 @@
 #' 
 #' @examples 
 #' ## Example with stats::glm()
-#' # load data (Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm)
-#' dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
-#' dat$rank <- factor(dat$rank)
-#' fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial") # fit model
+#' # load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and fit model
+#' fit.glm <- glm(admit ~ gre + gpa + rank, data = data.glm, family = "binomial") # fit model
 #' 
 #' # Calculate OR for specific increment step of continuous variable
-#' calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
+#' calc.oddsratio.glm(data = data.glm, model = fit.glm, incr = list(gre = 380, gpa = 5))
 #' 
 #' # Calculate OR and change the confidence interval level
-#' calc.oddsratio.glm(data = dat, model = fit.glm, 
+#' calc.oddsratio.glm(data = data.glm, model = fit.glm, 
 #'                    incr = list(gre = 380, gpa = 5), CI = .70)
 #' 
 #' ## Example with MASS:glmmPQL()
