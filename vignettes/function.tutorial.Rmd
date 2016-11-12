@@ -25,20 +25,14 @@ library(ggplot2)
 library(cowplot)
 ```
 
-## Load example data
+## Load example data & fit model
 
 Data source: `?mgcv::predict.gam`
 
 ```{r, results='hide'}
 library(oddsratio)
-suppressPackageStartupMessages(library(mgcv))
-set.seed(1234)
-n <- 200
-sig <- 2
-dat <- suppressMessages(gamSim(1, n = n, scale = sig))
-dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 
-fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = dat)
+fit.gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = data.gam)
 ```
 
 ## GAM example
@@ -52,7 +46,7 @@ from 0.099 to 0.198 while holding all other predictors constant.
 
 
 ```{r}
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+calc.oddsratio.gam(data = data.gam, model = fit.gam, pred = "x2", 
                    values = c(0.099, 0.198))
 ```
 
@@ -62,10 +56,10 @@ These actions results in two log odds values, respectively, which are transforme
 
 ### Calculate OR for level change of indicator variable
 
-If the predictor is a indicator variable, i.e. consists of fixed levels, you can use the function in the same way by just putting in the respective levels you are interested in:
+If the predictor is an indicator variable, i.e. consists of fixed levels, you can use the function in the same way by just putting in the respective levels you are interested in:
 
 ```{r}
-calc.oddsratio.gam(data = dat, model = fit.gam, 
+calc.oddsratio.gam(data = data.gam, model = fit.gam, 
                    pred = "x4", values = c("A", "B"))
 ```
 
@@ -78,7 +72,7 @@ Here we slice predictor `x2` into 5 parts by taking the predictor values of ever
 
 
 ```{r}
-calc.oddsratio.gam(data = dat, model = fit.gam, pred = "x2", 
+calc.oddsratio.gam(data = data.gam, model = fit.gam, pred = "x2", 
                    percentage = 20, slice = TRUE)
 ```
 
@@ -106,7 +100,7 @@ the respective values we want to insert.
 
 ```{r}
 plot.object <- pl.smooth.gam(fit.gam, pred = "x2", title = "Predictor 'x2'")
-or.object <- calc.oddsratio.gam(data = dat, model = fit.gam, 
+or.object <- calc.oddsratio.gam(data = data.gam, model = fit.gam, 
                                 pred = "x2", values = c(0.099, 0.198))
 
 plot <- add.oddsratio.into.plot(plot.object, or.object, or.yloc = 3,
@@ -127,7 +121,7 @@ take the already produced plot as an input to `add.oddsratio.into.plot()` and us
 object:
 
 ```{r}
-or.object2 <- calc.oddsratio.gam(data = dat, model = fit.gam, 
+or.object2 <- calc.oddsratio.gam(data = data.gam, model = fit.gam, 
                                  pred = "x2", values = c(0.4, 0.6))
 
 add.oddsratio.into.plot(plot, or.object2, or.yloc = 2.1, values.yloc = 2,
@@ -143,13 +137,11 @@ Aesthetics like opacity or color are fully customizable.
 
 ## GLM example
 
-Create example data.   
+Fit model.  
 Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
 
 ```{r}
-dat <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
-dat$rank <- factor(dat$rank)
-fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
+fit.glm <- glm(admit ~ gre + gpa + rank, data = data.glm, family = "binomial")
 ```
 
 ### Calculate odds ratio for continuous predictors
@@ -167,14 +159,14 @@ Indicator predictor `rank` has four levels. Subsequently, we will get three odds
 The output is interpreted as follows: "Having `rank2` instead of `rank1` while holding all other values constant results in a decrease in odds of 49.1% (1-0.509)".
 
 ```{r}
-calc.oddsratio.glm(data = dat, model = fit.glm, incr = list(gre = 380, gpa = 5))
+calc.oddsratio.glm(data = data.glm, model = fit.glm, incr = list(gre = 380, gpa = 5))
 ```
 
 You can also set other confident intervals for GLM(M) models. The resulting data
 frame will automatically adjust its column names to the specified level.
 
 ```{r}
-calc.oddsratio.glm(data = dat, model = fit.glm, 
+calc.oddsratio.glm(data = data.glm, model = fit.glm, 
                    incr = list(gre = 380, gpa = 5), CI = 0.70)
 ```
 
