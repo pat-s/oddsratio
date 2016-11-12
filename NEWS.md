@@ -1,7 +1,7 @@
 # oddsratio 0.3.1 (Nov 9 2016)
 
 * update functions to work with ggplot2 v2.2
-* enable lazy loading of data in examples
+* add data and enable lazy loading in examples
 
 # oddsratio 0.3.0 (Oct 27 2016)
 
