@@ -19,7 +19,7 @@ Depends: R (>= 3.0.0)
 Imports: mgcv, 
          MASS, 
          stats,
-         ggplot2,
+         ggplot2 (>= 2.2.0),
          cowplot
 License: MIT + file LICENSE
 RoxygenNote: 5.0.1
@@ -29,12 +29,14 @@ Suggests: knitr,
           grid,
           gtable,
           scales,
-          testthat
-Collate:'data.R'
+          testthat,
+    packagedocs
+Collate: 'data.R'
         'helper.funs.R'
         'pl.smooth.gam.R'
         'calc.oddsratio.gam.R'
         'calc.oddsratio.glm.R'
         'add.oddsratio.into.plot.R'
 LazyData: TRUE
-VignetteBuilder: knitr
+VignetteBuilder: knitr,
+    packagedocs
