@@ -9,3 +9,4 @@ README_files
 .travis.yml
 ^cran-comments\.md$
 ^appveyor\.yml$
+^_gh-pages$
