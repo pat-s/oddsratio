@@ -30,7 +30,6 @@ rvers <- stringr::str_match(grep("R \\(", description, value = TRUE), "[0-9]{1,4
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio)
 [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/oddsratio)
-[![Rdoc](http://www.rdocumentation.org/badges/version/oddsratio)](http://www.rdocumentation.org/packages/oddsratio)
 
 #### Github
 [![packageversion](https://img.shields.io/badge/Package%20version-`r version`-orange.svg?style=flat-square)](commits/master)
@@ -74,7 +73,7 @@ dat$rank <- factor(dat$rank)
 fit.glm <- glm(admit ~ gre + gpa + rank, data = dat, family = "binomial")
 
 calc.oddsratio.glm(data = dat, model = fit.glm, 
-                   incr = list(gre = 380, gpa = 5), CI = 0.95)
+                   incr = list(gre = 380, gpa = 5, CI = 0.95))
 ```
 
 ### GAM
@@ -149,4 +148,3 @@ add.oddsratio.into.plot(plot, or.object2, or.yloc = 2.1, values.yloc = 2,
                         arrow.xloc.r = 0.01, arrow.xloc.l = -0.01,
                         arrow.length = 0.01, rect = T)   
 ```
-
