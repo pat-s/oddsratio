@@ -30,13 +30,14 @@ Suggests: knitr,
           gtable,
           scales,
           testthat,
-    packagedocs
+          packagedocs
 Collate: 'data.R'
         'helper.funs.R'
         'pl.smooth.gam.R'
         'calc.oddsratio.gam.R'
         'calc.oddsratio.glm.R'
         'add.oddsratio.into.plot.R'
-LazyData: TRUE
+LazyData: true
+ByteCompile: true
 VignetteBuilder: knitr,
-    packagedocs
+                 packagedocs
