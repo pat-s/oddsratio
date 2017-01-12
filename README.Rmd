@@ -32,9 +32,6 @@ rvers <- "3.0.0"
 #### Github
 [![packageversion](https://img.shields.io/badge/Package%20version-`r version`-orange.svg?style=flat-square)](commits/master)
 
-
-# oddsratio
-
 Functions for calculation and plotting of odds ratios of Generalized Additive (Mixed)
 Models and Generalized Linear (Mixed) Models with a binomial
 response variable (i.e. logistic regression models).  
