@@ -7,3 +7,5 @@ README.knit.md
 README.utf8.md
 inst/doc
 _gh-pages
+vignettes/*.html
+vignettes/*.R
