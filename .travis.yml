@@ -1,34 +1,12 @@
 ## See https://github.com/metacran/r-builder for details.
 
-  
 language: r	 
 sudo: required
 cache: packages	
+dist: trusty
 
-# r_check_args: "--no-examples"
-r_build_args: "-no-build-vignettes"
 r_github_packages:
   - jimhester/covr
-#  - pat-s/oddsratio
-
-env:
-  global:
-    - R_CHECK_ARGS = "--no-examples"
-    - R_BUILD_ARGS =  "--no-build-vignettes"
-
-before_install:
-  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
-  - chmod 755 pkg-build.sh
-  - ./pkg-build.sh bootstrap
-  
-install:
-  - ./pkg-build.sh install_deps
-
-script:
-  - ./pkg-build.sh run_tests
-
-after_failure:
-  - ./pkg-build.sh dump_logs
 
 notifications:
   email:
@@ -36,5 +14,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - Rscript -e 'install.packages("devtools"); devtools::install_github("jimhester/covr"); covr::codecov(quiet = FALSE)'
-  #- bash <(curl -s https://codecov.io/bash)
+  - Rscript -e 'covr::codecov()'
