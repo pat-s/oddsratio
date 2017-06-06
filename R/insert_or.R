@@ -64,38 +64,37 @@
 #'                
 #' # create input objects (plot + odds ratios)   
 #' library(oddsratio)            
-#' plot_object <- pl.smooth.gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
+#' plot_object <- plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 #' or_object1 <- or_gam(data = data_gam, model = fit_gam, 
-#'                                  pred = "x2", values = c(0.099, 0.198))
+#'                      pred = "x2", values = c(0.099, 0.198))
 #'                                
 #' # insert first odds ratios to plot
 #' plot_object <- insert_or(plot_object, or_object1, or_yloc = 3,
-#'                                        values_xloc = 0.04, line_size = 0.5, 
-#'                                        line_type = "dotdash", text_size = 6,
-#'                                        values_yloc = 0.5, arrow_col = "red")
+#'                          values_xloc = 0.04, line_size = 0.5, 
+#'                          line_type = "dotdash", text_size = 6,
+#'                          values_yloc = 0.5, arrow_col = "red")
 #'
 #' # calculate second odds ratio
 #' or_object2 <- or_gam(data = data_gam, model = fit_gam, pred = "x2", 
-#'                                  values = c(0.4, 0.6))
+#'                      values = c(0.4, 0.6))
 #'                                   
 #' # add or_object2 into plot                                  
 #' insert_or(plot_object, or_object2, or_yloc = 2.1, values_yloc = 2,
-#'                         line_col = "green4", text_col = "black",
-#'                         rect_col = "green4", rect_alpha = 0.2,
-#'                         line_alpha = 1, line_type = "dashed",
-#'                         arrow_xloc_r = 0.01, arrow_xloc_l = -0.01,
-#'                         arrow_length = 0.01, rect = TRUE)          
+#'           line_col = "green4", text_col = "black",
+#'           rect_col = "green4", rect_alpha = 0.2,
+#'           line_alpha = 1, line_type = "dashed",
+#'           arrow_xloc_r = 0.01, arrow_xloc_l = -0.01,
+#'           arrow_length = 0.01, rect = TRUE)          
 #' @export                       
 
-insert_or <- function(
-  plot_object, or_object, 
-  line_col = "red", line_size = 1.2, line_type = "solid", line_alpha = 1, 
-  text_alpha = 1, text_size = 4, text_col = "black",
-  rect_alpha = 0.5, rect_col = NULL, 
-  rect = FALSE, arrow = TRUE, values = TRUE,
-  values_yloc = 0, values_xloc = NULL, or_yloc = 0,
-  arrow_length = NULL, arrow_yloc = NULL, arrow_col = NULL,
-  arrow_xloc_r = NULL, arrow_xloc_l = NULL) {
+insert_or <- function(plot_object, or_object, line_col = "red", 
+                      line_size = 1.2, line_type = "solid", line_alpha = 1, 
+                      text_alpha = 1, text_size = 4, text_col = "black",
+                      rect_alpha = 0.5, rect_col = NULL, 
+                      rect = FALSE, arrow = TRUE, values = TRUE,
+                      values_yloc = 0, values_xloc = NULL, or_yloc = 0,
+                      arrow_length = NULL, arrow_yloc = NULL, arrow_col = NULL,
+                      arrow_xloc_r = NULL, arrow_xloc_l = NULL) {
   
   plot_object <- plot_object + 
     geom_vline(xintercept = or_object$value1, color = line_col, 
@@ -107,13 +106,11 @@ insert_or <- function(
              label = paste0("OR: \n", round(or_object$oddsratio, 2)),
              color = text_col, size = text_size)
   
-  
-  
   if (rect) {
     if (is.null(rect_col)) {
       rect_col <- text_col
     }
-
+    
     # set drawing order to place rect behind smoothing fun
     plot_object$layers <- c(geom_rect(data = plot_object$data[1,], # avoids multiple rect drawings # nolint
                                       ymin = ggplot_build(plot_object)$layout$
@@ -125,7 +122,7 @@ insert_or <- function(
                                       alpha = rect_alpha, fill = rect_col),
                             plot_object$layers)
   }
-
+  
   if (values) {
     if (is.null(values_xloc)) {
       # calc x range for x-shift 
@@ -156,9 +153,8 @@ insert_or <- function(
         0.002
     }
     
-    
     plot_object <- plot_object + 
-
+      
       annotate("text", x = or_object$value1 - values_xloc,
                y = min(plot_object$data$se_lwr) + values_yloc, 
                label = or_object$value1,
@@ -168,7 +164,6 @@ insert_or <- function(
                label = or_object$value2,
                color = text_col, alpha = text_alpha, size = text_size)
     
-    
     if (arrow) {
       
       if (is.null(arrow_col)) {
@@ -177,7 +172,7 @@ insert_or <- function(
       }
       
       plot_object <- plot_object + 
-
+        
         # left arrow
         geom_segment(x = or_object$value1 - values_xloc + arrow_xloc_l,
                      xend = or_object$value1 - values_xloc + arrow_length,
@@ -197,7 +192,6 @@ insert_or <- function(
                      color = arrow_col, 
                      arrow = arrow(length = unit(0.2, "cm"), type = "closed")) 
     }
-    
   }
   return(plot_object)
 }

@@ -65,12 +65,13 @@ If you want to insert multiple odds ratio you have to do it iteratively.
 \examples{
 # load data (Source: ?mgcv::gam) and fit model
 library(mgcv)
+data(data_gam)
 fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
                offset(x3) + x4, data = data_gam) # fit model
                
 # create input objects (plot + odds ratios)   
 library(oddsratio)            
-plot_object <- pl.smooth.gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
+plot_object <- plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 or_object1 <- or_gam(data = data_gam, model = fit_gam, 
                                  pred = "x2", values = c(0.099, 0.198))
                                

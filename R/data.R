@@ -1,7 +1,7 @@
-#' data.gam
-#' @name data.gam
+#' data_gam
+#' @name data_gam
 #' 
-#' @usage data(data.gam)
+#' @usage data(data_gam)
 #' 
 #' @keywords datasets
 #' @keywords internal
@@ -11,13 +11,12 @@
 #' @docType data
 #' 
 #' @format a `data.frame` randomly created numerical and non-numerical variables
-#' 
-"data.gam"
+NULL
 
-#' data.glm
-#' @name data.glm
+#' data_glm
+#' @name data_glm
 #' 
-#' @usage data(data.glm)
+#' @usage data(data_glm)
 #'
 #' @docType data
 #' 
@@ -28,4 +27,4 @@
 #' 
 #' @source Taken from \url{http://www.ats.ucla.edu/stat/r/dae/logit.htm}, direct download
 #' link: \url{http://www.ats.ucla.edu/stat/data/binary.csv}
-"data.glm"
+NULL
