@@ -3,7 +3,7 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(ggplot2)
 library(cowplot)
 ```
@@ -12,7 +12,7 @@ library(cowplot)
 version <- "1.0.0.9000"
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = TRUE}
 rvers <- "3.0.0"
 ```
 
@@ -112,6 +112,10 @@ Plotting of GAM smooths is also supported:
 plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 ```
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/plot_gam.png" width="80%"/>
+</p>
+
 Insert the calculated odds ratios into the smoothing function:
 
 ```{r}
@@ -126,6 +130,10 @@ plot <- insert_or(plot_object, or_object, or_yloc = 3,
 plot
 ```
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/plot_gam2.png" width="80%"/>
+</p>
+
 Insert multiple odds ratios into one smooth:
 
 ```{r}
@@ -139,3 +147,7 @@ insert_or(plot, or_object2, or_yloc = 2.1, values_yloc = 2,
           arrow_xloc_r = 0.01, arrow_xloc_l = -0.01,
           arrow_length = 0.01, rect = T)   
 ```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/plot_gam3.png" width="80%"/>
+</p>
