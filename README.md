@@ -78,7 +78,7 @@ plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/plot_gam.png" width="80%"/>
+<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/plot_gam.png" width="80%"/>
 </p>
 Insert the calculated odds ratios into the smoothing function:
 
@@ -95,7 +95,7 @@ plot
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/plot_gam2.png" width="80%"/>
+<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/plot_gam2.png" width="80%"/>
 </p>
 Insert multiple odds ratios into one smooth:
 
@@ -112,5 +112,5 @@ insert_or(plot, or_object2, or_yloc = 2.1, values_yloc = 2,
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/plot_gam3.png" width="80%"/>
+<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/plot_gam3.png" width="80%"/>
 </p>
