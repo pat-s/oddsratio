@@ -10,7 +10,7 @@
 #' 
 #' @docType data
 #' 
-#' @format a \code{data.frame} randomly created numerical and non-numerical variables
+#' @format a `data.frame` randomly created numerical and non-numerical variables
 #' 
 "data.gam"
 
@@ -24,7 +24,7 @@
 #' @keywords datasets
 #' @keywords internal
 #' 
-#' @format a \code{data.frame} randomly created numerical and non-numerical variables
+#' @format a `data.frame` randomly created numerical and non-numerical variables
 #' 
 #' @source Taken from \url{http://www.ats.ucla.edu/stat/r/dae/logit.htm}, direct download
 #' link: \url{http://www.ats.ucla.edu/stat/data/binary.csv}

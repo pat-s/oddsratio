@@ -16,4 +16,3 @@ data.gam
 }
 \keyword{datasets}
 \keyword{internal}
-

@@ -22,9 +22,10 @@ Imports: mgcv,
          MASS, 
          stats,
          ggplot2 (>= 2.2.0),
-         cowplot
+         cowplot,
+         hrbrthemes
 License: MIT + file LICENSE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Suggests: knitr,
           rmarkdown,
           nlme, 
@@ -33,13 +34,8 @@ Suggests: knitr,
           scales,
           testthat,
           packagedocs
-Collate: 'data.R'
-        'helper.funs.R'
-        'pl.smooth.gam.R'
-        'calc.oddsratio.gam.R'
-        'calc.oddsratio.glm.R'
-        'add.oddsratio.into.plot.R'
 LazyData: true
 ByteCompile: true
 VignetteBuilder: knitr,
                  packagedocs
+Roxygen: list(markdown = TRUE)

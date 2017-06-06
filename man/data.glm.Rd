@@ -17,4 +17,3 @@ data.glm
 }
 \keyword{datasets}
 \keyword{internal}
-
