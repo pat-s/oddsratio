@@ -9,7 +9,7 @@
 
 #### Github
 
-[![packageversion](https://img.shields.io/badge/Package%20version-x86_64-apple-darwin16.6.0,%20x86_64,%20darwin16.6.0,%20x86_64,%20darwin16.6.0,%20,%203,%204.0,%202017,%2004,%2021,%2072570,%20R,%20R%20version%203.4.0%20(2017-04-21),%20You%20Stupid%20Darkness-orange.svg?style=flat-square)](commits/dev)
+[![packageversion](https://img.shields.io/badge/Package%20version-1.0.0.9000-orange.svg?style=flat-square)](commits/dev)
 
 Functions for calculation and plotting of odds ratios of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models).
 

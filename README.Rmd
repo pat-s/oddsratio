@@ -8,7 +8,7 @@ library(ggplot2)
 library(cowplot)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = TRUE}
 version <- "1.0.0.9000"
 ```
 
