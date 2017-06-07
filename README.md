@@ -1,7 +1,7 @@
 
 #### General
 
-[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=dev)](https://travis-ci.org/pat-s/oddsratio) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/pat-s/oddsratio?branch=dev&svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/dev/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--06-yellowgreen.svg)](/commits/dev)
+[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=dev)](https://travis-ci.org/pat-s/oddsratio) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/pat-s/oddsratio?branch=dev&svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/dev/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--07-yellowgreen.svg)](/commits/dev)
 
 #### CRAN
 
@@ -9,7 +9,7 @@
 
 #### Github
 
-[![packageversion](https://img.shields.io/badge/Package%20version-x86_64-apple-darwin16.5.0,%20x86_64,%20darwin16.5.0,%20x86_64,%20darwin16.5.0,%20,%203,%204.0,%202017,%2004,%2021,%2072570,%20R,%20R%20version%203.4.0%20(2017-04-21),%20You%20Stupid%20Darkness-orange.svg?style=flat-square)](commits/dev)
+[![packageversion](https://img.shields.io/badge/Package%20version-x86_64-apple-darwin16.6.0,%20x86_64,%20darwin16.6.0,%20x86_64,%20darwin16.6.0,%20,%203,%204.0,%202017,%2004,%2021,%2072570,%20R,%20R%20version%203.4.0%20(2017-04-21),%20You%20Stupid%20Darkness-orange.svg?style=flat-square)](commits/dev)
 
 Functions for calculation and plotting of odds ratios of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models).
 
@@ -60,14 +60,14 @@ df <- gamSim(1, n = n,scale = sig, verbose = FALSE)
 df$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), rep("D", 50)))
 fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = df)
 
-or_gam(data = df, model = fit_gam, pred = "x2", 
+or_gam(data = df, model = fit_gam, pred = "x2",
        percentage = 20, slice = TRUE)
 ```
 
 If you want to compute a single odds ratio for specific values, simply set param `slice = FALSE`:
 
 ``` r
-or_gam(data = df, model = fit_gam, 
+or_gam(data = df, model = fit_gam,
        pred = "x2", values = c(0.099, 0.198))
 ```
 
@@ -78,7 +78,7 @@ plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/plot_gam.png" width="80%"/>
+<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/figures/plot_gam.png" width="80%"/>
 </p>
 Insert the calculated odds ratios into the smoothing function:
 
@@ -95,7 +95,7 @@ plot
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/plot_gam2.png" width="80%"/>
+<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/figures/plot_gam2.png" width="80%"/>
 </p>
 Insert multiple odds ratios into one smooth:
 
@@ -112,5 +112,5 @@ insert_or(plot, or_object2, or_yloc = 2.1, values_yloc = 2,
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/plot_gam3.png" width="80%"/>
+<img src="https://raw.githubusercontent.com/pat-s/oddsratio/blob/dev/man/figures/plot_gam3.png" width="80%"/>
 </p>
