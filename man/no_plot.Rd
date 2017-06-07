@@ -2,20 +2,20 @@
 % Please edit documentation in R/helper_funs.R
 \name{no_plot}
 \alias{no_plot}
-\title{Suppress plotting output of 'plot()' function}
+\title{Suppress plotting output of \link{plot} function}
 \usage{
-no_plot(model)
+no_plot(model = NULL)
 }
 \arguments{
 \item{model}{A fitted GAM(M).}
 }
 \description{
-This function suppresses plotting output of 'plot()' function
+This function suppresses plotting output of \link{plot} function
 }
 \details{
-To prevent unwanted plot printing of 'plot()' in a function call
+To prevent unwanted plot printing of \link{plot} in a function call
 in which the only desire is to work with the returned information of
-'plot()'. Used in \link{plot_gam}.
+\link{plot}. Used in \link{plot_gam}.
 }
 \examples{
 # load data (Source: ?mgcv::gam)
@@ -23,13 +23,13 @@ library(mgcv)
 n <- 200
 sig <- 2
 dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
-dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50), 
+dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50),
                     rep("D", 50)))
-fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + 
+fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
                offset(x3) + x4, data = dat) # fit model
-               
-tmp <- plot(fit_gam, pages = 1) # plot output 
-tmp <- no_plot(fit_gam) # no plot output 
+
+tmp <- plot(fit_gam, pages = 1) # plot output
+tmp <- no_plot(fit_gam) # no plot output
 }
 \seealso{
 \link{plot_gam}

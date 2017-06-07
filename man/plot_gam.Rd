@@ -4,10 +4,10 @@
 \alias{plot_gam}
 \title{Plot smoothing functions of GAM(M) models}
 \usage{
-plot_gam(model, pred, col_line = "blue", ci_line_col = "black",
-  ci_line_type = "dashed", ci_fill = "grey", ci_alpha = 0.4,
-  ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL, xlab = NULL,
-  ylab = NULL, limits_y = NULL, breaks_y = NULL)
+plot_gam(model = NULL, pred = NULL, col_line = "blue",
+  ci_line_col = "black", ci_line_type = "dashed", ci_fill = "grey",
+  ci_alpha = 0.4, ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL,
+  xlab = NULL, ylab = NULL, limits_y = NULL, breaks_y = NULL)
 }
 \arguments{
 \item{model}{A fitted model of class \code{gam}.}
@@ -49,7 +49,7 @@ using the \code{ggplot2} plotting system.
 \examples{
 # load data (Source: ?mgcv::gam) and fit model
 library(mgcv)
-fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, 
+fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4,
                      data = data_gam)
 
 library(oddsratio)

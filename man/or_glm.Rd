@@ -4,7 +4,7 @@
 \alias{or_glm}
 \title{Calculate odds ratios of Generalized Linear (Mixed) Models}
 \usage{
-or_glm(data, model, incr, CI = 0.95)
+or_glm(data = NULL, model = NULL, incr = NULL, CI = 0.95)
 }
 \arguments{
 \item{data}{The data used for model fitting.}
@@ -38,16 +38,16 @@ Currently supported functions: \link{glm},
 }
 \examples{
 ## Example with stats::glm()
-# load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and 
+# load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and
 # fit model
-fit_glm <- glm(admit ~ gre + gpa + rank, data = data_glm, 
+fit_glm <- glm(admit ~ gre + gpa + rank, data = data_glm,
                family = "binomial") # fit model
 
 # Calculate OR for specific increment step of continuous variable
 or_glm(data = data_glm, model = fit_glm, incr = list(gre = 380, gpa = 5))
 
 # Calculate OR and change the confidence interval level
-or_glm(data = data_glm, model = fit_glm, 
+or_glm(data = data_glm, model = fit_glm,
                    incr = list(gre = 380, gpa = 5), CI = .70)
 
 ## Example with MASS:glmmPQL()
@@ -55,7 +55,7 @@ or_glm(data = data_glm, model = fit_glm,
 library(MASS)
 data(bacteria)
 fit_glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~1 | ID,
-                             family = binomial, data = bacteria, 
+                             family = binomial, data = bacteria,
                              verbose = FALSE)
 
 # Apply function
