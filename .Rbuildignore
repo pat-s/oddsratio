@@ -11,3 +11,4 @@ README_files
 ^appveyor\.yml$
 ^_gh-pages$
 docs/
+revdep/
