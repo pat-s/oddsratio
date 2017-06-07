@@ -116,7 +116,7 @@ plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
   <img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/figures/plot_gam.png" width="80%"/>
 </p>
 
-Insert the calculated odds ratios into the smoothing function:
+Insert the calculated odds ratios into the smoothing function:  
 
 ```{r}
 plot_object <- plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
@@ -134,7 +134,7 @@ plot
   <img src="https://raw.githubusercontent.com/pat-s/oddsratio/dev/man/figures/plot_gam2.png" width="80%"/>
 </p>
 
-Insert multiple odds ratios into one smooth:
+Insert multiple odds ratios into one smooth:  
 
 ```{r}
 or_object2 <- or_gam(data = df, model = fit_gam, pred = "x2", 
