@@ -14,13 +14,17 @@ plot_gam(model, pred, col_line = "blue", ci_line_col = "black",
 
 \item{pred}{The predictor of the fitted model to plot the smooth function of.}
 
-\item{col_line}{Character. Sets color for smoothing function. Default to \code{"blue"}.}
+\item{col_line}{Character. Sets color for smoothing function. Default to
+\code{"blue"}.}
 
-\item{ci_line_col}{Character. Sets color for confident interval line of smoothing function. Default to \code{"black"}}
+\item{ci_line_col}{Character. Sets color for confident interval line of
+smoothing function. Default to \code{"black"}.}
 
-\item{ci_line_type}{Character. Sets linetype of confident interval line of smoothing function. Default to \code{"dashed"}.}
+\item{ci_line_type}{Character. Sets linetype of confident interval line
+of smoothing function. Default to \code{"dashed"}.}
 
-\item{ci_fill}{Character. Fill color of area between smoothing function and its confident interval lines.}
+\item{ci_fill}{Character. Fill color of area between smoothing function and
+its confident interval lines.}
 
 \item{ci_alpha}{Numeric \link{0,1}. Opacity value of confidence interval shading.}
 
@@ -34,7 +38,8 @@ plot_gam(model, pred, col_line = "blue", ci_line_col = "black",
 
 \item{limits_y}{Numeric of length two. Sets y-axis limits.}
 
-\item{breaks_y}{Numeric of length three. Sets y-axis breaks. See \code{\link[base:seq]{base::seq()}}.
+\item{breaks_y}{Numeric of length three. Sets y-axis breaks.
+See \code{\link[base:seq]{base::seq()}}.
 Values need to be given in a 'seq()' call, e.g. seq(-6,6,2).}
 }
 \description{
@@ -44,11 +49,11 @@ using the \code{ggplot2} plotting system.
 \examples{
 # load data (Source: ?mgcv::gam) and fit model
 library(mgcv)
-fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, data = data.gam)
+fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, 
+                     data = data_gam)
 
 library(oddsratio)
-plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'",
-         subtitle = "Smooth: 7.173")
+plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 
 }
 \seealso{
