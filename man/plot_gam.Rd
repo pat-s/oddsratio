@@ -6,8 +6,8 @@
 \usage{
 plot_gam(model, pred, col_line = "blue", ci_line_col = "black",
   ci_line_type = "dashed", ci_fill = "grey", ci_alpha = 0.4,
-  ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL, subtitle = NULL,
-  xlab = NULL, ylab = NULL, limits_y = NULL, breaks_y = NULL)
+  ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL, xlab = NULL,
+  ylab = NULL, limits_y = NULL, breaks_y = NULL)
 }
 \arguments{
 \item{model}{A fitted model of class \code{gam}.}
@@ -26,7 +26,7 @@ of smoothing function. Default to \code{"dashed"}.}
 \item{ci_fill}{Character. Fill color of area between smoothing function and
 its confident interval lines.}
 
-\item{ci_alpha}{Numeric \link{0,1}. Opacity value of confidence interval shading.}
+\item{ci_alpha}{Numeric (range: 0-1). Opacity value of confidence interval shading.}
 
 \item{ci_line_size, sm_fun_size}{Line sizes.}
 
@@ -39,8 +39,8 @@ its confident interval lines.}
 \item{limits_y}{Numeric of length two. Sets y-axis limits.}
 
 \item{breaks_y}{Numeric of length three. Sets y-axis breaks.
-See \code{\link[base:seq]{base::seq()}}.
-Values need to be given in a 'seq()' call, e.g. seq(-6,6,2).}
+See \link{seq}.
+Values need to be given in a \code{seq} call, e.g. \code{seq(-6, 6, 2)}.}
 }
 \description{
 This function plots the smoothing function of selected GAM(M) models

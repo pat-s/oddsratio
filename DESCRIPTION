@@ -27,7 +27,6 @@ License: MIT + file LICENSE
 RoxygenNote: 6.0.1
 Suggests: knitr,
           rmarkdown,
-          nlme, 
           grid,
           gtable,
           scales,

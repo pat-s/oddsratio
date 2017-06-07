@@ -10,3 +10,4 @@ README_files
 ^cran-comments\.md$
 ^appveyor\.yml$
 ^_gh-pages$
+docs/

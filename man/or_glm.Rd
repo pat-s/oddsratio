@@ -40,14 +40,14 @@ Currently supported functions: \link{glm},
 ## Example with stats::glm()
 # load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and 
 # fit model
-fit_glm <- glm(admit ~ gre + gpa + rank, data = data.glm, 
+fit_glm <- glm(admit ~ gre + gpa + rank, data = data_glm, 
                family = "binomial") # fit model
 
 # Calculate OR for specific increment step of continuous variable
-or_glm(data = data.glm, model = fit_glm, incr = list(gre = 380, gpa = 5))
+or_glm(data = data_glm, model = fit_glm, incr = list(gre = 380, gpa = 5))
 
 # Calculate OR and change the confidence interval level
-or_glm(data = data.glm, model = fit_glm, 
+or_glm(data = data_glm, model = fit_glm, 
                    incr = list(gre = 380, gpa = 5), CI = .70)
 
 ## Example with MASS:glmmPQL()

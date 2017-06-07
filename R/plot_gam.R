@@ -24,7 +24,7 @@
 #' @param ci_fill Character. Fill color of area between smoothing function and 
 #' its confident interval lines.
 #' 
-#' @param ci_alpha Numeric [0,1]. Opacity value of confidence interval shading.
+#' @param ci_alpha Numeric (range: 0-1). Opacity value of confidence interval shading.
 #' 
 #' @param ci_line_size,sm_fun_size Line sizes.
 #' 
@@ -37,8 +37,8 @@
 #' @param limits_y Numeric of length two. Sets y-axis limits.
 #' 
 #' @param breaks_y Numeric of length three. Sets y-axis breaks. 
-#' See [base::seq()]. 
-#' Values need to be given in a 'seq()' call, e.g. seq(-6,6,2). 
+#' See [seq]. 
+#' Values need to be given in a `seq` call, e.g. `seq(-6, 6, 2)`. 
 #' 
 #' @examples 
 #' # load data (Source: ?mgcv::gam) and fit model
@@ -59,7 +59,7 @@
 plot_gam <- function(model, pred, col_line = "blue",  ci_line_col = "black", 
                      ci_line_type = "dashed", ci_fill = "grey", ci_alpha = 0.4, 
                      ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL,
-                     subtitle = NULL, xlab = NULL, ylab = NULL, limits_y = NULL, 
+                     xlab = NULL, ylab = NULL, limits_y = NULL, 
                      breaks_y = NULL) {
   
   df <- gam_to_df(model, pred)
@@ -72,8 +72,6 @@ plot_gam <- function(model, pred, col_line = "blue",  ci_line_col = "black",
     ylab <- df[[pred]]$ylab
   }
   
-  require(cowplot)
-  
   plot_gam <- ggplot(df, aes_(~x, ~y)) + 
     geom_line(colour = col_line, size = sm_fun_size) + 
     geom_line(aes_(~x, ~se_upr), linetype = ci_line_type, 
@@ -84,7 +82,7 @@ plot_gam <- function(model, pred, col_line = "blue",  ci_line_col = "black",
                 fill = ci_fill, alpha = ci_alpha) +
     ylab(ylab) + 
     xlab(xlab) +
-    background_grid(major = "xy", minor = "none") 
+    cowplot::background_grid(major = "xy", minor = "none") 
   
   if (!is.null(limits_y) & !is.null(breaks_y)) {
     plot_gam <- plot_gam + 

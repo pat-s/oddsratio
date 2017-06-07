@@ -1,7 +1,7 @@
 #' @name or_gam
 #' @title Calculate odds ratios of Generalized Additive (Mixed) Models
 #' 
-#' @importFrom stats coefficients
+#' @importFrom stats coefficients predict
 #' 
 #' @description This function calculates odds ratio(s) for specific increment 
 #'     steps of a GAM(M)s. 
