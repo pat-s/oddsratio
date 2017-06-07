@@ -1,40 +1,56 @@
-## See https://github.com/metacran/r-builder for details.
+#----------------------------------------------------------------
+# Travis-CI configuration for R packages
+#
+# REFERENCES:
+# * Travis CI: https://docs.travis-ci.com/user/languages/r
+# * covr: https://github.com/jimhester/covr
+#
+# Validate your .travis.yml file at http://lint.travis-ci.org/
+#----------------------------------------------------------------
+language: r
+sudo: false
+cache: packages
+warnings_are_errors: false
+# r_check_args: --as-cran
+latex: false
 
-  
-language: r	 
-sudo: required
-cache: packages	
-
-# r_check_args: "--no-examples"
-r_build_args: "-no-build-vignettes"
-r_github_packages:
-  - jimhester/covr
-#  - pat-s/oddsratio
-
-env:
-  global:
-    - R_CHECK_ARGS = "--no-examples"
-    - R_BUILD_ARGS =  "--no-build-vignettes"
-
-before_install:
-  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
-  - chmod 755 pkg-build.sh
-  - ./pkg-build.sh bootstrap
-  
-install:
-  - ./pkg-build.sh install_deps
-
-script:
-  - ./pkg-build.sh run_tests
-
-after_failure:
-  - ./pkg-build.sh dump_logs
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-
-after_success:
-  - Rscript -e 'install.packages("devtools"); devtools::install_github("jimhester/covr"); covr::codecov(quiet = FALSE)'
-  #- bash <(curl -s https://codecov.io/bash)
+matrix:
+  include:
+    - os: linux
+      r: oldrel
+      r_github_packages:
+        - hadley/testthat
+    - os: linux
+      r: release
+      r_github_packages:
+        - hadley/testthat
+    - os: linux
+      r: devel
+      r_github_packages:
+        - hadley/testthat
+    - os: osx
+      r: oldrel
+      r_github_packages:
+        - hadley/testthat
+    - os: osx
+      r: release
+      r_github_packages:
+        - hadley/testthat
+    - os: linux
+      r: release
+      r_check_args: --no-build-vignettes --no-codoc --no-examples --no-manual --ignore-vignettes
+      r_github_packages:
+        - jimhester/covr
+        - hadley/testthat
+      after_success:
+        - Rscript -e 'covr::codecov(quiet=FALSE)'
+      env: NB='w/ covr' ## Just a label
+    - os: linux
+      r: release
+      r_check_args: --no-build-vignettes --no-codoc --no-examples --no-tests --no-manual --ignore-vignettes
+      r_github_packages:
+        - hadley/testthat
+        - jimhester/lintr
+      after_success:
+        - Rscript -e 'library(lintr); lint_package(linters = with_defaults(commented_code_linter = NULL, closed_curly_linter = closed_curly_linter(allow_single_line = TRUE), open_curly_linter = open_curly_linter(allow_single_line = TRUE)))'
+      env: NB='w/ lintr' ## Just a label
