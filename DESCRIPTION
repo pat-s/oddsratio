@@ -31,7 +31,8 @@ Suggests: knitr,
           gtable,
           scales,
           testthat,
-          pacman
+          pacman,
+          gam
 LazyData: true
 ByteCompile: true
 VignetteBuilder: knitr
