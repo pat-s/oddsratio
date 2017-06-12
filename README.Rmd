@@ -25,7 +25,7 @@ rvers <- "3.0.0"
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/dev)
 
 #### CRAN
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio)
+<a href="https://cran.r-project.org/web/checks/check_results_oddsratio.html"><img border="0" src="http://www.r-pkg.org/badges/version/oddsratio" alt="CRAN version"></a>
 [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/oddsratio)
 

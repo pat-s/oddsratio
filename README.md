@@ -1,11 +1,11 @@
 
 #### General
 
-[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=dev)](https://travis-ci.org/pat-s/oddsratio) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/pat-s/oddsratio?branch=dev&svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/dev/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--07-yellowgreen.svg)](/commits/dev)
+[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=dev)](https://travis-ci.org/pat-s/oddsratio) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/pat-s/oddsratio?branch=dev&svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/dev/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--12-yellowgreen.svg)](/commits/dev)
 
 #### CRAN
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oddsratio)](http://cran.r-project.org/package=oddsratio) [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio) ![](http://cranlogs.r-pkg.org/badges/grand-total/oddsratio)
+<a href="https://cran.r-project.org/web/checks/check_results_oddsratio.html"><img border="0" src="http://www.r-pkg.org/badges/version/oddsratio" alt="CRAN version"></a> [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio) ![](http://cranlogs.r-pkg.org/badges/grand-total/oddsratio)
 
 #### Github
 
