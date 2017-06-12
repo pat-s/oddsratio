@@ -1,4 +1,4 @@
-# oddsratio 1.0.0 (June 2017)
+# oddsratio 1.0.0 (June 12 2017)
 
 ## Major
   * rename functions (snake_case)
