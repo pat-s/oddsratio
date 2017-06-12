@@ -87,7 +87,7 @@
 #'           arrow_length = 0.01, rect = TRUE)
 #' @export
 
-insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red",
+insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # nocov start
                       line_size = 1.2, line_type = "solid", line_alpha = 1,
                       text_alpha = 1, text_size = 4, text_col = "black",
                       rect_alpha = 0.5, rect_col = NULL,
@@ -194,4 +194,4 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red",
     }
   }
   return(plot_object)
-}
+} # nocov end

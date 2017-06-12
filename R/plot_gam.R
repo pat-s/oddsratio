@@ -56,7 +56,7 @@
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
 #' @export
 
-plot_gam <- function(model = NULL, pred = NULL, col_line = "blue",
+plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
                      ci_line_col = "black", ci_line_type = "dashed",
                      ci_fill = "grey", ci_alpha = 0.4,
                      ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL,
@@ -104,4 +104,4 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue",
   }
 
   return(plot_gam)
-}
+} # nocov end

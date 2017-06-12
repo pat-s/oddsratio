@@ -83,7 +83,7 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
 
   if (slice == TRUE) {
     if (is.null(percentage)) {
-      stop(paste0("Please specify 'percentage'."))
+      stop(paste0("Please specify 'percentage'.")) # nocov
     }
 
     # get range of pred distribution and slice in x tiles
