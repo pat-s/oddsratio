@@ -1,7 +1,8 @@
 #' @name or_glm
 #' @title Calculate odds ratios of Generalized Linear (Mixed) Models
 #'
-#' @importFrom stats coefficients confint predict
+#' @importFrom stats coefficients
+#' @importFrom stats confint
 #' @import mgcv
 #' @import MASS
 #'
@@ -28,7 +29,7 @@
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
 #'
 #' @examples
-#' ## Example with stats::glm()
+#' ## Example with glm()
 #' # load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and
 #' # fit model
 #' fit_glm <- glm(admit ~ gre + gpa + rank, data = data_glm,
@@ -39,15 +40,15 @@
 #'
 #' # Calculate OR and change the confidence interval level
 #' or_glm(data = data_glm, model = fit_glm,
-#'                    incr = list(gre = 380, gpa = 5), CI = .70)
+#'        incr = list(gre = 380, gpa = 5), CI = .70)
 #'
 #' ## Example with MASS:glmmPQL()
 #' # load data
 #' library(MASS)
 #' data(bacteria)
-#' fit_glmmPQL <- MASS::glmmPQL(y ~ trt + week, random = ~1 | ID,
-#'                              family = binomial, data = bacteria,
-#'                              verbose = FALSE)
+#' fit_glmmPQL <- glmmPQL(y ~ trt + week, random = ~1 | ID,
+#'                        family = binomial, data = bacteria,
+#'                        verbose = FALSE)
 #'
 #' # Apply function
 #' or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5))
@@ -58,7 +59,7 @@
 #' @seealso [or_gam]
 #'
 #' @export
-or_glm <- function(data = NULL, model = NULL, incr = NULL, CI = 0.95) {
+or_glm <- function(data, model, incr, CI = 0.95) {
 
   if (class(model)[1] == "glm") {
     # get pred names and coefficients without intercept
