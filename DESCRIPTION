@@ -30,10 +30,8 @@ Suggests: knitr,
           grid,
           gtable,
           scales,
-          testthat,
-          packagedocs
+          testthat
 LazyData: true
 ByteCompile: true
-VignetteBuilder: knitr,
-                 packagedocs
+VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
