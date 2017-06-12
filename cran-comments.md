@@ -6,7 +6,12 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
+
+E-Mail change of maintainer:
+
+Note_to_CRAN_maintainers
+Maintainer: ‘Patrick Schratz <patrick.schratz@gmail.com>’
 
 ## Reverse dependencies
 
