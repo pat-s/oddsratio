@@ -8,7 +8,7 @@ test_that("correct level count of indicator variable for glm", {
 
   out <- or_glm(data = data_glm, model = fit_glm)
 
-  expect_equal(length(out$predictor), length(levels(data_glm$rank)) - 1 )
+  expect_length(out$predictor, length(levels(data_glm$rank)) - 1)
 
 })
 

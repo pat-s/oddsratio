@@ -30,7 +30,8 @@ Suggests: knitr,
           grid,
           gtable,
           scales,
-          testthat
+          testthat,
+          pacman
 LazyData: true
 ByteCompile: true
 VignetteBuilder: knitr
