@@ -91,8 +91,8 @@ or_glm <- function(data, model, incr, CI = 0.95) {
     if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
       odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]]) * as.numeric(incr[[i]])), 3)
       if (!class(model)[1] == "glmmPQL") {
-        CI_low[[i]] <- round(exp(CI_list[i, 1] * as.numeric(incr[[i]])), 3)
-        CI_high[[i]] <- round(exp(CI_list[i, 2] * as.numeric(incr[[i]])), 3)
+        CI_low[[i]] <- round(exp(CI_list[i, 1] * as.numeric(incr[[i]])), 3) # nocov
+        CI_high[[i]] <- round(exp(CI_list[i, 2] * as.numeric(incr[[i]])), 3) # nocov
       }
       increments[[i]] <- as.numeric(incr[[i]])
       or <- odds_ratios[[i]]
