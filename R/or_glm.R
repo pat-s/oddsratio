@@ -22,7 +22,7 @@
 #' \item{CI_high}{Higher confident interval of odds ratio}
 #' \item{increment}{Increment of the predictor(s)}
 #'
-#' @details `CI_low` and `CI_high` are only calculted for GLM models because
+#' @details `CI_low` and `CI_high` are only calculated for GLM models because
 #' [glmmPQL] does not return confident intervals due to its penalizing
 #' behaviour.
 #'

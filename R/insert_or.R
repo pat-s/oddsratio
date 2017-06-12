@@ -17,7 +17,7 @@
 #' @param rect Logical. Whether to print a shaded rectangle between the
 #' vertical lines.
 #'
-#' @param arrow Logical. Wheter to print arrows above the inserted values.
+#' @param arrow Logical. Whether to print arrows above the inserted values.
 #' Default to `TRUE`.
 #'
 #' @param line_col,line_alpha,line_type,line_size Aesthetics of vertical lines.

@@ -26,7 +26,7 @@ insert_or(plot_object = NULL, or_object = NULL, line_col = "red",
 \item{rect}{Logical. Whether to print a shaded rectangle between the
 vertical lines.}
 
-\item{arrow}{Logical. Wheter to print arrows above the inserted values.
+\item{arrow}{Logical. Whether to print arrows above the inserted values.
 Default to \code{TRUE}.}
 
 \item{values}{Logical. Whether to print predictor value information nearby

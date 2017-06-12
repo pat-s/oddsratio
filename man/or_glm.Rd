@@ -29,7 +29,7 @@ This function calculates odds ratio(s) for specific
 increment steps of GLMs.
 }
 \details{
-\code{CI_low} and \code{CI_high} are only calculted for GLM models because
+\code{CI_low} and \code{CI_high} are only calculated for GLM models because
 \link{glmmPQL} does not return confident intervals due to its penalizing
 behaviour.
 
