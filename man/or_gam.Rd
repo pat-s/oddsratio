@@ -67,16 +67,16 @@ fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
 
 # Calculate OR for specific increment step of continuous variable
 or_gam(data = data_gam, model = fit_gam, pred = "x2",
-                   values = c(0.099, 0.198))
+       values = c(0.099, 0.198))
 
 ## Calculate OR for change of indicator variable
 or_gam(data = data_gam, model = fit_gam, pred = "x4",
-                   values = c("B", "D"))
+       values = c("B", "D"))
 
 ## Calculate ORs for percentage increments of predictor distribution
 ## (here: 20\%)
 or_gam(data = data_gam, model = fit_gam, pred = "x2",
-                   percentage = 20, slice = TRUE)
+       percentage = 20, slice = TRUE)
 
 }
 \seealso{
