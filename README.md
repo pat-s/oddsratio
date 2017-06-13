@@ -1,15 +1,17 @@
 
 #### General
 
-[![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=dev)](https://travis-ci.org/pat-s/oddsratio) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/pat-s/oddsratio?branch=dev&svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/pat-s/oddsratio/branch/dev/graph/badge.svg)](https://codecov.io/gh/pat-s/oddsratio) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--12-yellowgreen.svg)](/commits/dev)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.807719.svg)](https://doi.org/10.5281/zenodo.807719)
+
+| Resource:     | CRAN                                                                                                                                                                       | Travis CI                                                                                                                                                 | Appveyor                                                                                                                                                                       |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Platforms:*  | *Multiple*                                                                                                                                                                 | *Linux & macOS*                                                                                                                                           | *Windows*                                                                                                                                                                      |
+| R CMD check   | <a href="https://cran.r-project.org/web/checks/check_results_sperrorest.html"><img border="0" src="http://www.r-pkg.org/badges/version/sperrorest" alt="CRAN version"></a> | <a href="https://travis-ci.org/pat-s/sperrorest"><img src="https://travis-ci.org/pat-s/sperrorest.svg?branch=dev" alt="Build status"></a>                 | <a href="https://ci.appveyor.com/project/pat-s/sperrorest"><img src="https://ci.appveyor.com/api/projects/status/n4679ihnaixx86xv/branch/dev?svg=true" alt="Build status"></a> |
+| Test coverage |                                                                                                                                                                            | <a href="https://codecov.io/gh/pat-s/sperrorest"><img src="https://codecov.io/gh/pat-s/sperrorest/branch/dev/graph/badge.svg" alt="Coverage Status"/></a> |                                                                                                                                                                                |
 
 #### CRAN
 
-<a href="https://cran.r-project.org/web/checks/check_results_oddsratio.html"><img border="0" src="http://www.r-pkg.org/badges/version/oddsratio" alt="CRAN version"></a> [![Downloads](http://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](http://www.r-pkg.org/pkg/oddsratio) ![](http://cranlogs.r-pkg.org/badges/grand-total/oddsratio)
-
-#### Github
-
-[![packageversion](https://img.shields.io/badge/Package%20version-1.0.0.9000-orange.svg?style=flat-square)](commits/dev)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/sperrorest)](https://cran.r-project.org/package=sperrorest) [![Downloads](https://cranlogs.r-pkg.org/badges/sperrorest?color=brightgreen)](https://www.r-pkg.org/pkg/sperrorest) ![](https://cranlogs.r-pkg.org/badges/grand-total/sperrorest)
 
 Functions for calculation and plotting of odds ratios of Generalized Additive (Mixed) Models and Generalized Linear (Mixed) Models with a binomial response variable (i.e. logistic regression models).
 
