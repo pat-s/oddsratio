@@ -24,14 +24,14 @@ rvers <- "3.0.0"
 | Resource:     | CRAN                | Travis CI       | Appveyor         |
 | ------------- | ------------------- | --------------- | ---------------- |
 | _Platforms:_  | _Multiple_          | _Linux & macOS_ | _Windows_        |
-| R CMD check   | <a href="https://cran.r-project.org/web/checks/check_results_sperrorest.html"><img border="0" src="http://www.r-pkg.org/badges/version/sperrorest" alt="CRAN version"></a> | <a href="https://travis-ci.org/pat-s/sperrorest"><img src="https://travis-ci.org/pat-s/sperrorest.svg?branch=dev" alt="Build status"></a>   | <a href="https://ci.appveyor.com/project/pat-s/sperrorest"><img src="https://ci.appveyor.com/api/projects/status/n4679ihnaixx86xv/branch/dev?svg=true" alt="Build status"></a> |
-| Test coverage |                     | <a href="https://codecov.io/gh/pat-s/sperrorest"><img src="https://codecov.io/gh/pat-s/sperrorest/branch/dev/graph/badge.svg" alt="Coverage Status"/></a>     |                  |
+| R CMD check   | <a href="https://cran.r-project.org/web/checks/check_results_oddsratio.html"><img border="0" src="http://www.r-pkg.org/badges/version/oddsratio" alt="CRAN version"></a> | <a href="https://travis-ci.org/pat-s/oddsratio"><img src="https://travis-ci.org/pat-s/oddsratio.svg?branch=dev" alt="Build status"></a>   | <a href="https://ci.appveyor.com/project/pat-s/oddsratio"><img src="https://ci.appveyor.com/api/projects/status/n4679ihnaixx86xv/branch/dev?svg=true" alt="Build status"></a> |
+| Test coverage |                     | <a href="https://codecov.io/gh/pat-s/oddsratio"><img src="https://codecov.io/gh/pat-s/oddsratio/branch/dev/graph/badge.svg" alt="Coverage Status"/></a>     |                  |
 
 
 #### CRAN
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/sperrorest)](https://cran.r-project.org/package=sperrorest)
-[![Downloads](https://cranlogs.r-pkg.org/badges/sperrorest?color=brightgreen)](https://www.r-pkg.org/pkg/sperrorest)
-![](https://cranlogs.r-pkg.org/badges/grand-total/sperrorest)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/oddsratio)](https://cran.r-project.org/package=oddsratio)
+[![Downloads](https://cranlogs.r-pkg.org/badges/oddsratio?color=brightgreen)](https://www.r-pkg.org/pkg/oddsratio)
+![](https://cranlogs.r-pkg.org/badges/grand-total/oddsratio)
 
 Functions for calculation and plotting of odds ratios of Generalized Additive (Mixed)
 Models and Generalized Linear (Mixed) Models with a binomial
