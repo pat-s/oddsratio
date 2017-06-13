@@ -1,3 +1,8 @@
+# oddsratio 1.0.0 (June 12 2017)
+
+## Major
+  * rename functions (snake_case)
+
 # oddsratio 0.3.1 (Nov 9 2016)
 
 * update functions to work with ggplot2 v2.2

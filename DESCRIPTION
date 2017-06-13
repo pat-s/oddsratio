@@ -1,10 +1,9 @@
 Package: oddsratio
-Version: 0.3.1
+Version: 1.0.0
 Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
 Authors@R: c(
-    person("Patrick", "Schratz", , "patrick.schratz@uni-jena.de", c("aut", "cre"))
+    person("Patrick", "Schratz", , "patrick.schratz@gmail.com", c("aut", "cre"))
     )
-Maintainer: Patrick Schratz <patrick.schratz@gmail.com>
 Description: Simplified odds ratio calculation of GAM(M)s & GLM(M)s. 
     Provides structured output (data frame) of all predictors and their corresponding odds ratios and confident intervals
     for further analyses. It helps to avoid false references of predictors and increments by
@@ -24,22 +23,16 @@ Imports: mgcv,
          ggplot2 (>= 2.2.0),
          cowplot
 License: MIT + file LICENSE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Suggests: knitr,
           rmarkdown,
-          nlme, 
           grid,
           gtable,
           scales,
           testthat,
-          packagedocs
-Collate: 'data.R'
-        'helper.funs.R'
-        'pl.smooth.gam.R'
-        'calc.oddsratio.gam.R'
-        'calc.oddsratio.glm.R'
-        'add.oddsratio.into.plot.R'
+          pacman,
+          gam
 LazyData: true
 ByteCompile: true
-VignetteBuilder: knitr,
-                 packagedocs
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
