@@ -59,7 +59,7 @@
 #' @seealso [or_gam]
 #'
 #' @export
-or_glm <- function(data, model, incr, CI = 0.95) {
+or_glm <- function(data, model, incr, CI = 0.95) { #nolint
 
   if (class(model)[1] == "glm") {
     # get pred names and coefficients without intercept
@@ -77,33 +77,34 @@ or_glm <- function(data, model, incr, CI = 0.95) {
 
   increments <- list()
   odds_ratios <- list()
-  CI_low <- list()
-  CI_high <- list()
+  CI_low <- list() #nolint
+  CI_high <- list() #nolint
   for (i in preds) {
 
     # CI calculation
     if (class(model)[1] == "glm") {
-      CI_list <- as.data.frame(suppressMessages(confint(model,
-                                                        level = CI))) [-1, ]
+      CI_list <- as.data.frame(suppressMessages(confint(model, #nolint
+                                                        level = CI))) [-1, ] #nolint
     }
 
     # check if predictor is numeric or integer
     if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
-      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]]) * as.numeric(incr[[i]])), 3)
+      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]]) *
+                                      as.numeric(incr[[i]])), 3)
       if (!class(model)[1] == "glmmPQL") {
-        CI_low[[i]] <- round(exp(CI_list[i, 1] * as.numeric(incr[[i]])), 3) # nocov
-        CI_high[[i]] <- round(exp(CI_list[i, 2] * as.numeric(incr[[i]])), 3) # nocov
+        CI_low[[i]] <- round(exp(CI_list[i, 1] * as.numeric(incr[[i]])), 3) # nocov #nolint
+        CI_high[[i]] <- round(exp(CI_list[i, 2] * as.numeric(incr[[i]])), 3) # nocov #nolint
       }
       increments[[i]] <- as.numeric(incr[[i]])
-      or <- odds_ratios[[i]]
+      or <- odds_ratios[[i]] #nolint
     }
     # if pred is factor -> perform direct conversion to odds ratio
     else {
       odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
 
       if (!class(model)[1] == "glmmPQL") {
-        CI_low[[i]] <- round(exp(CI_list[i, 1]), 3)
-        CI_high[[i]] <- round(exp(CI_list[i, 2]), 3)
+        CI_low[[i]] <- round(exp(CI_list[i, 1]), 3) #nolint
+        CI_high[[i]] <- round(exp(CI_list[i, 2]), 3) #nolint
       }
 
       increments[[i]] <- "Indicator variable"
@@ -113,8 +114,8 @@ or_glm <- function(data, model, incr, CI = 0.95) {
 
   # set CIs NA if model is of type glmmPQL
   if (class(model)[1] == "glmmPQL") {
-    CI_low <- c(rep(NA, length(preds)))
-    CI_high <- c(rep(NA, length(preds)))
+    CI_low <- c(rep(NA, length(preds))) #nolint
+    CI_high <- c(rep(NA, length(preds))) #nolint
   }
 
   # create data frame to return
