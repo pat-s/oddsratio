@@ -44,9 +44,6 @@ and specify for which values we want to calculate the odds ratio.
 We can see that the odds of response `y` happening are 22 times higher when predictor `x2` increases
 from 0.099 to 0.198 while holding all other predictors constant.
 
-Add fake change
-
-
 ```{r}
 or_gam(data = data_gam, model = fit_gam, pred = "x2", 
        values = c(0.099, 0.198))
