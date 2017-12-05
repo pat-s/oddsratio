@@ -1,7 +1,6 @@
 ---
 title: "Function tutorial"
 author: "Patrick Schratz"
-date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
@@ -20,8 +19,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(ggplot2)
-library(cowplot)
+library("ggplot2")
+library("cowplot")
 ```
 
 ## Load example data & fit model
