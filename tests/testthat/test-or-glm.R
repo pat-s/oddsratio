@@ -19,7 +19,7 @@ test_that("or_glm works with glmmPQL", {
                          family = binomial, data = bacteria,
                          verbose = FALSE)
   # Apply function
-  out <- or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5)) # no lint
+  out <- or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5)) # nolint
 
   expect_length(out, 5)
 
