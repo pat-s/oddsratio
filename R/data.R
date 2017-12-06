@@ -25,6 +25,6 @@ NULL
 #'
 #' @format a `data.frame` randomly created numerical and non-numerical variables
 #'
-#' @source Taken from \url{http://www.ats.ucla.edu/stat/r/dae/logit.htm}, direct download
-#' link: \url{http://www.ats.ucla.edu/stat/data/binary.csv}
+#' @source Taken from \url{http://www.ats.ucla.edu/stat/r/dae/logit.htm},
+#' direct download link: \url{http://www.ats.ucla.edu/stat/data/binary.csv}
 NULL

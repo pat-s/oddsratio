@@ -77,7 +77,7 @@
 #'
 #' @export
 or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
-                   percentage = NULL, slice = FALSE, CI = NULL) {
+                   percentage = NULL, slice = FALSE, CI = NULL) { #nolint
 
   names_pred <- colnames(data)
 
@@ -127,8 +127,8 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
       pred_gam1 <- as.numeric(predict(model, data,
                                       type = "link", se.fit = TRUE))
       # calc 95% CI log odds (mean +- 2* stdev)
-      pred_gam1_CI_low <- pred_gam1[1] - (2 * pred_gam1[2])
-      pred_gam1_CI_high <- pred_gam1[1] + (2 * pred_gam1[2])
+      pred_gam1_CI_low <- pred_gam1[1] - (2 * pred_gam1[2]) #nolint
+      pred_gam1_CI_high <- pred_gam1[1] + (2 * pred_gam1[2]) #nolint
 
       # set values[2] of pred
       data[, pred] <- range_v[x + 1]
@@ -136,10 +136,10 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
       pred_gam2 <- as.numeric(predict(model, data,
                                       type = "link", se.fit = TRUE))
       # calc 95% CI log odds (mean +- 2* stdev)
-      pred_gam2_CI_low <- pred_gam2[1] - (2 * pred_gam2[2])
-      pred_gam2_CI_high <- pred_gam2[1] + (2 * pred_gam2[2])
+      pred_gam2_CI_low <- pred_gam2[1] - (2 * pred_gam2[2]) #nolint
+      pred_gam2_CI_high <- pred_gam2[1] + (2 * pred_gam2[2]) #nolint
 
-      result$predictor = pred
+      result$predictor <- pred
       result$oddsratio[x] <- round(as.numeric(exp(pred_gam2[1] -
                                                     pred_gam1[1])), 2)
       result$value1[x] <- round(range_v[x], 3)
@@ -148,8 +148,8 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
                                                   pred_gam1_CI_low)), 2) # no mistake # nolint
       result$CI_low[x] <- round(as.numeric(exp(pred_gam2_CI_high -
                                                  pred_gam1_CI_high)), 2) # no mistake # nolint
-      result$perc1[x] <- percentage*x - percentage
-      result$perc2[x] <- percentage*x
+      result$perc1[x] <- percentage * x - percentage
+      result$perc2[x] <- percentage * x
     }
 
     # change col names
@@ -175,16 +175,16 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
   # calc log odds for value 1
   pred_gam1 <- as.numeric(predict(model, data, type = "link", se.fit = TRUE))
   # calc 95% CI log odds (mean +- 2* stdev)
-  pred_gam1_CI_low <- pred_gam1[1] - (2 * pred_gam1[2])
-  pred_gam1_CI_high <- pred_gam1[1] + (2 * pred_gam1[2])
+  pred_gam1_CI_low <- pred_gam1[1] - (2 * pred_gam1[2]) #nolint
+  pred_gam1_CI_high <- pred_gam1[1] + (2 * pred_gam1[2]) #nolint
 
   # set values[2] of pred
   data[, pred] <- values[2]
   # calc log odds for value 2
   pred_gam2 <- as.numeric(predict(model, data, type = "link", se.fit = TRUE))
   # calc 95% CI log odds (mean +- 2* stdev)
-  pred_gam2_CI_low <- pred_gam2[1] - (2 * pred_gam2[2])
-  pred_gam2_CI_high <- pred_gam2[1] + (2 * pred_gam2[2])
+  pred_gam2_CI_low <- pred_gam2[1] - (2 * pred_gam2[2]) #nolint
+  pred_gam2_CI_high <- pred_gam2[1] + (2 * pred_gam2[2]) #nolint
 
   odds_ratio <- as.numeric(exp(pred_gam2[1] - pred_gam1[1]), 2)
 

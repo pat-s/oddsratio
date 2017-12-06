@@ -15,11 +15,11 @@ test_that("correct level count of indicator variable for glm", {
 test_that("or_glm works with glmmPQL", {
 
   data(bacteria)
-  fit_glmmPQL <-glmmPQL(y ~ trt + week, random = ~1 | ID,
-                        family = binomial, data = bacteria,
-                        verbose = FALSE)
+  fit_glmmPQL <- glmmPQL(y ~ trt + week, random = ~1 | ID, #nolint
+                         family = binomial, data = bacteria,
+                         verbose = FALSE)
   # Apply function
-  out <- or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5))
+  out <- or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5)) # nolint
 
   expect_length(out, 5)
 

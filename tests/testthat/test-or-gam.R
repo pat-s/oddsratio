@@ -6,7 +6,7 @@ test_that("or_gam works for continuous variable", {
 
   data("data_gam")
   library(mgcv)
-  fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
+  fit_gam <- gam(y ~ s(x0) + s(I(x1 ^ 2)) + s(x2) +
                    offset(x3) + x4, data = data_gam) # fit model
 
   # Calculate OR for specific increment step of continuous variable
@@ -20,7 +20,7 @@ test_that("or_gam works with indicator variables", {
 
   data("data_gam")
   library(mgcv)
-  fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
+  fit_gam <- gam(y ~ s(x0) + s(I(x1 ^ 2)) + s(x2) +
                    offset(x3) + x4, data = data_gam) # fit model
 
   ## Calculate OR for change of indicator variable
@@ -40,7 +40,7 @@ test_that("or_gam works on percentage increments", {
 
   data("data_gam")
   library(mgcv)
-  fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
+  fit_gam <- gam(y ~ s(x0) + s(I(x1 ^ 2)) + s(x2) +
                    offset(x3) + x4, data = data_gam) # fit model
 
   ## Calculate ORs for percentage increments of predictor distribution

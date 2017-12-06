@@ -1,8 +1,8 @@
 #' @name plot_gam
 #' @title Plot smoothing functions of GAM(M) models
 #'
-#' @description This function plots the smoothing function of selected GAM(M) models
-#' using the `ggplot2` plotting system.
+#' @description This function plots the smoothing function of selected GAM(M)
+#' models using the `ggplot2` plotting system.
 #'
 #' @import ggplot2
 #' @importFrom cowplot background_grid
@@ -24,7 +24,8 @@
 #' @param ci_fill Character. Fill color of area between smoothing function and
 #' its confident interval lines.
 #'
-#' @param ci_alpha Numeric (range: 0-1). Opacity value of confidence interval shading.
+#' @param ci_alpha Numeric (range: 0-1). Opacity value of confidence interval
+#' shading.
 #'
 #' @param ci_line_size,sm_fun_size Line sizes.
 #'
@@ -63,7 +64,7 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
                      xlab = NULL, ylab = NULL, limits_y = NULL,
                      breaks_y = NULL) {
 
-  df <- gam_to_df(model, pred)
+  df <- gam_to_df(model, pred) #nolint
 
   if (is.null(xlab)) {
     xlab <- df[[pred]]$xlab
@@ -100,7 +101,7 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
 
   # optional ggplot arguments
   if (!is.null(title)) {
-    plot_gam <- plot_gam + ggtitle(title)
+    plot_gam <- plot_gam + ggtitle(title) #nolint
   }
 
   return(plot_gam)
