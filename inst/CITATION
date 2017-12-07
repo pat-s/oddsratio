@@ -1,0 +1,13 @@
+citHeader("To cite package 'oddsratio' in publications use:")
+citEntry(entry = "Manual",
+	title = "R package 'oddsratio': Odds Ratio Calculation for GAM(M)s & GLM(M)s",
+	author = personList(as.person("Patrick Schratz")),
+	year = "2016",
+	version = "1.0.0",
+	doi = "http://doi.org/10.5281/zenodo.807719",
+	textVersion =
+	  paste("Schratz, P. (2016):",
+		      "R package 'oddsratio': Odds Ratio Calculation for GAM(M)s & GLM(M)s,",
+		      "version: 1.0.0,",
+		      "doi: http://doi.org/10.5281/zenodo.807719")
+)
