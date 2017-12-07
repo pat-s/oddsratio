@@ -27,7 +27,7 @@ install.packages("oddsratio")
 Get the development version from Github:
 
 ``` r
-remotes::install_github("pat-s/oddsratio@dev")
+remotes::install_github("pat-s/oddsratio")
 ```
 
 Examples
