@@ -1,3 +1,8 @@
+# oddsratio 1.0.2 (December 08 2017)
+
+## Minor
+  * Add CITATION file
+
 # oddsratio 1.0.0 (June 12 2017)
 
 ## Major
