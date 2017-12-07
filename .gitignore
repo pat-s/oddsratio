@@ -9,3 +9,5 @@ inst/doc
 _gh-pages
 vignettes/*.html
 vignettes/*.R
+tic.R
+_pkgdown.yml

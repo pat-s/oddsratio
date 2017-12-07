@@ -12,5 +12,3 @@ README_files
 ^_gh-pages$
 docs/
 revdep/
-_pkgdown.yml
-tic.R
