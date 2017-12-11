@@ -25,7 +25,21 @@ after_failure: R -q -e 'tic::after_failure()'
 # DO NOT CHANGE THE CODE ABOVE
 
 matrix:
+  allow_failures:
+    - env: DEPLOY=true
   include:
+    - os: linux
+      r: release
+      env: DEPLOY=true
+      script:
+        - R CMD build .
+      deploy:
+          provider: script
+          script: R -q -e 'tic::deploy()'
+          on:
+            all_branches: true
+      after_deploy: R -q -e 'tic::after_deploy()'
+      after_script: R -q -e 'tic::after_script()'
     - os: linux
       r: oldrel
       r_github_packages:
@@ -34,14 +48,6 @@ matrix:
       r: release
       r_github_packages:
         - hadley/testthat
-      before_deploy: R -q -e 'tic::before_deploy();remotes::install_github("pat-s/pkgdown")'
-      deploy:
-          provider: script
-          script: R -q -e 'tic::deploy()'
-          on:
-            all_branches: true
-      after_deploy: R -q -e 'tic::after_deploy()'
-      after_script: R -q -e 'tic::after_script()'
     - os: linux
       r: devel
       r_github_packages:
