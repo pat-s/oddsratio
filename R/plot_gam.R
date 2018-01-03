@@ -63,7 +63,7 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
                      xlab = NULL, ylab = NULL, limits_y = NULL,
                      breaks_y = NULL) {
 
-  df <- gam_to_df(model, pred)
+  df <- gam_to_df(model, pred) # nolint
 
   if (is.null(xlab)) {
     xlab <- df[[pred]]$xlab
@@ -100,7 +100,7 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
 
   # optional ggplot arguments
   if (!is.null(title)) {
-    plot_gam <- plot_gam + ggtitle(title)
+    plot_gam <- plot_gam + ggtitle(title) # nolint
   }
 
   return(plot_gam)

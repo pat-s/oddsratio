@@ -87,7 +87,7 @@
 #'           arrow_length = 0.01, rect = TRUE)
 #' @export
 
-insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # nocov start
+insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # nocov start # nolint
                       line_size = 1.2, line_type = "solid", line_alpha = 1,
                       text_alpha = 1, text_size = 4, text_col = "black",
                       rect_alpha = 0.5, rect_col = NULL,
@@ -143,7 +143,7 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # 
 
     if (is.null(arrow_xloc_l)) {
       # calc arrow shift from x axis range
-      arrow_xloc_l <- -(max(plot_object$data$y) - min(plot_object$data$y)) *
+      arrow_xloc_l <- - (max(plot_object$data$y) - min(plot_object$data$y)) *
         0.002
     }
 

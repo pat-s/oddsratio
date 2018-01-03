@@ -139,7 +139,7 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
       pred_gam2_CI_low <- pred_gam2[1] - (2 * pred_gam2[2])
       pred_gam2_CI_high <- pred_gam2[1] + (2 * pred_gam2[2])
 
-      result$predictor = pred
+      result$predictor <- pred
       result$oddsratio[x] <- round(as.numeric(exp(pred_gam2[1] -
                                                     pred_gam1[1])), 2)
       result$value1[x] <- round(range_v[x], 3)
@@ -148,8 +148,8 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
                                                   pred_gam1_CI_low)), 2) # no mistake # nolint
       result$CI_low[x] <- round(as.numeric(exp(pred_gam2_CI_high -
                                                  pred_gam1_CI_high)), 2) # no mistake # nolint
-      result$perc1[x] <- percentage*x - percentage
-      result$perc2[x] <- percentage*x
+      result$perc1[x] <- percentage * x - percentage
+      result$perc2[x] <- percentage * x
     }
 
     # change col names

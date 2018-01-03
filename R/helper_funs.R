@@ -75,7 +75,7 @@ no_plot <- function(model = NULL) {
 
 gam_to_df <- function(model = NULL, pred = NULL) {
 
-  plot_df <- no_plot(model)
+  plot_df <- no_plot(model) # nolint
 
   # get list index of spec. predictor
   set_pred <- which(grepl(pred, plot_df))

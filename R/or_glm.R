@@ -89,13 +89,16 @@ or_glm <- function(data, model, incr, CI = 0.95) {
 
     # check if predictor is numeric or integer
     if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
-      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]]) * as.numeric(incr[[i]])), 3)
+      odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]]) *
+                                      as.numeric(incr[[i]])), 3)
       if (!class(model)[1] == "glmmPQL") {
-        CI_low[[i]] <- round(exp(CI_list[i, 1] * as.numeric(incr[[i]])), 3) # nocov
-        CI_high[[i]] <- round(exp(CI_list[i, 2] * as.numeric(incr[[i]])), 3) # nocov
+        CI_low[[i]] <- round(exp(CI_list[i, 1] * # nocov start
+                                   as.numeric(incr[[i]])), 3)
+        CI_high[[i]] <- round(exp(CI_list[i, 2] *
+                                    as.numeric(incr[[i]])), 3) # nocov end
       }
       increments[[i]] <- as.numeric(incr[[i]])
-      or <- odds_ratios[[i]]
+      or <- odds_ratios[[i]] # nolint
     }
     # if pred is factor -> perform direct conversion to odds ratio
     else {
