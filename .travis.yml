@@ -8,7 +8,7 @@ latex: false
 
 # These steps apply to all matrix jobs unless defined differently in tic.R
 before_install: 
-  - R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages(); tic::before_install()'
+  - R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages(); tic::before_install(); remotes::install_github("tidyverse/ggplot2")'
 
 matrix:
   fast_finish: true

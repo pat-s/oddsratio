@@ -114,9 +114,9 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # 
     # set drawing order to place rect behind smoothing fun
     plot_object$layers <- c(geom_rect(data = plot_object$data[1,], # avoids multiple rect drawings # nolint
                                       ymin = ggplot_build(plot_object)$layout$
-                                        panel_ranges[[1]]$y.range[1],
+                                        panel_params[[1]]$y.range[1],
                                       ymax = ggplot_build(plot_object)$layout$
-                                        panel_ranges[[1]]$y.range[2],
+                                        panel_params[[1]]$y.range[2],
                                       xmin = or_object$value1,
                                       xmax = or_object$value2,
                                       alpha = rect_alpha, fill = rect_col),

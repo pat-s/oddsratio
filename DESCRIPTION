@@ -1,7 +1,7 @@
 Package: oddsratio
 Version: 1.0.2.9000
-Date: 2017-12-07
-Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
+Date: 2018-05-26
+Title: Odds ratio calculation for GAM(M)s & GLM(M)s
 Authors@R: c(
    person("Patrick", "Schratz", ,
    email = "patrick.schratz@gmail.com", 
@@ -9,14 +9,11 @@ Authors@R: c(
    comment = c(ORCID = '0000-0003-0748-6624'))
   )
 Description: Simplified odds ratio calculation of GAM(M)s & GLM(M)s. 
-    Provides structured output (data frame) of all predictors and their corresponding odds ratios and confident intervals
-    for further analyses. It helps to avoid false references of predictors and increments by
-    specifying these parameters in a list instead of using 'exp(coef(model))' 
-    (standard approach of odds ratio calculation for GLMs) which just returns a plain numeric output. 
-    For GAM(M)s, odds ratio calculation is highly simplified with this package since it takes care of
-    the multiple 'predict()' calls of the chosen predictor while holding other predictors constant.
-    Also, this package allows odds ratio calculation of percentage steps across the whole
-    predictor distribution range for GAM(M)s. In both cases, confident intervals are returned additionally.
+    Provides structured output (data frame) of all predictors and their corresponding odds ratios and confident intervals for further analyses. 
+    It helps to avoid false references of predictors and increments by specifying these parameters in a list instead of using 'exp(coef(model))' (standard approach of odds ratio calculation for GLMs) which just returns a plain numeric output. 
+    For GAM(M)s, odds ratio calculation is highly simplified with this package since it takes care of the multiple 'predict()' calls of the chosen predictor while holding other predictors constant.
+    Also, this package allows odds ratio calculation of percentage steps across the whole predictor distribution range for GAM(M)s. 
+    In both cases, confident intervals are returned additionally.
     Calculated odds ratio of GAM(M)s can be inserted into the smooth function plot. 
 URL: https://github.com/pat-s/oddsratio
 BugReports: https://github.com/pat-s/oddsratio/issues
@@ -24,7 +21,7 @@ Depends: R (>= 3.0.0)
 Imports: mgcv, 
          MASS, 
          stats,
-         ggplot2 (>= 2.2.0),
+         ggplot2 (>= 2.2.1),
          cowplot
 License: MIT + file LICENSE
 RoxygenNote: 6.0.1
