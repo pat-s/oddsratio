@@ -18,3 +18,4 @@ There are no reverse dependencies.
 "There are currently no downstream dependencies for this package”
 
 
+Update for upcoming ggplot2 v2.3.0 release

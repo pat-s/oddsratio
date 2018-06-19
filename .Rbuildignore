@@ -15,3 +15,4 @@ revdep/
 _pkgdown.yml
 tic.R
 ^_pkgdown\.yml$
+^oddsratio\.Rproj$

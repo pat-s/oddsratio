@@ -1,3 +1,7 @@
+# oddsratio 1.0.3 (June 19 2018)
+
+* update functions to work with ggplot2 v2.3.0
+
 # oddsratio 1.0.2 (December 08 2017)
 
 ## Minor
@@ -10,7 +14,7 @@
 
 # oddsratio 0.3.1 (Nov 9 2016)
 
-* update functions to work with ggplot2 v2.2
+* update functions to work with ggplot2 v2.2.0
 * add data and enable lazy loading in examples
 
 # oddsratio 0.3.0 (Oct 27 2016)
