@@ -1,7 +1,7 @@
 Package: oddsratio
 Version: 1.0.3
 Date: 2018-07-04
-Title: Odds ratio calculation for GAM(M)s & GLM(M)s
+Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
 Authors@R: c(
    person("Patrick", "Schratz", ,
    email = "patrick.schratz@gmail.com", 
