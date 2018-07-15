@@ -1,6 +1,6 @@
 # oddsratio 1.0.3 (June 19 2018)
 
-* update functions to work with ggplot2 v2.3.0
+* update functions to work with ggplot2 v3.0.0
 
 # oddsratio 1.0.2 (December 08 2017)
 
