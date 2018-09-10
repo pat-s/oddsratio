@@ -24,7 +24,7 @@
 #'
 #' @details `CI_low` and `CI_high` are only calculated for GLM models because
 #' [glmmPQL] does not return confident intervals due to its penalizing
-#' behaviour.
+#' behavior.
 #'
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
 #'

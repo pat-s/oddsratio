@@ -1,7 +1,7 @@
 Package: oddsratio
 Version: 1.0.3
-Date: 2018-06-19
-Title: Odds ratio calculation for GAM(M)s & GLM(M)s
+Date: 2018-07-15
+Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
 Authors@R: c(
    person("Patrick", "Schratz", ,
    email = "patrick.schratz@gmail.com", 
@@ -21,7 +21,7 @@ Depends: R (>= 3.0.0)
 Imports: mgcv, 
          MASS, 
          stats,
-         ggplot2 (>= 2.2.1),
+         ggplot2 (>= 3.0.0),
          cowplot
 License: MIT + file LICENSE
 RoxygenNote: 6.0.1

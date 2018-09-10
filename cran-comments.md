@@ -1,6 +1,6 @@
 ## Test environments
 
-* local Arch Linux installation, R 3.5.0
+* local Arch Linux installation, R 3.5.1
 * ubuntu 14.04 (on travis-ci), R-devel
 * OSX 10.12, Xcode 8.3 (on travis-ci), R-devel
 * win-builder (devel and release)
@@ -16,6 +16,3 @@ There are no reverse dependencies.
 ## Downstream dependencies
 
 "There are currently no downstream dependencies for this package”
-
-
-Update for upcoming ggplot2 v2.3.0 release
