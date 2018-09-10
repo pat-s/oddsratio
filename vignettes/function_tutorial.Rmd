@@ -138,7 +138,7 @@ Aesthetics like opacity or color are fully customizable.
 ## GLM example
 
 Fit model.  
-Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
+Data source: https://stats.idre.ucla.edu/stat/data/binary.csv
 
 ```{r}
 fit_glm <- glm(admit ~ gre + gpa + rank, data = data_glm, family = "binomial")

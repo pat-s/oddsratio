@@ -59,7 +59,7 @@ For factor variables (here: `rank` with 4 levels), automatically all odds ratios
 corresponding to the base level (here: `rank1`) are returned including their 
 respective confident intervals. The default level is 95%. 
 However, other levels can be specified with the param `CI`.
-Data source: http://www.ats.ucla.edu/stat/r/dae/logit.htm
+Data source: https://stats.idre.ucla.edu/stat/data/binary.csv
 
 ```{r}
 pacman::p_load(oddsratio, mgcv)
