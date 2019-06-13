@@ -82,8 +82,7 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
     geom_ribbon(aes_(x = ~x, ymin = ~se_lwr, ymax = ~se_upr),
                 fill = ci_fill, alpha = ci_alpha) +
     ylab(ylab) +
-    xlab(xlab) +
-    cowplot::background_grid(major = "xy", minor = "none")
+    xlab(xlab)
 
   if (!is.null(limits_y) & !is.null(breaks_y)) {
     plot_gam <- plot_gam +
