@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio)
+[![Build status](https://ci.appveyor.com/api/projects/status/s5t0sowc6mxu4yhl/branch/master?svg=true)](https://ci.appveyor.com/project/pat-s/oddsratio/branch/master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/oddsratio)](https://cran.r-project.org/package=oddsratio)
 [![cran checks](https://cranchecks.info/badges/worst/oddsratio)](https://cran.r-project.org/web/checks/check_results_oddsratio.html)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/oddsratio)](https://cran.rstudio.com/web/packages/oddsratio/index.html)
