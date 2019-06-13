@@ -12,30 +12,27 @@ or_gam(data = NULL, model = NULL, pred = NULL, values = NULL,
 
 \item{model}{A fitted GAM(M).}
 
-\item{pred}{Character. Predictor name for which to calculate
-the odds ratio.}
+\item{pred}{Character. Predictor name for which to calculate the odds ratio.}
 
-\item{values}{Numeric vector of length two.
-Predictor values to estimate odds ratio from. Function is written to use the
-first provided value as the "lower" one, i.e. calculating the odds ratio
-'from value1 to value2'. Only used if \code{slice = FALSE}.}
+\item{values}{Numeric vector of length two. Predictor values to estimate odds
+ratio from. Function is written to use the first provided value as the
+"lower" one, i.e. calculating the odds ratio 'from value1 to value2'. Only
+used if \code{slice = FALSE}.}
 
-\item{percentage}{Numeric. Percentage number to split the
-predictor distribution into.
-A value of 10 would split the predictor distribution by 10\% intervals.
-Only needed if \code{slice = TRUE}.}
+\item{percentage}{Numeric. Percentage number to split the predictor
+distribution into. A value of 10 would split the predictor distribution by
+10\% intervals. Only needed if \code{slice = TRUE}.}
 
-\item{slice}{Logical. \code{Default = FALSE}. Whether to calculate
-odds ratios for fixed increment steps over the whole predictor distribution.
-See \code{percentage} for setting the increment values.}
+\item{slice}{Logical. \code{Default = FALSE}. Whether to calculate odds ratios for
+fixed increment steps over the whole predictor distribution. See
+\code{percentage} for setting the increment values.}
 
-\item{CI}{Numeric. Currently fixed to 95\% confidence interval level
-(2.5\% - 97.5\%).
-It should not be changed in a function call!}
+\item{CI}{Numeric. Currently fixed to 95\% confidence interval level (2.5\% -
+97.5\%). It should not be changed in a function call!}
 }
 \value{
-A data frame with (up to) eight columns. \code{perc1} and \code{perc2}
-are only returned if \code{slice = TRUE}:
+A data frame with (up to) eight columns. \code{perc1} and \code{perc2} are only
+returned if \code{slice = TRUE}:
 \item{predictor}{Predictor name}
 \item{value1}{First value of odds ratio calculation}
 \item{value2}{Second value of odds ratio calculation}
@@ -47,37 +44,39 @@ are only returned if \code{slice = TRUE}:
 }
 \description{
 This function calculates odds ratio(s) for specific increment
-steps of a GAM(M)s.
-
-Odds ratios can also be calculated for continuous percentage
-increment steps across the whole predictor distribution using \code{slice = TRUE}.
+steps of a GAM(M)s. Odds ratios can also be calculated for continuous
+percentage increment steps across the whole predictor distribution using
+\code{slice = TRUE}.
 }
 \details{
-Currently supported functions: \link[mgcv:gam]{mgcv::gam},
-\link[mgcv:gamm]{mgcv::gamm}, \link[gam:gam]{gam::gam}.
-
-For \link[mgcv:gamm]{mgcv::gamm}, the \code{model} input of
-\link{or_gam} needs to be the \code{gam} output (e.g. \code{fit_gam$gam}).
+Currently supported functions: \link[mgcv:gam]{mgcv::gam}, \link[mgcv:gamm]{mgcv::gamm},
+\link[gam:gam]{gam::gam}. For \link[mgcv:gamm]{mgcv::gamm}, the \code{model} input of \link{or_gam} needs to be the
+\code{gam} output (e.g. \code{fit_gam$gam}).
 }
 \examples{
 # load data (Source: ?mgcv::gam) and fit model
 library(mgcv)
 fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
-               offset(x3) + x4, data = data_gam) # fit model
+  offset(x3) + x4, data = data_gam) # fit model
 
 # Calculate OR for specific increment step of continuous variable
-or_gam(data = data_gam, model = fit_gam, pred = "x2",
-       values = c(0.099, 0.198))
+or_gam(
+  data = data_gam, model = fit_gam, pred = "x2",
+  values = c(0.099, 0.198)
+)
 
 ## Calculate OR for change of indicator variable
-or_gam(data = data_gam, model = fit_gam, pred = "x4",
-       values = c("B", "D"))
+or_gam(
+  data = data_gam, model = fit_gam, pred = "x4",
+  values = c("B", "D")
+)
 
 ## Calculate ORs for percentage increments of predictor distribution
 ## (here: 20\%)
-or_gam(data = data_gam, model = fit_gam, pred = "x2",
-       percentage = 20, slice = TRUE)
-
+or_gam(
+  data = data_gam, model = fit_gam, pred = "x2",
+  percentage = 20, slice = TRUE
+)
 }
 \seealso{
 \link{or_glm}

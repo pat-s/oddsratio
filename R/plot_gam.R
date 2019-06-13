@@ -5,7 +5,6 @@
 #' using the `ggplot2` plotting system.
 #'
 #' @import ggplot2
-#' @importFrom cowplot background_grid
 #' @importFrom grDevices dev.off png
 #' @importFrom graphics plot
 #' @param model A fitted model of class `gam`.
@@ -44,11 +43,11 @@
 #' # load data (Source: ?mgcv::gam) and fit model
 #' library(mgcv)
 #' fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4,
-#'                      data = data_gam)
+#'   data = data_gam
+#' )
 #'
 #' library(oddsratio)
 #' plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
-#'
 #' @seealso [plot_gam]
 #' @seealso [or_gam]
 #' @seealso [insert_or]
@@ -75,15 +74,19 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
 
   plot_gam <- ggplot(df, aes_(~x, ~y)) +
     geom_line(colour = col_line, size = sm_fun_size) +
-    geom_line(aes_(~x, ~se_upr), linetype = ci_line_type,
-              colour = ci_line_col, size = ci_line_size) +
-    geom_line(aes_(~x, ~se_lwr), linetype = ci_line_type,
-              colour = ci_line_col, size = ci_line_size) +
+    geom_line(aes_(~x, ~se_upr),
+      linetype = ci_line_type,
+      colour = ci_line_col, size = ci_line_size
+    ) +
+    geom_line(aes_(~x, ~se_lwr),
+      linetype = ci_line_type,
+      colour = ci_line_col, size = ci_line_size
+    ) +
     geom_ribbon(aes_(x = ~x, ymin = ~se_lwr, ymax = ~se_upr),
-                fill = ci_fill, alpha = ci_alpha) +
+      fill = ci_fill, alpha = ci_alpha
+    ) +
     ylab(ylab) +
-    xlab(xlab) +
-    cowplot::background_grid(major = "xy", minor = "none")
+    xlab(xlab)
 
   if (!is.null(limits_y) & !is.null(breaks_y)) {
     plot_gam <- plot_gam +

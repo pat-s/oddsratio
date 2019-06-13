@@ -13,20 +13,18 @@ or_glm(data, model, incr, CI = 0.95)
 
 \item{incr}{List. Increment values of each predictor.}
 
-\item{CI}{numeric. Which confident interval to calculate.
-Must be between 0 and 1. Default to 0.95}
+\item{CI}{numeric. Which confident interval to calculate. Must be between 0
+and 1. Default to 0.95}
 }
 \value{
-A data frame with five columns:
-\item{predictor}{Predictor name(s)}
-\item{oddsratio}{Calculated odds ratio(s)}
-\item{CI_low}{Lower confident interval of odds ratio}
-\item{CI_high}{Higher confident interval of odds ratio}
-\item{increment}{Increment of the predictor(s)}
+A data frame with five columns: \item{predictor}{Predictor name(s)}
+\item{oddsratio}{Calculated odds ratio(s)} \item{CI_low}{Lower confident
+interval of odds ratio} \item{CI_high}{Higher confident interval of odds
+ratio} \item{increment}{Increment of the predictor(s)}
 }
 \description{
-This function calculates odds ratio(s) for specific
-increment steps of GLMs.
+This function calculates odds ratio(s) for specific increment
+steps of GLMs.
 }
 \details{
 \code{CI_low} and \code{CI_high} are only calculated for GLM models because
@@ -40,27 +38,32 @@ Currently supported functions: \link{glm},
 ## Example with glm()
 # load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and
 # fit model
-fit_glm <- glm(admit ~ gre + gpa + rank, data = data_glm,
-               family = "binomial") # fit model
+fit_glm <- glm(admit ~ gre + gpa + rank,
+  data = data_glm,
+  family = "binomial"
+) # fit model
 
 # Calculate OR for specific increment step of continuous variable
 or_glm(data = data_glm, model = fit_glm, incr = list(gre = 380, gpa = 5))
 
 # Calculate OR and change the confidence interval level
-or_glm(data = data_glm, model = fit_glm,
-       incr = list(gre = 380, gpa = 5), CI = .70)
+or_glm(
+  data = data_glm, model = fit_glm,
+  incr = list(gre = 380, gpa = 5), CI = .70
+)
 
 ## Example with MASS:glmmPQL()
 # load data
 library(MASS)
 data(bacteria)
-fit_glmmPQL <- glmmPQL(y ~ trt + week, random = ~1 | ID,
-                       family = binomial, data = bacteria,
-                       verbose = FALSE)
+fit_glmmPQL <- glmmPQL(y ~ trt + week,
+  random = ~ 1 | ID,
+  family = binomial, data = bacteria,
+  verbose = FALSE
+)
 
 # Apply function
 or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5))
-
 }
 \seealso{
 \link{or_gam}

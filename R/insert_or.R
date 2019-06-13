@@ -5,11 +5,10 @@
 #' a plot of a GAM(M) smoothing function.
 #'
 #' @import ggplot2
-#' @importFrom cowplot background_grid
 #'
 #' @param plot_object A `ggplot` object from [plot_gam].
 #'
-#' @param or_object A returned data.frame from [or_gam].
+#' @param or_object A [tibble] as returned from [or_gam].
 #'
 #' @param values Logical. Whether to print predictor value information nearby
 #' the inserted vertical lines. Default to `TRUE`.
@@ -60,31 +59,39 @@
 #' # load data (Source: ?mgcv::gam) and fit model
 #' library(mgcv)
 #' fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
-#'                offset(x3) + x4, data = data_gam) # fit model
+#'   offset(x3) + x4, data = data_gam) # fit model
 #'
 #' # create input objects (plot + odds ratios)
 #' library(oddsratio)
 #' plot_object <- plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
-#' or_object1 <- or_gam(data = data_gam, model = fit_gam,
-#'                      pred = "x2", values = c(0.099, 0.198))
+#' or_object1 <- or_gam(
+#'   data = data_gam, model = fit_gam,
+#'   pred = "x2", values = c(0.099, 0.198)
+#' )
 #'
 #' # insert first odds ratios to plot
-#' plot_object <- insert_or(plot_object, or_object1, or_yloc = 3,
-#'                          values_xloc = 0.04, line_size = 0.5,
-#'                          line_type = "dotdash", text_size = 6,
-#'                          values_yloc = 0.5, arrow_col = "red")
+#' plot_object <- insert_or(plot_object, or_object1,
+#'   or_yloc = 3,
+#'   values_xloc = 0.04, line_size = 0.5,
+#'   line_type = "dotdash", text_size = 6,
+#'   values_yloc = 0.5, arrow_col = "red"
+#' )
 #'
 #' # calculate second odds ratio
-#' or_object2 <- or_gam(data = data_gam, model = fit_gam, pred = "x2",
-#'                      values = c(0.4, 0.6))
+#' or_object2 <- or_gam(
+#'   data = data_gam, model = fit_gam, pred = "x2",
+#'   values = c(0.4, 0.6)
+#' )
 #'
 #' # add or_object2 into plot
-#' insert_or(plot_object, or_object2, or_yloc = 2.1, values_yloc = 2,
-#'           line_col = "green4", text_col = "black",
-#'           rect_col = "green4", rect_alpha = 0.2,
-#'           line_alpha = 1, line_type = "dashed",
-#'           arrow_xloc_r = 0.01, arrow_xloc_l = -0.01,
-#'           arrow_length = 0.01, rect = TRUE)
+#' insert_or(plot_object, or_object2,
+#'   or_yloc = 2.1, values_yloc = 2,
+#'   line_col = "green4", text_col = "black",
+#'   rect_col = "green4", rect_alpha = 0.2,
+#'   line_alpha = 1, line_type = "dashed",
+#'   arrow_xloc_r = 0.01, arrow_xloc_l = -0.01,
+#'   arrow_length = 0.01, rect = TRUE
+#' )
 #' @export
 
 insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # nocov start # nolint
@@ -97,14 +104,20 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # 
                       arrow_xloc_r = NULL, arrow_xloc_l = NULL) {
 
   plot_object <- plot_object +
-    geom_vline(xintercept = or_object$value1, color = line_col,
-               size = line_size, linetype = line_type, alpha = line_alpha) +
-    geom_vline(xintercept = or_object$value2, color = line_col,
-               size = line_size, linetype = line_type, alpha = line_alpha) +
-    annotate("text", x = mean(c(or_object$value2, or_object$value1)),
-             y = min(plot_object$data$se_lwr) + or_yloc,
-             label = paste0("OR: \n", round(or_object$oddsratio, 2)),
-             color = text_col, size = text_size)
+    geom_vline(
+      xintercept = or_object$value1, color = line_col,
+      size = line_size, linetype = line_type, alpha = line_alpha
+    ) +
+    geom_vline(
+      xintercept = or_object$value2, color = line_col,
+      size = line_size, linetype = line_type, alpha = line_alpha
+    ) +
+    annotate("text",
+      x = mean(c(or_object$value2, or_object$value1)),
+      y = min(plot_object$data$se_lwr) + or_yloc,
+      label = paste0("OR: \n", round(or_object$oddsratio, 2)),
+      color = text_col, size = text_size
+    )
 
   if (rect) {
     if (is.null(rect_col)) {
@@ -112,15 +125,19 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # 
     }
 
     # set drawing order to place rect behind smoothing fun
-    plot_object$layers <- c(geom_rect(data = plot_object$data[1,], # avoids multiple rect drawings # nolint
-                                      ymin = ggplot_build(plot_object)$layout$
-                                        panel_params[[1]]$y.range[1],
-                                      ymax = ggplot_build(plot_object)$layout$
-                                        panel_params[[1]]$y.range[2],
-                                      xmin = or_object$value1,
-                                      xmax = or_object$value2,
-                                      alpha = rect_alpha, fill = rect_col),
-                            plot_object$layers)
+    plot_object$layers <- c(
+      geom_rect(
+        data = plot_object$data[1, ], # avoids multiple rect drawings # nolint
+        ymin = ggplot_build(plot_object)$layout$
+          panel_params[[1]]$y.range[1],
+        ymax = ggplot_build(plot_object)$layout$
+          panel_params[[1]]$y.range[2],
+        xmin = or_object$value1,
+        xmax = or_object$value2,
+        alpha = rect_alpha, fill = rect_col
+      ),
+      plot_object$layers
+    )
   }
 
   if (values) {
@@ -143,7 +160,7 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # 
 
     if (is.null(arrow_xloc_l)) {
       # calc arrow shift from x axis range
-      arrow_xloc_l <- - (max(plot_object$data$y) - min(plot_object$data$y)) *
+      arrow_xloc_l <- -(max(plot_object$data$y) - min(plot_object$data$y)) *
         0.002
     }
 
@@ -155,14 +172,18 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # 
 
     plot_object <- plot_object +
 
-      annotate("text", x = or_object$value1 - values_xloc,
-               y = min(plot_object$data$se_lwr) + values_yloc,
-               label = or_object$value1,
-               color = text_col, alpha = text_alpha, size = text_size) +
-      annotate("text", x = or_object$value2 + values_xloc,
-               y = min(plot_object$data$se_lwr) + values_yloc,
-               label = or_object$value2,
-               color = text_col, alpha = text_alpha, size = text_size)
+      annotate("text",
+        x = or_object$value1 - values_xloc,
+        y = min(plot_object$data$se_lwr) + values_yloc,
+        label = or_object$value1,
+        color = text_col, alpha = text_alpha, size = text_size
+      ) +
+      annotate("text",
+        x = or_object$value2 + values_xloc,
+        y = min(plot_object$data$se_lwr) + values_yloc,
+        label = or_object$value2,
+        color = text_col, alpha = text_alpha, size = text_size
+      )
 
     if (arrow) {
 
@@ -174,23 +195,27 @@ insert_or <- function(plot_object = NULL, or_object = NULL, line_col = "red", # 
       plot_object <- plot_object +
 
         # left arrow
-        geom_segment(x = or_object$value1 - values_xloc + arrow_xloc_l,
-                     xend = or_object$value1 - values_xloc + arrow_length,
-                     y = min(plot_object$data$se_lwr) + values_yloc +
-                       arrow_yloc,
-                     yend = min(plot_object$data$se_lwr) + values_yloc +
-                       arrow_yloc,
-                     color = arrow_col,
-                     arrow = arrow(length = unit(0.2, "cm"), type = "closed")) +
+        geom_segment(
+          x = or_object$value1 - values_xloc + arrow_xloc_l,
+          xend = or_object$value1 - values_xloc + arrow_length,
+          y = min(plot_object$data$se_lwr) + values_yloc +
+            arrow_yloc,
+          yend = min(plot_object$data$se_lwr) + values_yloc +
+            arrow_yloc,
+          color = arrow_col,
+          arrow = arrow(length = unit(0.2, "cm"), type = "closed")
+        ) +
         # right arrow
-        geom_segment(x = or_object$value2 + values_xloc + arrow_xloc_r,
-                     xend = or_object$value2 + values_xloc - arrow_length,
-                     y = min(plot_object$data$se_lwr) + values_yloc +
-                       arrow_yloc,
-                     yend = min(plot_object$data$se_lwr) + values_yloc +
-                       arrow_yloc,
-                     color = arrow_col,
-                     arrow = arrow(length = unit(0.2, "cm"), type = "closed"))
+        geom_segment(
+          x = or_object$value2 + values_xloc + arrow_xloc_r,
+          xend = or_object$value2 + values_xloc - arrow_length,
+          y = min(plot_object$data$se_lwr) + values_yloc +
+            arrow_yloc,
+          yend = min(plot_object$data$se_lwr) + values_yloc +
+            arrow_yloc,
+          color = arrow_col,
+          arrow = arrow(length = unit(0.2, "cm"), type = "closed")
+        )
     }
   }
   return(plot_object)

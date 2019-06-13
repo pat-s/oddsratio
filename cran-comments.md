@@ -1,9 +1,8 @@
 ## Test environments
 
-* local Arch Linux installation, R 3.5.1
-* ubuntu 14.04 (on travis-ci), R-devel
-* OSX 10.12, Xcode 8.3 (on travis-ci), R-devel
-* win-builder (devel and release)
+* local Arch Linux installation, R 3.6.0
+* ubuntu 16.04 (on travis-ci), R-devel
+* win-builder, R-devel
 
 ## R CMD check results
 
