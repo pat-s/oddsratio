@@ -1,5 +1,5 @@
 ---
-title: "Function tutorial"
+title: "oddsratio tutorial"
 author: "Patrick Schratz"
 date: "`r Sys.Date()`"
 output: 
@@ -20,8 +20,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(ggplot2)
-library(cowplot)
+library("ggplot2")
+library("cowplot")
 ```
 
 ## Load example data & fit model
@@ -29,7 +29,7 @@ library(cowplot)
 Data source: `?mgcv::predict.gam`
 
 ```{r, results='hide'}
-library(oddsratio)
+library("oddsratio")
 
 fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4, 
                      data = data_gam)
@@ -44,7 +44,6 @@ and specify for which values we want to calculate the odds ratio.
 We can see that the odds of response `y` happening are 22 times higher when predictor `x2` increases
 from 0.099 to 0.198 while holding all other predictors constant. 
 
-
 ```{r}
 or_gam(data = data_gam, model = fit_gam, pred = "x2", 
        values = c(0.099, 0.198))
@@ -52,7 +51,8 @@ or_gam(data = data_gam, model = fit_gam, pred = "x2",
 
 Usually, this calculation is done by setting all predictors to their mean value, 
 predict the response, change the desired predictor to a new value and predict the response again. 
-These actions results in two log odds values, respectively, which are transformed into odds by exponentiating them. Finally, the odds ratio can be calculated from these two odds values. 
+These actions results in two log odds values, respectively, which are transformed into odds by exponentiating them. 
+Finally, the odds ratio can be calculated from these two odds values. 
 
 ### Calculate OR for level change of indicator variable
 
@@ -69,7 +69,6 @@ Here, the change in odds of `y` happening if predictor `x4` is changing from lev
 
 To get an impression of odds ratio behaviour throughout the complete range of the smoothing function of the fitted GAM model, you can calculate odds ratios based on percentage breaks of the predictors distribution.  
 Here we slice predictor `x2` into 5 parts by taking the predictor values of every 20% increment step. 
-
 
 ```{r}
 or_gam(data = data_gam, model = fit_gam, pred = "x2", 
@@ -93,10 +92,9 @@ You can further customize the look using other colors or linetypes.
 ### Add odds ratio information into smoothing function plot
 
 So now, we have the odds ratios and we have a plot of the smoothing function. 
-Why not combine both? We can do so using `insert_or()`. Its main arguments 
-are (i) a `ggplot` plotting object containing the smooth function and a data frame
-returned from `or_gam()` containing information about the predictor and
-the respective values we want to insert.
+Why not combine both? 
+We can do so using `insert_or()`. 
+Its main arguments are (i) a `ggplot` plotting object containing the smooth function and a data frame returned from `or_gam()` containing information about the predictor and the respective values we want to insert.
 
 ```{r}
 plot_object <- plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
@@ -109,16 +107,15 @@ plot <- insert_or(plot_object, or_object, or_yloc = 3,
 plot
 ```
 
-The odds ratio information is always centered between the two vertical lines. Hence it only
-looks nice if the gap between the two chosen values (here 0.099 and 0.198) is large enough. 
-If the smoothing line crosses your inserted text, you can just correct it adjusting `or_yloc`. This param sets the y-location of the inserted odds ratio information. 
+The odds ratio information is always centered between the two vertical lines. Hence it only looks nice if the gap between the two chosen values (here 0.099 and 0.198) is large enough. 
+If the smoothing line crosses your inserted text, you can just correct it adjusting `or_yloc`. 
+This param sets the y-location of the inserted odds ratio information. 
 
 Depending on the digits of your chosen values (here 3), you might also need to adjust the 
 x-axis location of the two values so that they do not interfer with the vertical line.
 
-Let's do all this by inserting another odds ratio into this plot! This time we simply
-take the already produced plot as an input to `insert_or()` and use a new odds ratio
-object:
+Let's do all this by inserting another odds ratio into this plot! 
+This time we simply take the already produced plot as an input to `insert_or()` and use a new odds ratio object:
 
 ```{r}
 or_object2 <- or_gam(data = data_gam, model = fit_gam, 
@@ -169,5 +166,3 @@ frame will automatically adjust its column names to the specified level.
 or_glm(data = data_glm, model = fit_glm, 
        incr = list(gre = 380, gpa = 5), CI = 0.70)
 ```
-
-
