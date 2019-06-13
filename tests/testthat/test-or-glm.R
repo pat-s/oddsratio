@@ -1,6 +1,7 @@
 context("or_glm")
 
-pacman::p_load(mgcv, MASS)
+library("mgcv")
+library("MASS")
 
 test_that("correct level count of indicator variable for glm", {
   data("data_glm")
