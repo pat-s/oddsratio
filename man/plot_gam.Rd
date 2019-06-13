@@ -6,8 +6,9 @@
 \usage{
 plot_gam(model = NULL, pred = NULL, col_line = "blue",
   ci_line_col = "black", ci_line_type = "dashed", ci_fill = "grey",
-  ci_alpha = 0.4, ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL,
-  xlab = NULL, ylab = NULL, limits_y = NULL, breaks_y = NULL)
+  ci_alpha = 0.4, ci_line_size = 0.8, sm_fun_size = 1.1,
+  title = NULL, xlab = NULL, ylab = NULL, limits_y = NULL,
+  breaks_y = NULL)
 }
 \arguments{
 \item{model}{A fitted model of class \code{gam}.}
