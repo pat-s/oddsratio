@@ -5,26 +5,25 @@
 #' @importFrom stats confint
 #' @import mgcv
 #' @importFrom tibble as_tibble
+#' @importFrom stringr str_remove_all
 #'
-#' @description This function calculates odds ratio(s) for specific
-#'     increment steps of GLMs.
+#' @description This function calculates odds ratio(s) for specific increment
+#'   steps of GLMs.
 #'
 #' @param data The data used for model fitting.
 #' @param model A fitted GLM(M).
 #' @param incr List. Increment values of each predictor.
-#' @param CI numeric. Which confident interval to calculate.
-#' Must be between 0 and 1. Default to 0.95
+#' @param CI numeric. Which confident interval to calculate. Must be between 0
+#'   and 1. Default to 0.95
 #'
-#' @return A data frame with five columns:
-#' \item{predictor}{Predictor name(s)}
-#' \item{oddsratio}{Calculated odds ratio(s)}
-#' \item{CI_low}{Lower confident interval of odds ratio}
-#' \item{CI_high}{Higher confident interval of odds ratio}
-#' \item{increment}{Increment of the predictor(s)}
+#' @return A data frame with five columns: \item{predictor}{Predictor name(s)}
+#'   \item{oddsratio}{Calculated odds ratio(s)} \item{CI_low}{Lower confident
+#'   interval of odds ratio} \item{CI_high}{Higher confident interval of odds
+#'   ratio} \item{increment}{Increment of the predictor(s)}
 #'
 #' @details `CI_low` and `CI_high` are only calculated for GLM models because
-#' [glmmPQL] does not return confident intervals due to its penalizing
-#' behavior.
+#'   [glmmPQL] does not return confident intervals due to its penalizing
+#'   behavior.
 #'
 #' @author Patrick Schratz <patrick.schratz@gmail.com>
 #'

@@ -91,7 +91,7 @@ Plotting smoother functions of GAM models is not very well supported in R.
 
 ```{r}
 plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'") +
-  cowplot::theme_cowplot()
+  theme_cowplot()
 ```
 
 You can further customize the look using other colors or line types. 
@@ -117,7 +117,7 @@ plot <- insert_or(plot_object, or_object, or_yloc = 3,
                   values_xloc = 0.05, arrow_length = 0.02, 
                   arrow_col = "red")
 plot +
-  cowplot::theme_cowplot()
+  theme_cowplot()
 ```
 
 The odds ratio information is always centered between the two vertical lines. Hence it only looks nice if the gap between the two chosen values (here 0.099 and 0.198) is large enough. 
@@ -139,7 +139,7 @@ insert_or(plot, or_object2, or_yloc = 2.1, values_yloc = 2,
           line_alpha = 1, line_type = "dashed",
           arrow_xloc_r = 0.01, arrow_xloc_l = -0.01,
           arrow_length = 0.02, rect = TRUE) +
-  cowplot::theme_cowplot()
+  theme_cowplot()
 ```
 
 Using `rect = TRUE`, you can additionally highlight certain odds ratio intervals. 

@@ -13,20 +13,18 @@ or_glm(data, model, incr, CI = 0.95)
 
 \item{incr}{List. Increment values of each predictor.}
 
-\item{CI}{numeric. Which confident interval to calculate.
-Must be between 0 and 1. Default to 0.95}
+\item{CI}{numeric. Which confident interval to calculate. Must be between 0
+and 1. Default to 0.95}
 }
 \value{
-A data frame with five columns:
-\item{predictor}{Predictor name(s)}
-\item{oddsratio}{Calculated odds ratio(s)}
-\item{CI_low}{Lower confident interval of odds ratio}
-\item{CI_high}{Higher confident interval of odds ratio}
-\item{increment}{Increment of the predictor(s)}
+A data frame with five columns: \item{predictor}{Predictor name(s)}
+\item{oddsratio}{Calculated odds ratio(s)} \item{CI_low}{Lower confident
+interval of odds ratio} \item{CI_high}{Higher confident interval of odds
+ratio} \item{increment}{Increment of the predictor(s)}
 }
 \description{
-This function calculates odds ratio(s) for specific
-increment steps of GLMs.
+This function calculates odds ratio(s) for specific increment
+steps of GLMs.
 }
 \details{
 \code{CI_low} and \code{CI_high} are only calculated for GLM models because

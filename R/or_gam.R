@@ -100,8 +100,7 @@ or_gam <- function(data = NULL, model = NULL, pred = NULL, values = NULL,
       perc2 = character(length = 100 / percentage),
       oddsratio = numeric(length = 100 / percentage),
       CI_low = numeric(length = 100 / percentage),
-      CI_high = numeric(length = 100 / percentage),
-      stringsAsFactors = FALSE
+      CI_high = numeric(length = 100 / percentage)
     )
 
     # apply OR calc for vector
