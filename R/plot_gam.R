@@ -5,7 +5,6 @@
 #' using the `ggplot2` plotting system.
 #'
 #' @import ggplot2
-#' @importFrom cowplot background_grid
 #' @importFrom grDevices dev.off png
 #' @importFrom graphics plot
 #' @param model A fitted model of class `gam`.

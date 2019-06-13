@@ -5,7 +5,6 @@
 #' a plot of a GAM(M) smoothing function.
 #'
 #' @import ggplot2
-#' @importFrom cowplot background_grid
 #'
 #' @param plot_object A `ggplot` object from [plot_gam].
 #'
