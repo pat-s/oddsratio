@@ -31,27 +31,32 @@
 #' ## Example with glm()
 #' # load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and
 #' # fit model
-#' fit_glm <- glm(admit ~ gre + gpa + rank, data = data_glm,
-#'                family = "binomial") # fit model
+#' fit_glm <- glm(admit ~ gre + gpa + rank,
+#'   data = data_glm,
+#'   family = "binomial"
+#' ) # fit model
 #'
 #' # Calculate OR for specific increment step of continuous variable
 #' or_glm(data = data_glm, model = fit_glm, incr = list(gre = 380, gpa = 5))
 #'
 #' # Calculate OR and change the confidence interval level
-#' or_glm(data = data_glm, model = fit_glm,
-#'        incr = list(gre = 380, gpa = 5), CI = .70)
+#' or_glm(
+#'   data = data_glm, model = fit_glm,
+#'   incr = list(gre = 380, gpa = 5), CI = .70
+#' )
 #'
 #' ## Example with MASS:glmmPQL()
 #' # load data
 #' library(MASS)
 #' data(bacteria)
-#' fit_glmmPQL <- glmmPQL(y ~ trt + week, random = ~1 | ID,
-#'                        family = binomial, data = bacteria,
-#'                        verbose = FALSE)
+#' fit_glmmPQL <- glmmPQL(y ~ trt + week,
+#'   random = ~ 1 | ID,
+#'   family = binomial, data = bacteria,
+#'   verbose = FALSE
+#' )
 #'
 #' # Apply function
 #' or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5))
-#'
 #' @details Currently supported functions: [glm],
 #' [glmmPQL]
 #'
@@ -83,18 +88,19 @@ or_glm <- function(data, model, incr, CI = 0.95) {
     # CI calculation
     if (class(model)[1] == "glm") {
       CI_list <- as.data.frame(suppressMessages(confint(model,
-                                                        level = CI))) [-1, ]
+        level = CI
+      ))) [-1, ]
     }
 
     # check if predictor is numeric or integer
     if (is.numeric(data[[i]]) | is.integer(data[[i]])) {
       odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]]) *
-                                      as.numeric(incr[[i]])), 3)
+        as.numeric(incr[[i]])), 3)
       if (!class(model)[1] == "glmmPQL") {
         CI_low[[i]] <- round(exp(CI_list[i, 1] * # nocov start
-                                   as.numeric(incr[[i]])), 3)
+          as.numeric(incr[[i]])), 3)
         CI_high[[i]] <- round(exp(CI_list[i, 2] *
-                                    as.numeric(incr[[i]])), 3) # nocov end
+          as.numeric(incr[[i]])), 3) # nocov end
       }
       increments[[i]] <- as.numeric(incr[[i]])
       or <- odds_ratios[[i]] # nolint
@@ -120,13 +126,16 @@ or_glm <- function(data, model, incr, CI = 0.95) {
   }
 
   # create data frame to return
-  result <- data.frame(predictor = as.character(names(odds_ratios)),
-                       oddsratio = unlist(odds_ratios, use.names = FALSE),
-                       CI_low = unlist(CI_low, use.names = FALSE),
-                       CI_high = unlist(CI_high, use.names = FALSE),
-                       increment = as.character(unlist(increments,
-                                                       use.names = FALSE)),
-                       stringsAsFactors = FALSE)
+  result <- data.frame(
+    predictor = as.character(names(odds_ratios)),
+    oddsratio = unlist(odds_ratios, use.names = FALSE),
+    CI_low = unlist(CI_low, use.names = FALSE),
+    CI_high = unlist(CI_high, use.names = FALSE),
+    increment = as.character(unlist(increments,
+      use.names = FALSE
+    )),
+    stringsAsFactors = FALSE
+  )
 
   # set CI column names
   if (class(model)[1] == "glm") {
