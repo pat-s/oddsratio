@@ -30,7 +30,8 @@ Depends:
 Imports: 
     ggplot2 (>= 3.0.0),
     mgcv,
-    stats
+    stats,
+    tibble
 Suggests: 
     gam,
     grid,

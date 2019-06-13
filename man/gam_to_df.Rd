@@ -9,8 +9,7 @@ gam_to_df(model = NULL, pred = NULL)
 \arguments{
 \item{model}{A fitted GAM(M).}
 
-\item{pred}{Character. Predictor name for which to calculate
-the odds ratio.}
+\item{pred}{Character. Predictor name for which to calculate the odds ratio.}
 }
 \description{
 This function converts a fitted GAM model into a tidy data frame
@@ -27,10 +26,12 @@ library(mgcv)
 n <- 200
 sig <- 2
 dat <- gamSim(1, n = n, scale = sig, verbose = FALSE)
-dat$x4 <- as.factor(c(rep("A", 50), rep("B", 50), rep("C", 50),
-                    rep("D", 50)))
+dat$x4 <- as.factor(c(
+  rep("A", 50), rep("B", 50), rep("C", 50),
+  rep("D", 50)
+))
 fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
-               offset(x3) + x4, data = dat) # fit model
+  offset(x3) + x4, data = dat) # fit model
 
 tmp <- gam_to_df(fit_gam, "x2")
 }

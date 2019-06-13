@@ -4,6 +4,7 @@
 #' @importFrom stats coefficients
 #' @importFrom stats confint
 #' @import mgcv
+#' @importFrom tibble as_tibble
 #'
 #' @description This function calculates odds ratio(s) for specific
 #'     increment steps of GLMs.
@@ -83,11 +84,12 @@ or_glm <- function(data, model, incr, CI = 0.95) {
   odds_ratios <- list()
   CI_low <- list()
   CI_high <- list()
+
   for (i in preds) {
 
     # CI calculation
     if (class(model)[1] == "glm") {
-      CI_list <- as.data.frame(suppressMessages(confint(model,
+      CI_list <- data.frame(suppressMessages(confint(model,
         level = CI
       ))) [-1, ]
     }
@@ -126,22 +128,26 @@ or_glm <- function(data, model, incr, CI = 0.95) {
   }
 
   # create data frame to return
-  result <- data.frame(
+  result <- tibble(
     predictor = as.character(names(odds_ratios)),
     oddsratio = unlist(odds_ratios, use.names = FALSE),
     CI_low = unlist(CI_low, use.names = FALSE),
     CI_high = unlist(CI_high, use.names = FALSE),
     increment = as.character(unlist(increments,
       use.names = FALSE
-    )),
-    stringsAsFactors = FALSE
+    ))
   )
 
   # set CI column names
   if (class(model)[1] == "glm") {
-    colnames(result)[3] <- paste0("CI_low (", names(CI_list) [1], ")")
-    colnames(result)[4] <- paste0("CI_high (", names(CI_list) [2], ")")
+
+    # Clean variable names
+    col_names = stringr::str_remove_all(names(CI_list), "\\.\\.")
+    col_names = stringr::str_remove_all(col_names, "X")
+
+    colnames(result)[3] <- paste0("CI_low (", col_names[1], ")")
+    colnames(result)[4] <- paste0("CI_high (", col_names[2], ")")
   }
 
-  return(result)
+  return(as_tibble(result))
 }

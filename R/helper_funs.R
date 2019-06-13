@@ -84,7 +84,7 @@ gam_to_df <- function(model = NULL, pred = NULL) {
   # get list index of spec. predictor
   set_pred <- which(grepl(pred, plot_df))
 
-  df <- data.frame(
+  df <- tibble(
     x = plot_df[[set_pred]]$x,
     se_upr = plot_df[[set_pred]]$fit + plot_df[[set_pred]]$se,
     se_lwr = plot_df[[set_pred]]$fit - plot_df[[set_pred]]$se,

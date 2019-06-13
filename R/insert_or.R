@@ -8,7 +8,7 @@
 #'
 #' @param plot_object A `ggplot` object from [plot_gam].
 #'
-#' @param or_object A returned data.frame from [or_gam].
+#' @param or_object A [tibble] as returned from [or_gam].
 #'
 #' @param values Logical. Whether to print predictor value information nearby
 #' the inserted vertical lines. Default to `TRUE`.
