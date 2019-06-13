@@ -1,13 +1,3 @@
----
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
-library("ggplot2")
-library("cowplot")
-```
-
 [![Build Status](https://travis-ci.org/pat-s/oddsratio.svg?branch=master)](https://travis-ci.org/pat-s/oddsratio)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/oddsratio)](https://cran.r-project.org/package=oddsratio)
 [![cran checks](https://cranchecks.info/badges/worst/oddsratio)](https://cran.r-project.org/web/checks/check_results_oddsratio.html)
