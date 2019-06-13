@@ -1,3 +1,10 @@
+# oddsratio 2.0.0 (June 13 2019)
+
+* return a `tibble` instead of a `data.frame`
+* clean up code base
+* don't use `cowplot` ggplot theme by default
+* optimize wording in vignette
+
 # oddsratio 1.0.3 (June 19 2018)
 
 * update functions to work with ggplot2 v3.0.0
