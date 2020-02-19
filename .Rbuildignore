@@ -16,3 +16,5 @@ _pkgdown.yml
 tic.R
 ^_pkgdown\.yml$
 ^oddsratio\.Rproj$
+^\.ccache$
+^tic\.R$
