@@ -1,7 +1,5 @@
-#' @name no_plot
 #' @title Suppress plotting output of [plot] function
 #'
-#' @keywords internal
 #'
 #' @description This function suppresses plotting output of [plot] function
 #'
@@ -15,8 +13,8 @@
 #' [plot]. Used in [plot_gam].
 #'
 #' @seealso [plot_gam]
-#'
-#' @author Patrick Schratz <patrick.schratz@gmail.com>
+#' @name no_plot
+#' @keywords internal
 #'
 #' @examples
 #' # load data (Source: ?mgcv::gam)
@@ -43,10 +41,7 @@ no_plot <- function(model = NULL) {
   return(invisible(plot_df))
 }
 
-#' @name gam_to_df
 #' @title Converts a fitted GAM model into a tidy data frame
-#'
-#' @keywords internal
 #'
 #' @description This function converts a fitted GAM model into a tidy data frame
 #'
@@ -57,9 +52,9 @@ no_plot <- function(model = NULL) {
 #'
 #' Used in [plot_gam].
 #'
+#' @name gam_to_df
 #' @seealso [plot_gam]
-#'
-#' @author Patrick Schratz
+#' @keywords internal
 #'
 #' @examples
 #' # load data (Source: ?mgcv::gam)
@@ -76,7 +71,6 @@ no_plot <- function(model = NULL) {
 #'
 #' tmp <- gam_to_df(fit_gam, "x2")
 #' @export
-
 gam_to_df <- function(model = NULL, pred = NULL) {
 
   plot_df <- no_plot(model) # nolint
