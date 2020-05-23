@@ -4,8 +4,15 @@
 \alias{or_gam}
 \title{Calculate odds ratios of Generalized Additive (Mixed) Models}
 \usage{
-or_gam(data = NULL, model = NULL, pred = NULL, values = NULL,
-  percentage = NULL, slice = FALSE, CI = NULL)
+or_gam(
+  data = NULL,
+  model = NULL,
+  pred = NULL,
+  values = NULL,
+  percentage = NULL,
+  slice = FALSE,
+  CI = NULL
+)
 }
 \arguments{
 \item{data}{The data used for model fitting.}
@@ -21,14 +28,14 @@ used if \code{slice = FALSE}.}
 
 \item{percentage}{Numeric. Percentage number to split the predictor
 distribution into. A value of 10 would split the predictor distribution by
-10\% intervals. Only needed if \code{slice = TRUE}.}
+10\\% intervals. Only needed if \code{slice = TRUE}.}
 
 \item{slice}{Logical. \code{Default = FALSE}. Whether to calculate odds ratios for
 fixed increment steps over the whole predictor distribution. See
 \code{percentage} for setting the increment values.}
 
-\item{CI}{Numeric. Currently fixed to 95\% confidence interval level (2.5\% -
-97.5\%). It should not be changed in a function call!}
+\item{CI}{Numeric. Currently fixed to 95\\% confidence interval level (2.5\\% -
+97.5\\%). It should not be changed in a function call!}
 }
 \value{
 A data frame with (up to) eight columns. \code{perc1} and \code{perc2} are only

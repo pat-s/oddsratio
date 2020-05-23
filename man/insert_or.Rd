@@ -4,13 +4,30 @@
 \alias{insert_or}
 \title{Insert odds ratios of GAM(M)s into smoothing function}
 \usage{
-insert_or(plot_object = NULL, or_object = NULL, line_col = "red",
-  line_size = 1.2, line_type = "solid", line_alpha = 1,
-  text_alpha = 1, text_size = 4, text_col = "black",
-  rect_alpha = 0.5, rect_col = NULL, rect = FALSE, arrow = TRUE,
-  values = TRUE, values_yloc = 0, values_xloc = NULL, or_yloc = 0,
-  arrow_length = NULL, arrow_yloc = NULL, arrow_col = NULL,
-  arrow_xloc_r = NULL, arrow_xloc_l = NULL)
+insert_or(
+  plot_object = NULL,
+  or_object = NULL,
+  line_col = "red",
+  line_size = 1.2,
+  line_type = "solid",
+  line_alpha = 1,
+  text_alpha = 1,
+  text_size = 4,
+  text_col = "black",
+  rect_alpha = 0.5,
+  rect_col = NULL,
+  rect = FALSE,
+  arrow = TRUE,
+  values = TRUE,
+  values_yloc = 0,
+  values_xloc = NULL,
+  or_yloc = 0,
+  arrow_length = NULL,
+  arrow_yloc = NULL,
+  arrow_col = NULL,
+  arrow_xloc_r = NULL,
+  arrow_xloc_l = NULL
+)
 }
 \arguments{
 \item{plot_object}{A \code{ggplot} object from \link{plot_gam}.}
@@ -34,7 +51,7 @@ the inserted vertical lines. Default to \code{TRUE}.}
 
 \item{values_xloc}{Numeric. X-axis location/shift of values relative to
 their vertical line.
-Default to 2\% of x-axis range.}
+Default to 2\\% of x-axis range.}
 
 \item{or_yloc, values_yloc}{Numeric. Specifies y-location of inserted
 odds ratio / values.
