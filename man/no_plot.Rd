@@ -36,7 +36,4 @@ tmp <- no_plot(fit_gam) # no plot output
 \seealso{
 \link{plot_gam}
 }
-\author{
-Patrick Schratz \href{mailto:patrick.schratz@gmail.com}{patrick.schratz@gmail.com}
-}
 \keyword{internal}

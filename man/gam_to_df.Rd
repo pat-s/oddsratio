@@ -38,7 +38,4 @@ tmp <- gam_to_df(fit_gam, "x2")
 \seealso{
 \link{plot_gam}
 }
-\author{
-Patrick Schratz
-}
 \keyword{internal}

@@ -10,7 +10,7 @@
 #'
 #' @docType data
 #'
-#' @format a [tibble] randomly created numerical and non-numerical variables
+#' @format A [tibble] of randomly created numerical and non-numerical variables.
 NULL
 
 #' data_glm
@@ -23,8 +23,6 @@ NULL
 #' @keywords datasets
 #' @keywords internal
 #'
-#' @format a [tibble] randomly created numerical and non-numerical variables
+#' @format A [tibble] of randomly created numerical and non-numerical variables.
 #'
-#' @source Taken from \url{http://www.ats.ucla.edu/stat/r/dae/logit.htm}, direct download
-#' link: \url{http://www.ats.ucla.edu/stat/data/binary.csv}
 NULL
