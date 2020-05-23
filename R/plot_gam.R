@@ -33,14 +33,22 @@
 #' plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 #' @seealso [or_gam()] [insert_or()]
 #' @export
-plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
-                     ci_line_col = "black", ci_line_type = "dashed",
-                     ci_fill = "grey", ci_alpha = 0.4,
-                     ci_line_size = 0.8, sm_fun_size = 1.1, title = NULL,
-                     xlab = NULL, ylab = NULL, limits_y = NULL,
+plot_gam <- function(model = NULL,
+                     pred = NULL,
+                     col_line = "blue",
+                     ci_line_col = "black",
+                     ci_line_type = "dashed",
+                     ci_fill = "grey",
+                     ci_alpha = 0.4,
+                     ci_line_size = 0.8,
+                     sm_fun_size = 1.1,
+                     title = NULL,
+                     xlab = NULL,
+                     ylab = NULL,
+                     limits_y = NULL,
                      breaks_y = NULL) {
 
-  df <- gam_to_df(model, pred) # nolint
+  df <- gam_to_df(model, pred)
 
   if (is.null(xlab)) {
     xlab <- df[[pred]]$xlab
@@ -81,8 +89,9 @@ plot_gam <- function(model = NULL, pred = NULL, col_line = "blue", # nocov start
 
   # optional ggplot arguments
   if (!is.null(title)) {
-    plot_gam <- plot_gam + ggtitle(title) # nolint
+    plot_gam <- plot_gam +
+      ggtitle(title)
   }
 
   return(plot_gam)
-} # nocov end
+}
