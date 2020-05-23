@@ -2,7 +2,7 @@
 % Please edit documentation in R/or_glm.R
 \name{or_glm}
 \alias{or_glm}
-\title{Calculate odds ratios of Generalized Linear (Mixed) Models}
+\title{Calculate Odds Ratios of Generalized Linear (Mixed) Models}
 \usage{
 or_glm(data, model, incr, CI = 0.95)
 }
@@ -11,16 +11,18 @@ or_glm(data, model, incr, CI = 0.95)
 
 \item{model}{A fitted GLM(M).}
 
-\item{incr}{List. Increment values of each predictor.}
+\item{incr}{Increment values of each predictor given in a named list.}
 
-\item{CI}{numeric. Which confident interval to calculate. Must be between 0
+\item{CI}{Which confidence interval to calculate. Must be between 0
 and 1. Default to 0.95}
 }
 \value{
-A data frame with five columns: \item{predictor}{Predictor name(s)}
-\item{oddsratio}{Calculated odds ratio(s)} \item{CI_low}{Lower confident
-interval of odds ratio} \item{CI_high}{Higher confident interval of odds
-ratio} \item{increment}{Increment of the predictor(s)}
+A data frame with five columns:
+\item{predictor}{Predictor name(s)}
+\item{oddsratio}{Calculated odds ratio(s)}
+\item{CI_low}{Lower confident interval of odds ratio}
+\item{CI_high}{Higher confident interval of odds ratio}
+\item{increment}{Increment of the predictor(s)}
 }
 \description{
 This function calculates odds ratio(s) for specific increment
@@ -28,11 +30,10 @@ steps of GLMs.
 }
 \details{
 \code{CI_low} and \code{CI_high} are only calculated for GLM models because
-\link{glmmPQL} does not return confident intervals due to its penalizing
+\code{\link[MASS:glmmPQL]{MASS::glmmPQL()}} does not return confident intervals due to its penalizing
 behavior.
 
-Currently supported functions: \link{glm},
-\link{glmmPQL}
+Currently supported functions: \link[stats:glm]{stats::glm},\link[MASS:glmmPQL]{MASS::glmmPQL}
 }
 \examples{
 ## Example with glm()
@@ -64,10 +65,8 @@ fit_glmmPQL <- glmmPQL(y ~ trt + week,
 
 # Apply function
 or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5))
+
 }
 \seealso{
-\link{or_gam}
-}
-\author{
-Patrick Schratz \href{mailto:patrick.schratz@gmail.com}{patrick.schratz@gmail.com}
+\code{\link[=or_gam]{or_gam()}}
 }
