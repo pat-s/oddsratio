@@ -2,7 +2,7 @@
 % Please edit documentation in R/or_gam.R
 \name{or_gam}
 \alias{or_gam}
-\title{Calculate odds ratios of Generalized Additive (Mixed) Models}
+\title{Calculate Odds Ratios of Generalized Additive (Mixed) Models}
 \usage{
 or_gam(
   data = NULL,
@@ -19,27 +19,26 @@ or_gam(
 
 \item{model}{A fitted GAM(M).}
 
-\item{pred}{Character. Predictor name for which to calculate the odds ratio.}
+\item{pred}{Predictor name for which to calculate the odds ratio.}
 
 \item{values}{Numeric vector of length two. Predictor values to estimate odds
 ratio from. Function is written to use the first provided value as the
 "lower" one, i.e. calculating the odds ratio 'from value1 to value2'. Only
 used if \code{slice = FALSE}.}
 
-\item{percentage}{Numeric. Percentage number to split the predictor
-distribution into. A value of 10 would split the predictor distribution by
-10\\% intervals. Only needed if \code{slice = TRUE}.}
+\item{percentage}{Percentage number to split the predictor distribution into.
+A value of 10 would split the predictor distribution by 10\\% intervals.
+Only needed if \code{slice = TRUE}.}
 
-\item{slice}{Logical. \code{Default = FALSE}. Whether to calculate odds ratios for
-fixed increment steps over the whole predictor distribution. See
-\code{percentage} for setting the increment values.}
+\item{slice}{Whether to calculate odds ratios for fixed increment steps over
+the whole predictor distribution. See \code{percentage} for setting the
+increment values.}
 
-\item{CI}{Numeric. Currently fixed to 95\\% confidence interval level (2.5\\% -
-97.5\\%). It should not be changed in a function call!}
+\item{CI}{Currently fixed to 95\\% confidence interval level (2.5\\% - 97.5\\%).}
 }
 \value{
-A data frame with (up to) eight columns. \code{perc1} and \code{perc2} are only
-returned if \code{slice = TRUE}:
+A \link{data.frame} with (up to) eight columns. \code{perc1} and \code{perc2} are
+only returned if \code{slice = TRUE}:
 \item{predictor}{Predictor name}
 \item{value1}{First value of odds ratio calculation}
 \item{value2}{Second value of odds ratio calculation}
@@ -51,8 +50,8 @@ returned if \code{slice = TRUE}:
 }
 \description{
 This function calculates odds ratio(s) for specific increment
-steps of a GAM(M)s. Odds ratios can also be calculated for continuous
-percentage increment steps across the whole predictor distribution using
+steps of GAM(M) models. Odds ratios can also be calculated for continuous
+(percentage) increment steps across the whole predictor distribution using
 \code{slice = TRUE}.
 }
 \details{
@@ -61,7 +60,7 @@ Currently supported functions: \link[mgcv:gam]{mgcv::gam}, \link[mgcv:gamm]{mgcv
 \code{gam} output (e.g. \code{fit_gam$gam}).
 }
 \examples{
-# load data (Source: ?mgcv::gam) and fit model
+library(oddsratio)
 library(mgcv)
 fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
   offset(x3) + x4, data = data_gam) # fit model
@@ -86,12 +85,5 @@ or_gam(
 )
 }
 \seealso{
-\link{or_glm}
-
-\link{plot_gam}
-
-\link{insert_or}
-}
-\author{
-Patrick Schratz \href{mailto:patrick.schratz@gmail.com}{patrick.schratz@gmail.com}
+\code{\link[=or_glm]{or_glm()}} \code{\link[=plot_gam]{plot_gam()}} \code{\link[=insert_or]{insert_or()}}
 }

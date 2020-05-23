@@ -9,7 +9,7 @@ gam_to_df(model = NULL, pred = NULL)
 \arguments{
 \item{model}{A fitted GAM(M).}
 
-\item{pred}{Character. Predictor name for which to calculate the odds ratio.}
+\item{pred}{Predictor name for which to calculate the odds ratio.}
 }
 \description{
 This function converts a fitted GAM model into a tidy data frame
