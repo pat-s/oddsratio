@@ -1,7 +1,6 @@
 Package: oddsratio
 Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
 Version: 2.0.0
-Date: 2019-06-13
 Authors@R: 
     person(given = "Patrick",
            family = "Schratz",
@@ -9,18 +8,18 @@ Authors@R:
            email = "patrick.schratz@gmail.com",
            comment = c(ORCID = "0000-0003-0748-6624"))
 Description: Simplified odds ratio calculation of GAM(M)s &
-    GLM(M)s.  Provides structured output (data frame) of all predictors
-    and their corresponding odds ratios and confident intervals for
-    further analyses.  It helps to avoid false references of predictors
-    and increments by specifying these parameters in a list instead of
-    using 'exp(coef(model))' (standard approach of odds ratio calculation
-    for GLMs) which just returns a plain numeric output.  For GAM(M)s,
-    odds ratio calculation is highly simplified with this package since it
+    GLM(M)s. Provides structured output (data frame) of all predictors and
+    their corresponding odds ratios and confident intervals for further
+    analyses.  It helps to avoid false references of predictors and
+    increments by specifying these parameters in a list instead of using
+    'exp(coef(model))' (standard approach of odds ratio calculation for
+    GLMs) which just returns a plain numeric output.  For GAM(M)s, odds
+    ratio calculation is highly simplified with this package since it
     takes care of the multiple 'predict()' calls of the chosen predictor
-    while holding other predictors constant.  Also, this package allows
+    while holding other predictors constant. Also, this package allows
     odds ratio calculation of percentage steps across the whole predictor
     distribution range for GAM(M)s.  In both cases, confident intervals
-    are returned additionally.  Calculated odds ratio of GAM(M)s can be
+    are returned additionally. Calculated odds ratio of GAM(M)s can be
     inserted into the smooth function plot.
 License: MIT + file LICENSE
 URL: https://github.com/pat-s/oddsratio
@@ -31,22 +30,14 @@ Imports:
     ggplot2 (>= 3.0.0),
     mgcv,
     stats,
-    stringr,
-    tibble
 Suggests: 
-    cowplot,
-    gam,
-    grid,
-    gtable,
     knitr,
     MASS,
     rmarkdown,
-    scales,
     testthat
 VignetteBuilder: 
     knitr
-ByteCompile: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0

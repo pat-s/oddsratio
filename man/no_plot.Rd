@@ -15,7 +15,7 @@ This function suppresses plotting output of \link{plot} function
 \details{
 To prevent unwanted plot printing of \link{plot} in a function call
 in which the only desire is to work with the returned information of
-\link{plot}. Used in \link{plot_gam}.
+\code{plot}. Used in \code{\link[=plot_gam]{plot_gam()}}.
 }
 \examples{
 # load data (Source: ?mgcv::gam)
@@ -34,9 +34,6 @@ tmp <- plot(fit_gam, pages = 1) # plot output
 tmp <- no_plot(fit_gam) # no plot output
 }
 \seealso{
-\link{plot_gam}
-}
-\author{
-Patrick Schratz \href{mailto:patrick.schratz@gmail.com}{patrick.schratz@gmail.com}
+\code{\link[=plot_gam]{plot_gam()}}
 }
 \keyword{internal}

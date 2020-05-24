@@ -16,3 +16,11 @@ _pkgdown.yml
 tic.R
 ^_pkgdown\.yml$
 ^oddsratio\.Rproj$
+^\.ccache$
+^tic\.R$
+^\.travis\.yml$
+^\.lintr$
+^\.vscode$
+^\.github$
+^\.pre-commit-config\.yaml$
+^codemeta\.json$

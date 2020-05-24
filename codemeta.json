@@ -1,0 +1,156 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "oddsratio",
+  "description": "Simplified odds ratio calculation of GAM(M)s &\n    GLM(M)s. Provides structured output (data frame) of all predictors and\n    their corresponding odds ratios and confident intervals for further\n    analyses.  It helps to avoid false references of predictors and\n    increments by specifying these parameters in a list instead of using\n    'exp(coef(model))' (standard approach of odds ratio calculation for\n    GLMs) which just returns a plain numeric output.  For GAM(M)s, odds\n    ratio calculation is highly simplified with this package since it\n    takes care of the multiple 'predict()' calls of the chosen predictor\n    while holding other predictors constant. Also, this package allows\n    odds ratio calculation of percentage steps across the whole predictor\n    distribution range for GAM(M)s.  In both cases, confident intervals\n    are returned additionally. Calculated odds ratio of GAM(M)s can be\n    inserted into the smooth function plot.",
+  "name": "oddsratio: Odds Ratio Calculation for GAM(M)s & GLM(M)s",
+  "codeRepository": "https://github.com/pat-s/oddsratio",
+  "issueTracker": "https://github.com/pat-s/oddsratio/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "2.0.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "4.0.0",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.0.0 Patched (2020-04-30 r78337)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Patrick",
+      "familyName": "Schratz",
+      "email": "patrick.schratz@gmail.com",
+      "@id": "https://orcid.org/0000-0003-0748-6624"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Patrick",
+      "familyName": "Schratz",
+      "email": "patrick.schratz@gmail.com",
+      "@id": "https://orcid.org/0000-0003-0748-6624"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "MASS",
+      "name": "MASS",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=MASS"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.0.0"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ggplot2",
+      "name": "ggplot2",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "mgcv",
+      "name": "mgcv",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=mgcv"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    }
+  ],
+  "releaseNotes": "https://github.com/pat-s/oddsratio/blob/master/NEWS.md",
+  "readme": "https://github.com/pat-s/oddsratio/blob/master/README.md",
+  "fileSize": "186.635KB",
+  "developmentStatus": "https://www.tidyverse.org/lifecycle/#stable",
+  "keywords": ["statistics", "odds-ratio", "probability"],
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2017",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Patrick",
+          "familyName": "Schratz"
+        }
+      ],
+      "name": "R package 'oddsratio': Odds ratio calculation for GAM(M)s & GLM(M)s",
+      "identifier": "10.5281/zenodo.1095472",
+      "@id": "https://doi.org/10.5281/zenodo.1095472",
+      "sameAs": "https://doi.org/10.5281/zenodo.1095472"
+    }
+  ],
+  "relatedLink": "https://CRAN.R-project.org/package=oddsratio"
+}

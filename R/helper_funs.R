@@ -1,7 +1,4 @@
-#' @name no_plot
 #' @title Suppress plotting output of [plot] function
-#'
-#' @keywords internal
 #'
 #' @description This function suppresses plotting output of [plot] function
 #'
@@ -12,11 +9,11 @@
 #'
 #' @details To prevent unwanted plot printing of [plot] in a function call
 #' in which the only desire is to work with the returned information of
-#' [plot]. Used in [plot_gam].
+#' `plot`. Used in [plot_gam()].
 #'
-#' @seealso [plot_gam]
-#'
-#' @author Patrick Schratz <patrick.schratz@gmail.com>
+#' @seealso [plot_gam()]
+#' @name no_plot
+#' @keywords internal
 #'
 #' @examples
 #' # load data (Source: ?mgcv::gam)
@@ -34,7 +31,6 @@
 #' tmp <- plot(fit_gam, pages = 1) # plot output
 #' tmp <- no_plot(fit_gam) # no plot output
 #' @export
-
 no_plot <- function(model = NULL) {
   png("temp.xyz")
   plot_df <- plot(model, pages = 1)
@@ -43,10 +39,7 @@ no_plot <- function(model = NULL) {
   return(invisible(plot_df))
 }
 
-#' @name gam_to_df
 #' @title Converts a fitted GAM model into a tidy data frame
-#'
-#' @keywords internal
 #'
 #' @description This function converts a fitted GAM model into a tidy data frame
 #'
@@ -55,11 +48,11 @@ no_plot <- function(model = NULL) {
 #' @details To be able to plot the smoothing function of a GAM using ggplot2,
 #' some preprocessing is needed coming from the raw fitted GAM model output.
 #'
-#' Used in [plot_gam].
+#' Used in [plot_gam()].
 #'
-#' @seealso [plot_gam]
-#'
-#' @author Patrick Schratz
+#' @name gam_to_df
+#' @seealso [plot_gam()]
+#' @keywords internal
 #'
 #' @examples
 #' # load data (Source: ?mgcv::gam)
@@ -76,7 +69,6 @@ no_plot <- function(model = NULL) {
 #'
 #' tmp <- gam_to_df(fit_gam, "x2")
 #' @export
-
 gam_to_df <- function(model = NULL, pred = NULL) {
 
   plot_df <- no_plot(model) # nolint
@@ -84,7 +76,7 @@ gam_to_df <- function(model = NULL, pred = NULL) {
   # get list index of spec. predictor
   set_pred <- which(grepl(pred, plot_df))
 
-  df <- tibble(
+  df <- data.frame(
     x = plot_df[[set_pred]]$x,
     se_upr = plot_df[[set_pred]]$fit + plot_df[[set_pred]]$se,
     se_lwr = plot_df[[set_pred]]$fit - plot_df[[set_pred]]$se,

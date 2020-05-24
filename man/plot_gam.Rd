@@ -2,68 +2,66 @@
 % Please edit documentation in R/plot_gam.R
 \name{plot_gam}
 \alias{plot_gam}
-\title{Plot smoothing functions of GAM(M) models}
+\title{Plot GAM(M) Smoothing Function}
 \usage{
-plot_gam(model = NULL, pred = NULL, col_line = "blue",
-  ci_line_col = "black", ci_line_type = "dashed", ci_fill = "grey",
-  ci_alpha = 0.4, ci_line_size = 0.8, sm_fun_size = 1.1,
-  title = NULL, xlab = NULL, ylab = NULL, limits_y = NULL,
-  breaks_y = NULL)
+plot_gam(
+  model = NULL,
+  pred = NULL,
+  col_line = "blue",
+  ci_line_col = "black",
+  ci_line_type = "dashed",
+  ci_fill = "grey",
+  ci_alpha = 0.4,
+  ci_line_size = 0.8,
+  sm_fun_size = 1.1,
+  title = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  limits_y = NULL,
+  breaks_y = NULL
+)
 }
 \arguments{
 \item{model}{A fitted model of class \code{gam}.}
 
-\item{pred}{The predictor of the fitted model to plot the smooth function of.}
+\item{pred}{Predictor name.}
 
-\item{col_line}{Character. Sets color for smoothing function. Default to
-\code{"blue"}.}
+\item{col_line}{Smoothing function line color.}
 
-\item{ci_line_col}{Character. Sets color for confident interval line of
-smoothing function. Default to \code{"black"}.}
+\item{ci_line_col}{Confident interval line color.}
 
-\item{ci_line_type}{Character. Sets linetype of confident interval line
-of smoothing function. Default to \code{"dashed"}.}
+\item{ci_line_type}{Linetype of confidence interval.}
 
-\item{ci_fill}{Character. Fill color of area between smoothing function and
-its confident interval lines.}
+\item{ci_fill}{Fill color of area between smoothing function and its
+confidence interval lines.}
 
-\item{ci_alpha}{Numeric (range: 0-1). Opacity value of confidence interval shading.}
+\item{ci_alpha}{Opacity value of confidence interval.}
 
 \item{ci_line_size, sm_fun_size}{Line sizes.}
 
-\item{title}{Character. Plot title.}
+\item{title}{Plot title.}
 
-\item{xlab}{Character. X-axis title.}
+\item{xlab}{x-axis title.}
 
-\item{ylab}{Character. Y-axis title.}
+\item{ylab}{y-axis title.}
 
-\item{limits_y}{Numeric of length two. Sets y-axis limits.}
+\item{limits_y}{y-axis limits.}
 
-\item{breaks_y}{Numeric of length three. Sets y-axis breaks.
-See \link{seq}.
-Values need to be given in a \code{seq} call, e.g. \code{seq(-6, 6, 2)}.}
+\item{breaks_y}{y-axis breaks. Values are handed over to a \code{seq} call, e.g.
+\code{seq(-6, 6, 2)}.}
 }
 \description{
-This function plots the smoothing function of selected GAM(M) models
-using the \code{ggplot2} plotting system.
+Plots the smoothing function of GAM(M) predictors via ggplot2
 }
 \examples{
-# load data (Source: ?mgcv::gam) and fit model
+library(oddsratio)
 library(mgcv)
 fit_gam <- mgcv::gam(y ~ s(x0) + s(I(x1^2)) + s(x2) + offset(x3) + x4,
   data = data_gam
 )
 
-library(oddsratio)
 plot_gam(fit_gam, pred = "x2", title = "Predictor 'x2'")
 }
 \seealso{
-\link{plot_gam}
-
-\link{or_gam}
-
-\link{insert_or}
-}
-\author{
-Patrick Schratz \href{mailto:patrick.schratz@gmail.com}{patrick.schratz@gmail.com}
+\code{\link[=or_gam]{or_gam()}} \code{\link[=insert_or]{insert_or()}}
 }
