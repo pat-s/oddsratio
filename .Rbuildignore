@@ -22,3 +22,4 @@ tic.R
 ^\.lintr$
 ^\.vscode$
 ^\.github$
+^\.pre-commit-config\.yaml$
