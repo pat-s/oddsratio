@@ -5,7 +5,8 @@
 \alias{data_gam}
 \title{data_gam}
 \format{
-A \link{tibble} of randomly created numerical and non-numerical variables.
+A \link{data.frame} of randomly created numerical and non-numerical
+variables.
 }
 \source{
 Taken from ?mgcv::gam and added variable "x4"

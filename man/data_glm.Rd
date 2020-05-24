@@ -5,7 +5,8 @@
 \alias{data_glm}
 \title{data_glm}
 \format{
-A \link{tibble} of randomly created numerical and non-numerical variables.
+A \link{data.frame} of randomly created numerical and non-numerical
+variables.
 }
 \usage{
 data(data_glm)
