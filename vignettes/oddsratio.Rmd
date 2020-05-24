@@ -187,6 +187,6 @@ The resulting [data.frame] will automatically adjust the column names to the spe
 ```{r}
 or_glm(
   data = data_glm, model = fit_glm,
-  incr = list(gre = 380, gpa = 5), CI = 0.70
+  incr = list(gre = 380, gpa = 5), ci = 0.70
 )
 ```
