@@ -21,7 +21,7 @@
 #' @param slice Whether to calculate odds ratios for fixed increment steps over
 #'   the whole predictor distribution. See `percentage` for setting the
 #'   increment values.
-#' @param CI Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
+#' @param ci Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
 #'
 #' Currently supported functions: [mgcv::gam], [mgcv::gamm],
 #' [gam::gam]. For [mgcv::gamm], the `model` input of [or_gam] needs to be the
@@ -35,8 +35,8 @@
 #' \item{perc1}{Percentage value of `value1`}
 #' \item{perc2}{Percentage value of `value2`}
 #' \item{oddsratio}{Calculated odds ratio(s)}
-#' \item{CI_low}{Lower \code{(2.5\%)} confident interval of odds ratio}
-#' \item{CI_high}{Higher \code{(97.5\%)} confident interval of odds ratio}
+#' \item{ci_low}{Lower \code{(2.5\%)} confident interval of odds ratio}
+#' \item{ci_high}{Higher \code{(97.5\%)} confident interval of odds ratio}
 #'
 #' @seealso [or_glm()] [plot_gam()] [insert_or()]
 #'
@@ -71,7 +71,7 @@ or_gam <- function(data = NULL,
                    values = NULL,
                    percentage = NULL,
                    slice = FALSE,
-                   CI = NULL) {
+                   ci = NULL) {
 
   names_pred <- colnames(data)
 
@@ -98,8 +98,8 @@ or_gam <- function(data = NULL,
       perc1 = character(length = 100 / percentage),
       perc2 = character(length = 100 / percentage),
       oddsratio = numeric(length = 100 / percentage),
-      CI_low = numeric(length = 100 / percentage),
-      CI_high = numeric(length = 100 / percentage)
+      ci_low = numeric(length = 100 / percentage),
+      ci_high = numeric(length = 100 / percentage)
     )
 
     # apply OR calc for vector
@@ -123,9 +123,9 @@ or_gam <- function(data = NULL,
       pred_gam1 <- as.numeric(predict(model, data,
         type = "link", se.fit = TRUE
       ))
-      # calc 95% CI log odds (mean +- 2* stdev)
-      pred_gam1_CI_low <- pred_gam1[1] - (2 * pred_gam1[2])
-      pred_gam1_CI_high <- pred_gam1[1] + (2 * pred_gam1[2])
+      # calc 95% ci log odds (mean +- 2* stdev)
+      pred_gam1_ci_low <- pred_gam1[1] - (2 * pred_gam1[2])
+      pred_gam1_ci_high <- pred_gam1[1] + (2 * pred_gam1[2])
 
       # set values[2] of pred
       data[, pred] <- range_v[x + 1]
@@ -133,19 +133,19 @@ or_gam <- function(data = NULL,
       pred_gam2 <- as.numeric(predict(model, data,
         type = "link", se.fit = TRUE
       ))
-      # calc 95% CI log odds (mean +- 2* stdev)
-      pred_gam2_CI_low <- pred_gam2[1] - (2 * pred_gam2[2])
-      pred_gam2_CI_high <- pred_gam2[1] + (2 * pred_gam2[2])
+      # calc 95% ci log odds (mean +- 2* stdev)
+      pred_gam2_ci_low <- pred_gam2[1] - (2 * pred_gam2[2])
+      pred_gam2_ci_high <- pred_gam2[1] + (2 * pred_gam2[2])
 
       result$predictor <- pred
       result$oddsratio[x] <- round(as.numeric(exp(pred_gam2[1] -
         pred_gam1[1])), 2)
       result$value1[x] <- round(range_v[x], 3)
       result$value2[x] <- round(range_v[x + 1], 3)
-      result$CI_high[x] <- round(as.numeric(exp(pred_gam2_CI_low -
-        pred_gam1_CI_low)), 2) # no mistake # nolint
-      result$CI_low[x] <- round(as.numeric(exp(pred_gam2_CI_high -
-        pred_gam1_CI_high)), 2) # no mistake # nolint
+      result$ci_high[x] <- round(as.numeric(exp(pred_gam2_ci_low -
+        pred_gam1_ci_low)), 2) # no mistake # nolint
+      result$ci_low[x] <- round(as.numeric(exp(pred_gam2_ci_high -
+        pred_gam1_ci_high)), 2) # no mistake # nolint
       result$perc1[x] <- percentage * x - percentage
       result$perc2[x] <- percentage * x
     }
@@ -173,31 +173,31 @@ or_gam <- function(data = NULL,
   data[, pred] <- values[1]
   # calc log odds for value 1
   pred_gam1 <- as.numeric(predict(model, data, type = "link", se.fit = TRUE))
-  # calc 95% CI log odds (mean +- 2* stdev)
-  pred_gam1_CI_low <- pred_gam1[1] - (2 * pred_gam1[2])
-  pred_gam1_CI_high <- pred_gam1[1] + (2 * pred_gam1[2])
+  # calc 95% ci log odds (mean +- 2* stdev)
+  pred_gam1_ci_low <- pred_gam1[1] - (2 * pred_gam1[2])
+  pred_gam1_ci_high <- pred_gam1[1] + (2 * pred_gam1[2])
 
   # set values[2] of pred
   data[, pred] <- values[2]
   # calc log odds for value 2
   pred_gam2 <- as.numeric(predict(model, data, type = "link", se.fit = TRUE))
-  # calc 95% CI log odds (mean +- 2* stdev)
-  pred_gam2_CI_low <- pred_gam2[1] - (2 * pred_gam2[2])
-  pred_gam2_CI_high <- pred_gam2[1] + (2 * pred_gam2[2])
+  # calc 95% ci log odds (mean +- 2* stdev)
+  pred_gam2_ci_low <- pred_gam2[1] - (2 * pred_gam2[2])
+  pred_gam2_ci_high <- pred_gam2[1] + (2 * pred_gam2[2])
 
   odds_ratio <- as.numeric(exp(pred_gam2[1] - pred_gam1[1]), 2)
 
   # low and high are somehow switched in the results
-  odds_ratio_low <- as.numeric(exp(pred_gam2_CI_low - pred_gam1_CI_low), 2)
-  odds_ratio_high <- as.numeric(exp(pred_gam2_CI_high - pred_gam1_CI_high), 2)
+  odds_ratio_low <- as.numeric(exp(pred_gam2_ci_low - pred_gam1_ci_low), 2)
+  odds_ratio_high <- as.numeric(exp(pred_gam2_ci_high - pred_gam1_ci_high), 2)
 
   result <- data.frame(
     predictor = pred,
     value1 = values[1],
     value2 = values[2],
     oddsratio = odds_ratio,
-    CI_low = odds_ratio_high, # no mistake
-    CI_high = odds_ratio_low # no mistake
+    ci_low = odds_ratio_high, # no mistake
+    ci_high = odds_ratio_low # no mistake
   )
 
   # change col names

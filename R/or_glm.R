@@ -11,17 +11,17 @@
 #' @param data The data used for model fitting.
 #' @param model A fitted GLM(M).
 #' @param incr Increment values of each predictor given in a named list.
-#' @param CI Which confidence interval to calculate. Must be between 0
+#' @param ci Which confidence interval to calculate. Must be between 0
 #'   and 1. Default to 0.95
 #'
 #' @return A data frame with five columns:
 #'   \item{predictor}{Predictor name(s)}
 #'   \item{oddsratio}{Calculated odds ratio(s)}
-#'   \item{CI_low}{Lower confident interval of odds ratio}
-#'   \item{CI_high}{Higher confident interval of odds ratio}
+#'   \item{ci_low}{Lower confident interval of odds ratio}
+#'   \item{ci_high}{Higher confident interval of odds ratio}
 #'   \item{increment}{Increment of the predictor(s)}
 #'
-#' @details `CI_low` and `CI_high` are only calculated for GLM models because
+#' @details `ci_low` and `ci_high` are only calculated for GLM models because
 #'   [MASS::glmmPQL()] does not return confident intervals due to its penalizing
 #'   behavior.
 #'
@@ -43,7 +43,7 @@
 #' # Calculate OR and change the confidence interval level
 #' or_glm(
 #'   data = data_glm, model = fit_glm,
-#'   incr = list(gre = 380, gpa = 5), CI = .70
+#'   incr = list(gre = 380, gpa = 5), ci = .70
 #' )
 #'
 #' ## Example with MASS:glmmPQL()
@@ -63,7 +63,7 @@
 or_glm <- function(data,
                    model,
                    incr,
-                   CI = 0.95) {
+                   ci = 0.95) {
 
   if (class(model)[1] == "glm") {
     # get pred names and coefficients without intercept
@@ -80,15 +80,15 @@ or_glm <- function(data,
 
   increments <- list()
   odds_ratios <- list()
-  CI_low <- list()
-  CI_high <- list()
+  ci_low <- list()
+  ci_high <- list()
 
   for (i in preds) {
 
-    # CI calculation
+    # ci calculation
     if (class(model)[1] == "glm") {
-      CI_list <- data.frame(suppressMessages(confint(model,
-        level = CI
+      ci_list <- data.frame(suppressMessages(confint(model,
+        level = ci
       ))) [-1, ]
     }
 
@@ -97,9 +97,9 @@ or_glm <- function(data,
       odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]]) *
         as.numeric(incr[[i]])), 3)
       if (!class(model)[1] == "glmmPQL") {
-        CI_low[[i]] <- round(exp(CI_list[i, 1] * # nocov start
+        ci_low[[i]] <- round(exp(ci_list[i, 1] * # nocov start
           as.numeric(incr[[i]])), 3)
-        CI_high[[i]] <- round(exp(CI_list[i, 2] *
+        ci_high[[i]] <- round(exp(ci_list[i, 2] *
           as.numeric(incr[[i]])), 3) # nocov end
       }
       increments[[i]] <- as.numeric(incr[[i]])
@@ -110,8 +110,8 @@ or_glm <- function(data,
       odds_ratios[[i]] <- round(exp(as.numeric(coef[[i]])), 3)
 
       if (!class(model)[1] == "glmmPQL") {
-        CI_low[[i]] <- round(exp(CI_list[i, 1]), 3)
-        CI_high[[i]] <- round(exp(CI_list[i, 2]), 3)
+        ci_low[[i]] <- round(exp(ci_list[i, 1]), 3)
+        ci_high[[i]] <- round(exp(ci_list[i, 2]), 3)
       }
 
       increments[[i]] <- "Indicator variable"
@@ -119,33 +119,33 @@ or_glm <- function(data,
     }
   }
 
-  # set CIs NA if model is of type glmmPQL
+  # set cis NA if model is of type glmmPQL
   if (class(model)[1] == "glmmPQL") {
-    CI_low <- c(rep(NA, length(preds)))
-    CI_high <- c(rep(NA, length(preds)))
+    ci_low <- c(rep(NA, length(preds)))
+    ci_high <- c(rep(NA, length(preds)))
   }
 
   # create data frame to return
   result <- data.frame(
     predictor = names(odds_ratios),
     oddsratio = unlist(odds_ratios, use.names = FALSE),
-    CI_low = unlist(CI_low, use.names = FALSE),
-    CI_high = unlist(CI_high, use.names = FALSE),
+    ci_low = unlist(ci_low, use.names = FALSE),
+    ci_high = unlist(ci_high, use.names = FALSE),
     increment = unlist(increments,
       use.names = FALSE
     )
   )
 
-  # set CI column names
+  # set ci column names
   if (class(model)[1] == "glm") {
 
     # Clean variable names
 
-    col_names <- gsub("\\.\\.", replacement = "", names(CI_list))
+    col_names <- gsub("\\.\\.", replacement = "", names(ci_list))
     col_names <- gsub("X", replacement = "", col_names)
 
-    colnames(result)[3] <- paste0("CI_low (", col_names[1], ")")
-    colnames(result)[4] <- paste0("CI_high (", col_names[2], ")")
+    colnames(result)[3] <- paste0("ci_low (", col_names[1], ")")
+    colnames(result)[4] <- paste0("ci_high (", col_names[2], ")")
   }
 
   return(result)

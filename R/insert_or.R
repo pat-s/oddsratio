@@ -151,7 +151,7 @@ insert_or <- function(plot_object = NULL,
 
     if (is.null(arrow_xloc_l)) {
       # calc arrow shift from x axis range
-      arrow_xloc_l <- -(max(plot_object$data$y) - min(plot_object$data$y)) *
+      arrow_xloc_l <- - (max(plot_object$data$y) - min(plot_object$data$y)) *
         0.002
     }
 
