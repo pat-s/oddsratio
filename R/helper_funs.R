@@ -1,6 +1,5 @@
 #' @title Suppress plotting output of [plot] function
 #'
-#'
 #' @description This function suppresses plotting output of [plot] function
 #'
 #' @importFrom grDevices dev.off png
@@ -10,9 +9,9 @@
 #'
 #' @details To prevent unwanted plot printing of [plot] in a function call
 #' in which the only desire is to work with the returned information of
-#' [plot]. Used in [plot_gam].
+#' `plot`. Used in [plot_gam()].
 #'
-#' @seealso [plot_gam]
+#' @seealso [plot_gam()]
 #' @name no_plot
 #' @keywords internal
 #'
@@ -32,7 +31,6 @@
 #' tmp <- plot(fit_gam, pages = 1) # plot output
 #' tmp <- no_plot(fit_gam) # no plot output
 #' @export
-
 no_plot <- function(model = NULL) {
   png("temp.xyz")
   plot_df <- plot(model, pages = 1)
@@ -50,10 +48,10 @@ no_plot <- function(model = NULL) {
 #' @details To be able to plot the smoothing function of a GAM using ggplot2,
 #' some preprocessing is needed coming from the raw fitted GAM model output.
 #'
-#' Used in [plot_gam].
+#' Used in [plot_gam()].
 #'
 #' @name gam_to_df
-#' @seealso [plot_gam]
+#' @seealso [plot_gam()]
 #' @keywords internal
 #'
 #' @examples
@@ -78,7 +76,7 @@ gam_to_df <- function(model = NULL, pred = NULL) {
   # get list index of spec. predictor
   set_pred <- which(grepl(pred, plot_df))
 
-  df <- tibble(
+  df <- data.frame(
     x = plot_df[[set_pred]]$x,
     se_upr = plot_df[[set_pred]]$fit + plot_df[[set_pred]]$se,
     se_lwr = plot_df[[set_pred]]$fit - plot_df[[set_pred]]$se,

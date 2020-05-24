@@ -37,6 +37,7 @@ Currently supported functions: \link[stats:glm]{stats::glm},\link[MASS:glmmPQL]{
 }
 \examples{
 ## Example with glm()
+library(oddsratio)
 # load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and
 # fit model
 fit_glm <- glm(admit ~ gre + gpa + rank,
@@ -65,7 +66,6 @@ fit_glmmPQL <- glmmPQL(y ~ trt + week,
 
 # Apply function
 or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5))
-
 }
 \seealso{
 \code{\link[=or_gam]{or_gam()}}

@@ -34,7 +34,11 @@ Only needed if \code{slice = TRUE}.}
 the whole predictor distribution. See \code{percentage} for setting the
 increment values.}
 
-\item{CI}{Currently fixed to 95\\% confidence interval level (2.5\\% - 97.5\\%).}
+\item{CI}{Currently fixed to 95\\% confidence interval level (2.5\\% - 97.5\\%).
+
+Currently supported functions: \link[mgcv:gam]{mgcv::gam}, \link[mgcv:gamm]{mgcv::gamm},
+\link[gam:gam]{gam::gam}. For \link[mgcv:gamm]{mgcv::gamm}, the \code{model} input of \link{or_gam} needs to be the
+\code{gam} output (e.g. \code{fit_gam$gam}).}
 }
 \value{
 A \link{data.frame} with (up to) eight columns. \code{perc1} and \code{perc2} are
@@ -53,11 +57,6 @@ This function calculates odds ratio(s) for specific increment
 steps of GAM(M) models. Odds ratios can also be calculated for continuous
 (percentage) increment steps across the whole predictor distribution using
 \code{slice = TRUE}.
-}
-\details{
-Currently supported functions: \link[mgcv:gam]{mgcv::gam}, \link[mgcv:gamm]{mgcv::gamm},
-\link[gam:gam]{gam::gam}. For \link[mgcv:gamm]{mgcv::gamm}, the \code{model} input of \link{or_gam} needs to be the
-\code{gam} output (e.g. \code{fit_gam$gam}).
 }
 \examples{
 library(oddsratio)

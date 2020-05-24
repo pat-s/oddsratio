@@ -32,7 +32,7 @@ insert_or(
 \arguments{
 \item{plot_object}{A \code{ggplot} object from \code{\link[=plot_gam]{plot_gam()}}.}
 
-\item{or_object}{A \link{tibble} as returned from \code{\link[=or_gam]{or_gam()}}.}
+\item{or_object}{A \link{data.frame} as returned from \code{\link[=or_gam]{or_gam()}}.}
 
 \item{line_col, line_alpha, line_type, line_size}{Aesthetics of vertical lines.}
 
@@ -43,18 +43,17 @@ insert_or(
 \item{rect}{Whether to print a shaded rectangle between the
 vertical lines.}
 
-\item{arrow}{Whether to print arrows above the inserted values.
-Default to \code{TRUE}.}
+\item{arrow}{Whether to print arrows above the inserted values.}
 
 \item{values}{Whether to print predictor value information nearby the
 inserted vertical lines.}
 
 \item{values_xloc}{x-axis location/shift of values relative to their vertical
-line. Default to 2\\% of x-axis range.}
+line. Default to 2\\\% of x-axis range.}
 
-\item{or_yloc, values_yloc}{Specifies y-location of inserted odds ratio /
-values. Relative to plotted y-axis range. A positive/negative value will
-place the the text higher/lower.}
+\item{or_yloc, values_yloc}{Specifies y-location of inserted odds ratio
+values. Relative to plotted y-axis range. A positive (negative) value will
+place the the text higher (lower).}
 
 \item{arrow_xloc_r, arrow_xloc_l, arrow_yloc, arrow_length, arrow_col}{Axis
 placement options of inserted arrows. Relative to respective axis ranges.}
@@ -67,15 +66,14 @@ This function inserts calculated odds ratios of GAM(M)s into a
 plot of a GAM(M) smoothing function.
 }
 \details{
-The idea behind this function is to add calculated odds ratios of
-fitted GAM models (\code{\link[=or_gam]{or_gam()}}) into a plot showing the smooth function
-(\link{plot_gam}) of the chosen predictor for which the odds ratio was
-calculated for. Multiple insertions can be made by iterative calling the
-function (see examples).
+The idea behind this function is to add calculated odds ratios of fitted GAM
+models (\code{\link[=or_gam]{or_gam()}}) into a plot showing the smooth function (\link{plot_gam}) of
+the chosen predictor for which the odds ratio was calculated for. Multiple
+insertions can be made by iterative calling the function (see examples).
 
-Right now the function only accepts inputs from \code{\link[=or_gam]{or_gam()}} objects
-with \code{slice = FALSE}. If you want to insert multiple odds ratio values,
-call the function multiple times.
+Right now the function only accepts inputs from \code{\link[=or_gam]{or_gam()}} objects with
+\code{slice = FALSE}. If you want to insert multiple odds ratio values, call the
+function multiple times.
 }
 \examples{
 library(oddsratio)
@@ -115,5 +113,5 @@ insert_or(plot_object, or_object2,
 )
 }
 \seealso{
-\code{\link[=plot_gam]{plot_gam()}} \code{\link[=or_gam]{or_gam()}}
+\code{\link[=plot_gam]{plot_gam()}}, \code{\link[=or_gam]{or_gam()}}
 }

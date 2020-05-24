@@ -23,9 +23,9 @@
 #'   increment values.
 #' @param CI Currently fixed to 95\% confidence interval level (2.5\% - 97.5\%).
 #'
-#' @details Currently supported functions: [mgcv::gam], [mgcv::gamm],
-#'   [gam::gam]. For [mgcv::gamm], the `model` input of [or_gam] needs to be the
-#'   `gam` output (e.g. `fit_gam$gam`).
+#' Currently supported functions: [mgcv::gam], [mgcv::gamm],
+#' [gam::gam]. For [mgcv::gamm], the `model` input of [or_gam] needs to be the
+#' `gam` output (e.g. `fit_gam$gam`).
 #'
 #' @return A [data.frame] with (up to) eight columns. `perc1` and `perc2` are
 #'   only returned if `slice = TRUE`:

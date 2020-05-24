@@ -1,4 +1,3 @@
-#' @name insert_or
 #' @title Insert odds ratios of GAM(M)s into smoothing function
 #'
 #' @description This function inserts calculated odds ratios of GAM(M)s into a
@@ -7,37 +6,35 @@
 #' @import ggplot2
 #'
 #' @param plot_object A `ggplot` object from [plot_gam()].
-#' @param or_object A [tibble] as returned from [or_gam()].
+#' @param or_object A [data.frame] as returned from [or_gam()].
 #' @param values Whether to print predictor value information nearby the
 #'   inserted vertical lines.
 #' @param rect Whether to print a shaded rectangle between the
 #' vertical lines.
 #' @param arrow Whether to print arrows above the inserted values.
-#' Default to `TRUE`.
 #' @param line_col,line_alpha,line_type,line_size Aesthetics of vertical lines.
 #' @param text_col,text_alpha,text_size Aesthetics of inserted values.
 #' @param rect_col,rect_alpha Aesthetics of shaded rectangle.
-#' @param or_yloc,values_yloc Specifies y-location of inserted odds ratio /
-#' values. Relative to plotted y-axis range. A positive/negative value will
-#' place the the text higher/lower.
+#' @param or_yloc,values_yloc Specifies y-location of inserted odds ratio
+#'   values. Relative to plotted y-axis range. A positive (negative) value will
+#'   place the the text higher (lower).
 #' @param values_xloc x-axis location/shift of values relative to their vertical
-#'   line. Default to 2\% of x-axis range.
+#'   line. Default to 2\\% of x-axis range.
 #' @param arrow_xloc_r,arrow_xloc_l,arrow_yloc,arrow_length,arrow_col Axis
 #'   placement options of inserted arrows. Relative to respective axis ranges.
 #'
-#' @details The idea behind this function is to add calculated odds ratios of
-#'   fitted GAM models ([or_gam()]) into a plot showing the smooth function
-#'   ([plot_gam]) of the chosen predictor for which the odds ratio was
-#'   calculated for. Multiple insertions can be made by iterative calling the
-#'   function (see examples).
+#' @details
+#' The idea behind this function is to add calculated odds ratios of fitted GAM
+#' models ([or_gam()]) into a plot showing the smooth function ([plot_gam]) of
+#' the chosen predictor for which the odds ratio was calculated for. Multiple
+#' insertions can be made by iterative calling the function (see examples).
 #'
-#'   Right now the function only accepts inputs from [or_gam()] objects
-#'   with `slice = FALSE`. If you want to insert multiple odds ratio values,
-#'   call the function multiple times.
+#' Right now the function only accepts inputs from [or_gam()] objects with
+#' `slice = FALSE`. If you want to insert multiple odds ratio values, call the
+#' function multiple times.
 #'
 #' @return [ggplot2]
-#'
-#' @seealso [plot_gam()] [or_gam()]
+#' @seealso [plot_gam()], [or_gam()]
 #'
 #' @examples
 #' library(oddsratio)

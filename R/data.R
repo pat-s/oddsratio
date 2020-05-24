@@ -10,7 +10,8 @@
 #'
 #' @docType data
 #'
-#' @format A [tibble] of randomly created numerical and non-numerical variables.
+#' @format A [data.frame] of randomly created numerical and non-numerical
+#'   variables.
 NULL
 
 #' data_glm
@@ -23,6 +24,7 @@ NULL
 #' @keywords datasets
 #' @keywords internal
 #'
-#' @format A [tibble] of randomly created numerical and non-numerical variables.
+#' @format A [data.frame] of randomly created numerical and non-numerical
+#'   variables.
 #'
 NULL

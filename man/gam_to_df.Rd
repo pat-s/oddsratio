@@ -18,7 +18,7 @@ This function converts a fitted GAM model into a tidy data frame
 To be able to plot the smoothing function of a GAM using ggplot2,
 some preprocessing is needed coming from the raw fitted GAM model output.
 
-Used in \link{plot_gam}.
+Used in \code{\link[=plot_gam]{plot_gam()}}.
 }
 \examples{
 # load data (Source: ?mgcv::gam)
@@ -36,6 +36,6 @@ fit_gam <- gam(y ~ s(x0) + s(I(x1^2)) + s(x2) +
 tmp <- gam_to_df(fit_gam, "x2")
 }
 \seealso{
-\link{plot_gam}
+\code{\link[=plot_gam]{plot_gam()}}
 }
 \keyword{internal}

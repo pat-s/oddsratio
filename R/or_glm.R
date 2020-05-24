@@ -29,6 +29,7 @@
 #'
 #' @examples
 #' ## Example with glm()
+#' library(oddsratio)
 #' # load data (source: http://www.ats.ucla.edu/stat/r/dae/logit.htm) and
 #' # fit model
 #' fit_glm <- glm(admit ~ gre + gpa + rank,
@@ -57,7 +58,6 @@
 #'
 #' # Apply function
 #' or_glm(data = bacteria, model = fit_glmmPQL, incr = list(week = 5))
-#'
 #' @seealso [or_gam()]
 #' @export
 or_glm <- function(data,
@@ -75,8 +75,7 @@ or_glm <- function(data,
     # get pred names and coefficients without intercept
     preds <- names(model$coefficients$fixed)[2:length(model$coefficients$fixed)]
     coef <- model$coefficients$fixed[2:length(model$coefficients$fixed)]
-    cat("Warning: No confident interval calculation possible
-        for 'glmmPQL' models\n\n")
+    warning("No confident interval calculation possible for 'glmmPQL' models.", call. = FALSE) # nolint
   }
 
   increments <- list()
@@ -128,23 +127,22 @@ or_glm <- function(data,
 
   # create data frame to return
   result <- data.frame(
-    predictor = as.character(names(odds_ratios)),
+    predictor = names(odds_ratios),
     oddsratio = unlist(odds_ratios, use.names = FALSE),
     CI_low = unlist(CI_low, use.names = FALSE),
     CI_high = unlist(CI_high, use.names = FALSE),
-    increment = as.character(unlist(increments,
+    increment = unlist(increments,
       use.names = FALSE
-    ))
+    )
   )
 
   # set CI column names
   if (class(model)[1] == "glm") {
 
-    browser()
     # Clean variable names
 
-    col_names = gsub("\\.\\.", replacement = "", names(CI_list))
-    col_names = gsub("X", replacement = "", colnames)
+    col_names <- gsub("\\.\\.", replacement = "", names(CI_list))
+    col_names <- gsub("X", replacement = "", col_names)
 
     colnames(result)[3] <- paste0("CI_low (", col_names[1], ")")
     colnames(result)[4] <- paste0("CI_high (", col_names[2], ")")
