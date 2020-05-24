@@ -21,3 +21,4 @@ tic.R
 ^\.travis\.yml$
 ^\.lintr$
 ^\.vscode$
+^\.github$
