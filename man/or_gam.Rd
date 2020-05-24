@@ -11,7 +11,7 @@ or_gam(
   values = NULL,
   percentage = NULL,
   slice = FALSE,
-  CI = NULL
+  ci = NULL
 )
 }
 \arguments{
@@ -34,7 +34,7 @@ Only needed if \code{slice = TRUE}.}
 the whole predictor distribution. See \code{percentage} for setting the
 increment values.}
 
-\item{CI}{Currently fixed to 95\\% confidence interval level (2.5\\% - 97.5\\%).
+\item{ci}{Currently fixed to 95\\% confidence interval level (2.5\\% - 97.5\\%).
 
 Currently supported functions: \link[mgcv:gam]{mgcv::gam}, \link[mgcv:gamm]{mgcv::gamm},
 \link[gam:gam]{gam::gam}. For \link[mgcv:gamm]{mgcv::gamm}, the \code{model} input of \link{or_gam} needs to be the
@@ -49,8 +49,8 @@ only returned if \code{slice = TRUE}:
 \item{perc1}{Percentage value of \code{value1}}
 \item{perc2}{Percentage value of \code{value2}}
 \item{oddsratio}{Calculated odds ratio(s)}
-\item{CI_low}{Lower \code{(2.5\%)} confident interval of odds ratio}
-\item{CI_high}{Higher \code{(97.5\%)} confident interval of odds ratio}
+\item{ci_low}{Lower \code{(2.5\%)} confident interval of odds ratio}
+\item{ci_high}{Higher \code{(97.5\%)} confident interval of odds ratio}
 }
 \description{
 This function calculates odds ratio(s) for specific increment

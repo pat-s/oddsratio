@@ -4,7 +4,7 @@
 \alias{or_glm}
 \title{Calculate Odds Ratios of Generalized Linear (Mixed) Models}
 \usage{
-or_glm(data, model, incr, CI = 0.95)
+or_glm(data, model, incr, ci = 0.95)
 }
 \arguments{
 \item{data}{The data used for model fitting.}
@@ -13,15 +13,15 @@ or_glm(data, model, incr, CI = 0.95)
 
 \item{incr}{Increment values of each predictor given in a named list.}
 
-\item{CI}{Which confidence interval to calculate. Must be between 0
+\item{ci}{Which confidence interval to calculate. Must be between 0
 and 1. Default to 0.95}
 }
 \value{
 A data frame with five columns:
 \item{predictor}{Predictor name(s)}
 \item{oddsratio}{Calculated odds ratio(s)}
-\item{CI_low}{Lower confident interval of odds ratio}
-\item{CI_high}{Higher confident interval of odds ratio}
+\item{ci_low}{Lower confident interval of odds ratio}
+\item{ci_high}{Higher confident interval of odds ratio}
 \item{increment}{Increment of the predictor(s)}
 }
 \description{
@@ -29,7 +29,7 @@ This function calculates odds ratio(s) for specific increment
 steps of GLMs.
 }
 \details{
-\code{CI_low} and \code{CI_high} are only calculated for GLM models because
+\code{ci_low} and \code{ci_high} are only calculated for GLM models because
 \code{\link[MASS:glmmPQL]{MASS::glmmPQL()}} does not return confident intervals due to its penalizing
 behavior.
 
@@ -51,7 +51,7 @@ or_glm(data = data_glm, model = fit_glm, incr = list(gre = 380, gpa = 5))
 # Calculate OR and change the confidence interval level
 or_glm(
   data = data_glm, model = fit_glm,
-  incr = list(gre = 380, gpa = 5), CI = .70
+  incr = list(gre = 380, gpa = 5), ci = .70
 )
 
 ## Example with MASS:glmmPQL()
