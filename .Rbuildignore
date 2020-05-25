@@ -24,3 +24,4 @@ tic.R
 ^\.github$
 ^\.pre-commit-config\.yaml$
 ^codemeta\.json$
+^CRAN-RELEASE$
