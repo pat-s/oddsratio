@@ -20,7 +20,7 @@ test_that("or_glm works with glmmPQL", {
     verbose = FALSE
   )
   # Apply function
-  out <- or_glm(data = bacteria, model = fit_glmmpql, incr = list(week = 5))
+  out <- expect_warning(or_glm(data = bacteria, model = fit_glmmpql, incr = list(week = 5)))
 
   expect_length(out, 5)
 })
