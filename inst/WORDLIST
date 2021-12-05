@@ -1,15 +1,19 @@
+aut
+BugReports
 codemeta
 codeRepository
 coef
 ComputerLanguage
 copyrightHolder
 cran
+cre
 datePublished
 developmentStatus
 doi
 familyName
 fileSize
 funder
+gam
 ggplot
 github
 givenName
@@ -18,6 +22,7 @@ http
 https
 issueTracker
 knitr
+LazyData
 lifecycle
 md
 mgcv
@@ -30,6 +35,8 @@ README
 relatedLink
 releaseNotes
 rmarkdown
+Roxygen
+RoxygenNote
 runtimePlatform
 sameAs
 schratz
@@ -41,5 +48,6 @@ softwareSuggestions
 spdx
 testthat
 tidyverse
+VignetteBuilder
 www
 zenodo
