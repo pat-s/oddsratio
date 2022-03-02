@@ -72,7 +72,6 @@ or_gam <- function(data = NULL,
                    percentage = NULL,
                    slice = FALSE,
                    ci = NULL) {
-
   names_pred <- colnames(data)
 
   if (slice == TRUE) {
