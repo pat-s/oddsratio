@@ -95,7 +95,6 @@ insert_or <- function(plot_object = NULL,
                       arrow_col = NULL,
                       arrow_xloc_r = NULL,
                       arrow_xloc_l = NULL) {
-
   plot_object <- plot_object +
     geom_vline(
       xintercept = or_object$value1, color = line_col,
@@ -151,7 +150,7 @@ insert_or <- function(plot_object = NULL,
 
     if (is.null(arrow_xloc_l)) {
       # calc arrow shift from x axis range
-      arrow_xloc_l <- - (max(plot_object$data$y) - min(plot_object$data$y)) *
+      arrow_xloc_l <- -(max(plot_object$data$y) - min(plot_object$data$y)) *
         0.002
     }
 
@@ -176,7 +175,6 @@ insert_or <- function(plot_object = NULL,
       )
 
     if (arrow) {
-
       if (is.null(arrow_col)) {
         # calc arrow shift from x axis range
         arrow_col <- text_col

@@ -47,7 +47,6 @@ plot_gam <- function(model = NULL,
                      ylab = NULL,
                      limits_y = NULL,
                      breaks_y = NULL) {
-
   df <- gam_to_df(model, pred)
 
   if (is.null(xlab)) {
@@ -77,12 +76,10 @@ plot_gam <- function(model = NULL,
   if (!is.null(limits_y) & !is.null(breaks_y)) {
     plot_gam <- plot_gam +
       scale_y_continuous(breaks = c(breaks_y), limits = c(limits_y))
-  }
-  else if (!is.null(limits_y) & is.null(breaks_y)) {
+  } else if (!is.null(limits_y) & is.null(breaks_y)) {
     plot_gam <- plot_gam +
       scale_y_continuous(limits = limits_y)
-  }
-  else if (is.null(limits_y) & !is.null(breaks_y)) {
+  } else if (is.null(limits_y) & !is.null(breaks_y)) {
     plot_gam <- plot_gam +
       scale_y_continuous(breaks = c(breaks_y))
   }

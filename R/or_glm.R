@@ -64,7 +64,6 @@ or_glm <- function(data,
                    model,
                    incr,
                    ci = 0.95) {
-
   if (class(model)[1] == "glm") {
     # get pred names and coefficients without intercept
     preds <- names(coefficients(model))[2:length(coefficients(model))]
@@ -89,7 +88,7 @@ or_glm <- function(data,
     if (class(model)[1] == "glm") {
       ci_list <- data.frame(suppressMessages(confint(model,
         level = ci
-      ))) [-1, ]
+      )))[-1, ]
     }
 
     # check if predictor is numeric or integer

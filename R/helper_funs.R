@@ -70,7 +70,6 @@ no_plot <- function(model = NULL) {
 #' tmp <- gam_to_df(fit_gam, "x2")
 #' @export
 gam_to_df <- function(model = NULL, pred = NULL) {
-
   plot_df <- no_plot(model) # nolint
 
   # get list index of spec. predictor
