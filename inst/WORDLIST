@@ -292,6 +292,7 @@ SoftwareApplication
 SoftwareSourceCode
 Sv
 Sy
+Sys
 Sz
 SÆ
 SсU
@@ -568,6 +569,7 @@ glm
 gmail
 gn
 gp
+grepl
 gtable
 gu
 gvt
@@ -707,6 +709,7 @@ linter
 linters
 lintr
 linux
+lsb
 lu
 lv
 lw
@@ -795,6 +798,8 @@ pQ
 pS
 pU
 pX
+packagemanager
+pak
 pandoc
 param
 params
@@ -856,6 +861,7 @@ rn
 ro
 ropensci
 rr
+rstudio
 runtimePlatform
 ry
 rz
@@ -880,6 +886,7 @@ sl
 softwareRequirements
 softwareSuggestions
 spdx
+sprintf
 sr
 src
 stringr
