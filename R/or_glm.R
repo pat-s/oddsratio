@@ -83,7 +83,6 @@ or_glm <- function(data,
   ci_high <- list()
 
   for (i in preds) {
-
     # ci calculation
     if (class(model)[1] == "glm") {
       ci_list <- data.frame(suppressMessages(confint(model,
@@ -137,7 +136,6 @@ or_glm <- function(data,
 
   # set ci column names
   if (class(model)[1] == "glm") {
-
     # Clean variable names
 
     col_names <- gsub("\\.\\.", replacement = "", names(ci_list))
