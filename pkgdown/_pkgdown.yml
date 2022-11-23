@@ -2,8 +2,6 @@ url: https://pat-s.github.io/oddsratio
 
 template:
   bootstrap: 5
-  params:
-    bootswatch: simplex
 
 authors:
   Patrick Schratz:
