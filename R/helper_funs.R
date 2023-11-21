@@ -72,8 +72,12 @@ no_plot <- function(model = NULL) {
 gam_to_df <- function(model = NULL, pred = NULL) {
   plot_df <- no_plot(model) # nolint
 
+  # trim whitespace in 'pred' otherwise regex matching doesn't work
+  pred <- gsub("\\s+", "", pred)
+
   # get list index of spec. predictor
-  set_pred <- grep(paste0("\\b", pred, "\\b"), plot_df)
+  # NB: the regex checks for a komma followed by a number to distinguish single predicts from mixed predictors to only return a single list index (e.g. "age" vs (age, los)). See https://github.com/pat-s/oddsratio/issues/54
+  set_pred <- grep(paste0("\\b", pred, "\\b", ",[0-9]"), plot_df)
 
   df <- data.frame(
     x = plot_df[[set_pred]]$x,
