@@ -1,6 +1,6 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
-# oddsratio 2.0.1.9001
+# oddsratio 2.0.2
 
 ## Features
 
@@ -21,11 +21,6 @@
   Update tic templates \[ci-skip\]
 
 - Merge pull request #45 from pat-s/update-tic.
-
-  Update tic templates \[ci-skip\]
-
-
-# oddsratio 2.0.1.9000
 
 - Same as previous version.
 
