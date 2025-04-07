@@ -1,17 +1,5 @@
-## Test environments
+oddsratio 2.0.2
 
-* local Arch Linux installation, R 3.6.0
-* ubuntu 16.04 (on travis-ci), R-devel
-* win-builder, R-devel
+## Cran Repository Policy
 
-## R CMD check results
-
-0 errors | 0 warnings | 0 notes
-
-## Reverse dependencies
-
-There are no reverse dependencies.
-
-## Downstream dependencies
-
-"There are currently no downstream dependencies for this package”
+- [x] Reviewed CRP last edited 2024-08-27.
