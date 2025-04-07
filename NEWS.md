@@ -1,3 +1,30 @@
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# oddsratio 2.0.1.9001
+
+## Features
+
+- Account for mixed predictor specifications.
+
+## Chore
+
+- Upkeep maintenance.
+
+## Uncategorized
+
+- Merge branch 'main' of github.com:pat-s/oddsratio.
+
+- Merge branch 'master' of github.com:pat-s/oddsratio.
+
+- Merge pull request #46 from pat-s/update-tic.
+
+  Update tic templates \[ci-skip\]
+
+- Merge pull request #45 from pat-s/update-tic.
+
+  Update tic templates \[ci-skip\]
+
+
 # oddsratio 2.0.1.9000
 
 - Same as previous version.
