@@ -33,7 +33,7 @@
 #' `slice = FALSE`. If you want to insert multiple odds ratio values, call the
 #' function multiple times.
 #'
-#' @return [ggplot2]
+#' @return [ggplot2::ggplot]
 #' @seealso [plot_gam()], [or_gam()]
 #'
 #' @examples

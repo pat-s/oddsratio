@@ -59,7 +59,7 @@ place the the text higher (lower).}
 placement options of inserted arrows. Relative to respective axis ranges.}
 }
 \value{
-\link{ggplot2}
+\link[ggplot2:ggplot]{ggplot2::ggplot}
 }
 \description{
 This function inserts calculated odds ratios of GAM(M)s into a
