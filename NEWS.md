@@ -2,27 +2,10 @@
 
 # oddsratio 2.0.2
 
-## Features
-
-- Account for mixed predictor specifications.
-
 ## Chore
 
+- Account for mixed predictor specifications.
 - Upkeep maintenance.
-
-## Uncategorized
-
-- Merge branch 'main' of github.com:pat-s/oddsratio.
-
-- Merge branch 'master' of github.com:pat-s/oddsratio.
-
-- Merge pull request #46 from pat-s/update-tic.
-
-  Update tic templates \[ci-skip\]
-
-- Merge pull request #45 from pat-s/update-tic.
-
-- Same as previous version.
 
 
 # oddsratio 2.0.1
