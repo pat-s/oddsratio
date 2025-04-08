@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# oddsratio 2.0.2.9000
+
+- Switching to development version.
+
+
 # oddsratio 2.0.2
 
 ## Chore
