@@ -1,6 +1,6 @@
 Package: oddsratio
 Title: Odds Ratio Calculation for GAM(M)s & GLM(M)s
-Version: 2.0.1.9001
+Version: 2.0.2
 Authors@R: 
     person("Patrick", "Schratz", , "patrick.schratz@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0748-6624"))

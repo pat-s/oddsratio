@@ -1,13 +1,7 @@
-citHeader("To cite package 'oddsratio' in publications use:")
-citEntry(entry = "Manual",
-	title = "R package 'oddsratio': Odds ratio calculation for GAM(M)s & GLM(M)s",
-	author = personList(as.person("Patrick Schratz")),
-	year = "2017",
-	version = "1.0.2",
-	doi = "10.5281/zenodo.1095472",
-	textVersion =
-	  paste("Schratz, P. (2017):",
-		      "R package 'oddsratio': Odds ratio calculation for GAM(M)s & GLM(M)s,",
-		      "version: 1.0.2,",
-		      "doi: 10.5281/zenodo.1095472")
+bibentry(
+  bibtype  = "Manual",
+  title    = "R package 'oddsratio': Odds ratio calculation for GAM(M)s & GLM(M)s",
+  author   = "Patrick Schratz",
+  year     = "2017",
+  doi      = "10.5281/zenodo.1095472"
 )
