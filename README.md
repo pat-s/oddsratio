@@ -1,3 +1,5 @@
+# MIGRATED to https://github.com/pat-s/oddsratio
+
 # oddsratio
 
 <!-- badges: start -->
