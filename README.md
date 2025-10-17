@@ -1,4 +1,4 @@
-# MIGRATED to https://github.com/pat-s/oddsratio
+# MIGRATED to https://codefloe.com/pat-s/oddsratio
 
 # oddsratio
 
